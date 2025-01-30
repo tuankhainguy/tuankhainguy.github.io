@@ -44,3 +44,9 @@ body {
   font-size: 4rem;
   font-weight: bold;
 }
+
+#title {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
