@@ -1,4 +1,7 @@
+@import url("font.css");
+
 :root {
+  font-family: "JetBrainsMono Nerd Font Mono";
 }
 
 body {
