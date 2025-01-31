@@ -38,15 +38,62 @@ html {
 }
 
 body {
+  height: 100svh;
+  width: 100svw;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 4rem;
   font-weight: bold;
+  margin: 0;
+  background-color: inherit;
+}
+
+button {
+  border-radius: 0.3em;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: inherit;
+  background-color: var(--catppuccin-base);
+  cursor: pointer;
+  transition: box-shadow .1s ease-in-out, color .1s ease-in-out, background-color .1s ease-in-out;
+  color: inherit;
+  border-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box; /* stop overflow when there is padding */
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: inherit;
 }
 
 #title {
   display: flex;
   justify-content: start;
   align-items: center;
+}
+
+#mainContainer {
+  --empty-space: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: var(--empty-space);
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  gap: var(--empty-space);
+  box-sizing: border-box; /* stop overflow when there is padding */
 }
