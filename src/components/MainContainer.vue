@@ -3,12 +3,15 @@ import { getFractionVisible, selectTab } from '../common/utils';
 import { GlobalStore } from '../main';
 
 
+const keys = Object.keys(GlobalStore.sections as object);
+
 function onScroll(e: Event) {
   const container = e.currentTarget as HTMLElement;
 
   let highestOpacity = 0;
   let highestOpacityElement: HTMLElement | null = null;
   container.childNodes.forEach((section) => {
+    if ((section as HTMLElement).id === "topShadow") return;
     const frac = getFractionVisible(
       section as HTMLElement,
       container,
@@ -23,12 +26,12 @@ function onScroll(e: Event) {
   });
 
   if (!highestOpacityElement) return;
-  if (highestOpacityElement === GlobalStore.currentSection.section) return;
+  if (highestOpacityElement === GlobalStore.currentSection!.section) return;
 
   const nextTab =
-    GlobalStore.sections[(highestOpacityElement as HTMLElement).id].tab;
+    GlobalStore.sections![(highestOpacityElement as HTMLElement).id].tab;
 
-  selectTab(nextTab);
+  selectTab(nextTab!);
 }
 </script>
 
@@ -39,8 +42,15 @@ export default {
     const container = (this.$el as HTMLElement);
     container.scrollTop = 0;
 
-    container.childNodes.forEach((section) => {
-      sections[(section as HTMLElement).id].section = section as HTMLElement;
+    // v-for creates 2 additional "#text" nodes that makes it not work
+    Array.from(container.childNodes).forEach((section) => {
+      const id = (section as HTMLElement).id;
+      if (!id) {
+        section.remove();
+        return;
+      }
+      if (id === "topShadow") return;
+      sections![(section as HTMLElement).id].section = section as HTMLElement;
 
       const frac = getFractionVisible(
         section as HTMLElement,
@@ -55,10 +65,9 @@ export default {
 
 <template>
   <div id="mainContainer" @scroll="onScroll" >
-    <div id="home" class="section"></div>
-    <div id="about" class="section"></div>
-    <div id="projects" class="section"></div>
-    <div id="contacts" class="section"></div>
+    <div v-for="key in keys" :id="key" class="section"></div>
+    <div id="topShadow">
+    </div>
   </div>
 </template>
 
@@ -84,5 +93,36 @@ export default {
 		inset 2px 2px 8px rgb(from var(--catppuccin-lavender) r g b / .2),
 		inset 1px 1px 8px rgb(from var(--catppuccin-lavender) r g b / .2),
 		-3px -3px 12px rgb(from var(--catppuccin-lavender) r g b / .8);
+  z-index: 0;
+}
+
+
+#mainContainer {
+  --empty-space: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: var(--empty-space);
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  gap: var(--empty-space);
+  box-sizing: border-box; /* stop overflow when there is padding */
+  scrollbar-width: thin;
+  scrollbar-color: var(--catppuccin-lavender) var(--catppuccin-mantle);
+  z-index: 1;
+}
+
+
+#mainContainer #topShadow {
+  top: 0;
+  width: 100%;
+  height: var(--topbar-height);
+  content: '';
+  position: fixed;
+  box-shadow: 0px 0px 8px 8px rgb(from var(--catppuccin-base) r g b);
+  background-color: var(--catppuccin-base);
 }
 </style>

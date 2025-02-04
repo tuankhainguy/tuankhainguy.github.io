@@ -6,6 +6,8 @@ import { GlobalStore } from '../main';
 
   export default {
     setup() {
+      const keys = Object.keys(GlobalStore.sections as object);
+
       function onTabClick(e: MouseEvent) {
         if (!mainContainer) return;
         const el = e.currentTarget as HTMLElement;
@@ -13,7 +15,7 @@ import { GlobalStore } from '../main';
 
         if (!value) return;
 
-        const sectionEl = GlobalStore.sections[value].section as HTMLElement;
+        const sectionEl = GlobalStore.sections![value].section as HTMLElement;
 
         // no need to subtract sectionEl.clienTop (border width)
         // because we need to add it again later for the border from
@@ -30,6 +32,7 @@ import { GlobalStore } from '../main';
       }
 
       return {
+        keys,
         onTabClick,
       }
     },
@@ -37,24 +40,34 @@ import { GlobalStore } from '../main';
       mainContainer = document.getElementById("mainContainer");
 
       const tabEls = this.$el as HTMLElement;
-      tabEls.childNodes.forEach((tab) => {
-        const section = (tab as HTMLElement).dataset.section;
+      Array.from(tabEls.childNodes).forEach((tab) => {
+        const dataset = (tab as HTMLElement).dataset;
+        if (!dataset) {
+          tab.remove();
+          return;
+        }
 
-        if (section) GlobalStore.sections[section].tab = tab as HTMLElement;
+        const section = dataset.section;
+
+        if (section) GlobalStore.sections![section].tab = tab as HTMLElement;
       });
 
       GlobalStore.currentSection =
-        GlobalStore.sections["home"];
+        GlobalStore.sections!["home"];
     },
   }
 </script>
 
 <template>
   <div id="tabsContainer">
-    <button class="tabs active" data-section="home" @click="onTabClick">Home</button>
-    <button class="tabs" data-section="about" @click="onTabClick">About</button>
-    <button class="tabs" data-section="projects" @click="onTabClick">Projects</button>
-    <button class="tabs" data-section="contacts" @click="onTabClick">Contacts</button>
+    <button
+      v-for="key in keys"
+      :class="{tabs: true, active: key === 'home'}"
+      :data-section="key"
+      @click="onTabClick"
+    >
+      {{ key.charAt(0).toUpperCase() + key.slice(1) }}
+    </button>
   </div>
 </template>
 

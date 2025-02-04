@@ -3,20 +3,37 @@ import './styles/style.css'
 import App from './App.vue'
 
 
-type SectionType = {
+export type SectionType = {
   tab: HTMLElement | null,
   section: HTMLElement | null
 }
 
-const sections: Record<string, SectionType> = {
-  "home": { tab: null, section: null },
-  "about": { tab: null, section: null },
-  "projects": { tab: null, section: null },
-  "contacts": { tab: null, section: null },
+// only need to add the [key: string] to tell Typescript the
+// the index type the keys use
+export type SectionsType = {
+  [key: string]: SectionType,
+  home: SectionType,
+  about: SectionType,
+  portfolio: SectionType,
+  contacts: SectionType,
+}
+
+const sections: SectionsType = {
+  home: { tab: null, section: null },
+  about: { tab: null, section: null },
+  portfolio: { tab: null, section: null },
+  contacts: { tab: null, section: null },
 };
 
-export const GlobalStore: Record<any, any> = {}
+interface GlobalStoreType {
+  sections: typeof sections | null,
+  currentSection: SectionType | null,
+}
 
-GlobalStore.sections = sections;
+export const GlobalStore: GlobalStoreType = {
+  sections: sections,
+  currentSection: null,
+}
+
 
 createApp(App).mount('#app')

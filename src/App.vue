@@ -29,7 +29,7 @@ import MainContainer from './components/MainContainer.vue';
 
 <style scoped>
 #topbar {
-  height: 4rem;
+  height: var(--topbar-height);
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -37,8 +37,7 @@ import MainContainer from './components/MainContainer.vue';
   padding: 1.5em;
   box-sizing: border-box;
   background-color: inherit;
-  box-shadow: 0px 16px 12px rgb(from var(--catppuccin-base) r g b);
-  z-index: 1;
+  z-index: 10;;
 }
 
 .logo {
