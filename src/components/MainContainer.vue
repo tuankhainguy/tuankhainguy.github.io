@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { getFractionVisible, selectTab } from '../common/utils';
 import { GlobalStore } from '../main';
+import { onMounted, useTemplateRef } from 'vue';
 
+const mainContainer = useTemplateRef('main');
 
 const keys = Object.keys(GlobalStore.sections as object);
 
@@ -33,38 +35,63 @@ function onScroll(e: Event) {
 
   selectTab(nextTab!);
 }
+
+onMounted(() => {
+  const sections = GlobalStore.sections;
+  const container = mainContainer.value as HTMLElement;
+  container.scrollTop = 0;
+
+  // v-for creates 2 additional "#text" nodes that makes it not work
+  Array.from(container.childNodes).forEach((section) => {
+    const id = (section as HTMLElement).id;
+    if (!id) {
+      section.remove();
+      return;
+    }
+    if (id === "topShadow") return;
+    sections![(section as HTMLElement).id].section = section as HTMLElement;
+
+    const frac = getFractionVisible(
+      section as HTMLElement,
+      container,
+    );
+
+    (section as HTMLElement).style.opacity = `${frac}`;
+  });
+});
 </script>
 
-<script lang="ts">
-export default {
-  mounted() {
-    const sections = GlobalStore.sections;
-    const container = (this.$el as HTMLElement);
-    container.scrollTop = 0;
-
-    // v-for creates 2 additional "#text" nodes that makes it not work
-    Array.from(container.childNodes).forEach((section) => {
-      const id = (section as HTMLElement).id;
-      if (!id) {
-        section.remove();
-        return;
-      }
-      if (id === "topShadow") return;
-      sections![(section as HTMLElement).id].section = section as HTMLElement;
-
-      const frac = getFractionVisible(
-        section as HTMLElement,
-        container,
-      );
-
-      (section as HTMLElement).style.opacity = `${frac}`;
-    });
-  },
-}
-</script>
+<!-- can mix this type of script with Vue 3 Composition API to access DOM Element -->
+<!-- <script lang="ts"> -->
+<!-- export default { -->
+<!--   mounted() { -->
+<!--     const sections = GlobalStore.sections; -->
+<!--     const container = (this.$el as HTMLElement); -->
+<!--     container.scrollTop = 0; -->
+<!---->
+<!--     // v-for creates 2 additional "#text" nodes that makes it not work -->
+<!--     Array.from(container.childNodes).forEach((section) => { -->
+<!--       const id = (section as HTMLElement).id; -->
+<!--       if (!id) { -->
+<!--         section.remove(); -->
+<!--         return; -->
+<!--       } -->
+<!--       if (id === "topShadow") return; -->
+<!--       sections![(section as HTMLElement).id].section = section as HTMLElement; -->
+<!---->
+<!--       const frac = getFractionVisible( -->
+<!--         section as HTMLElement, -->
+<!--         container, -->
+<!--       ); -->
+<!---->
+<!--       (section as HTMLElement).style.opacity = `${frac}`; -->
+<!--     }); -->
+<!--   }, -->
+<!-- } -->
+<!-- </script> -->
 
 <template>
-  <div id="mainContainer" @scroll="onScroll" >
+  <div id="mainContainer" ref="main" @scroll="onScroll" >
     <div v-for="key in keys" :id="key" class="section"></div>
     <div id="topShadow">
     </div>

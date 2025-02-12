@@ -1,61 +1,60 @@
 <script lang="ts">
 import { GlobalStore } from '../main';
 
+let mainContainer: HTMLElement | null = null;
 
-  let mainContainer: HTMLElement | null = null;
+export default {
+  setup() {
+    const keys = Object.keys(GlobalStore.sections as object);
 
-  export default {
-    setup() {
-      const keys = Object.keys(GlobalStore.sections as object);
+    function onTabClick(e: MouseEvent) {
+      if (!mainContainer) return;
+      const el = e.currentTarget as HTMLElement;
+      const value: string | undefined = el.dataset.section;
 
-      function onTabClick(e: MouseEvent) {
-        if (!mainContainer) return;
-        const el = e.currentTarget as HTMLElement;
-        const value: string | undefined = el.dataset.section;
+      if (!value) return;
 
-        if (!value) return;
+      const sectionEl = GlobalStore.sections![value].section as HTMLElement;
 
-        const sectionEl = GlobalStore.sections![value].section as HTMLElement;
+      // no need to subtract sectionEl.clienTop (border width)
+      // because we need to add it again later for the border from
+      // the section above to not show
+      const scrollTop = sectionEl.offsetTop -
+        mainContainer.offsetTop -
+        mainContainer.clientTop -
+        parseInt(window.getComputedStyle(mainContainer).gap);
 
-        // no need to subtract sectionEl.clienTop (border width)
-        // because we need to add it again later for the border from
-        // the section above to not show
-        const scrollTop = sectionEl.offsetTop -
-          mainContainer.offsetTop -
-          mainContainer.clientTop -
-          parseInt(window.getComputedStyle(mainContainer).gap);
-
-        mainContainer.scrollTo({
-          top: scrollTop,
-          behavior: "smooth",
-        });
-      }
-
-      return {
-        keys,
-        onTabClick,
-      }
-    },
-    mounted() {
-      mainContainer = document.getElementById("mainContainer");
-
-      const tabEls = this.$el as HTMLElement;
-      Array.from(tabEls.childNodes).forEach((tab) => {
-        const dataset = (tab as HTMLElement).dataset;
-        if (!dataset) {
-          tab.remove();
-          return;
-        }
-
-        const section = dataset.section;
-
-        if (section) GlobalStore.sections![section].tab = tab as HTMLElement;
+      mainContainer.scrollTo({
+        top: scrollTop,
+        behavior: "smooth",
       });
+    }
 
-      GlobalStore.currentSection =
-        GlobalStore.sections!["home"];
-    },
-  }
+    return {
+      keys,
+      onTabClick,
+    }
+  },
+  mounted() {
+    mainContainer = document.getElementById("mainContainer");
+
+    const tabEls = this.$el as HTMLElement;
+    Array.from(tabEls.childNodes).forEach((tab) => {
+      const dataset = (tab as HTMLElement).dataset;
+      if (!dataset) {
+        tab.remove();
+        return;
+      }
+
+      const section = dataset.section;
+
+      if (section) GlobalStore.sections![section].tab = tab as HTMLElement;
+    });
+
+    GlobalStore.currentSection =
+      GlobalStore.sections!["home"];
+  },
+}
 </script>
 
 <template>
