@@ -1,6 +1,7 @@
 <script lang="ts">
 import { GlobalStore } from '../main';
 
+let root: HTMLElement | null = null;
 let mainContainer: HTMLElement | null = null;
 
 export default {
@@ -8,7 +9,7 @@ export default {
     const keys = Object.keys(GlobalStore.sections as object);
 
     function onTabClick(e: MouseEvent) {
-      if (!mainContainer) return;
+      if (!root || !mainContainer) return;
       const el = e.currentTarget as HTMLElement;
       const value: string | undefined = el.dataset.section;
 
@@ -20,11 +21,11 @@ export default {
       // because we need to add it again later for the border from
       // the section above to not show
       const scrollTop = sectionEl.offsetTop -
-        mainContainer.offsetTop -
-        mainContainer.clientTop -
-        parseInt(window.getComputedStyle(mainContainer).gap);
+        root.offsetTop -
+        root.clientTop -
+        parseInt(window.getComputedStyle(mainContainer).paddingTop);
 
-      mainContainer.scrollTo({
+      root.scrollTo({
         top: scrollTop,
         behavior: "smooth",
       });
@@ -36,6 +37,7 @@ export default {
     }
   },
   mounted() {
+    root = document.firstElementChild as HTMLElement;
     mainContainer = document.getElementById("mainContainer");
 
     const tabEls = this.$el as HTMLElement;
@@ -80,6 +82,7 @@ export default {
 }
 
 .tabs {
+  background-color: transparent;
   border-radius: 0;
   transition: border .1s ease-in-out;
 }

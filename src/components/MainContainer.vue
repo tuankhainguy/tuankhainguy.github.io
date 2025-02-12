@@ -1,22 +1,28 @@
 <script setup lang="ts">
 import { getFractionVisible, selectTab } from '../common/utils';
 import { GlobalStore } from '../main';
+import Logo from '/src/assets/TKN.svg?component'
+import Tabs from './Tabs.vue'
 import { onMounted, useTemplateRef } from 'vue';
 
-const mainContainer = useTemplateRef('main');
+const containerRef = useTemplateRef('main');
+const topbarRef = useTemplateRef("topbar");
+let scrollEl: HTMLElement | null = null;
 
 const keys = Object.keys(GlobalStore.sections as object);
 
-function onScroll(e: Event) {
-  const container = e.currentTarget as HTMLElement;
+function onScroll() {
+  const container = containerRef.value;
+  if (!container || scrollEl === null) return;
 
   let highestOpacity = 0;
   let highestOpacityElement: HTMLElement | null = null;
   container.childNodes.forEach((section) => {
-    if ((section as HTMLElement).id === "topShadow") return;
+    const id = (section as HTMLElement).id;
+    if (id === "topShadow" || id === "topbar") return;
     const frac = getFractionVisible(
       section as HTMLElement,
-      container,
+      scrollEl!,
     );
 
     if (frac > highestOpacity) {
@@ -37,8 +43,16 @@ function onScroll(e: Event) {
 }
 
 onMounted(() => {
+  document.addEventListener('scroll', onScroll);
+  scrollEl = document.firstElementChild as HTMLElement;
+  const topbar = topbarRef.value;
+  const logo = topbar?.firstElementChild;
+  const logoBg = logo?.firstElementChild;
+  logoBg ?
+    (logoBg as HTMLElement).style.fill = "var(--catppuccin-base)" :
+    null;
   const sections = GlobalStore.sections;
-  const container = mainContainer.value as HTMLElement;
+  const container = containerRef.value as HTMLElement;
   container.scrollTop = 0;
 
   // v-for creates 2 additional "#text" nodes that makes it not work
@@ -48,12 +62,12 @@ onMounted(() => {
       section.remove();
       return;
     }
-    if (id === "topShadow") return;
+    if (id === "topShadow" || id === "topbar") return;
     sections![(section as HTMLElement).id].section = section as HTMLElement;
 
     const frac = getFractionVisible(
       section as HTMLElement,
-      container,
+      scrollEl!,
     );
 
     (section as HTMLElement).style.opacity = `${frac}`;
@@ -91,7 +105,11 @@ onMounted(() => {
 <!-- </script> -->
 
 <template>
-  <div id="mainContainer" ref="main" @scroll="onScroll" >
+  <div id="mainContainer" ref="main" >
+    <div id="topbar" ref="topbar">
+      <Logo class="logo" id="topLogo" />
+      <Tabs />
+    </div>
     <div v-for="key in keys" :id="key" class="section"></div>
     <div id="topShadow">
     </div>
@@ -102,7 +120,14 @@ onMounted(() => {
 .section {
   display: flex;
   flex-shrink: 0;
-  height: 100%;
+  /* this is just place-holder value */
+  /* heights or widths using vh/vw or svh/svw or dvh/dvw */
+  /* have issues with mobile browsers because of browser navbar resizing */
+  /* especially so for moving elements like this */
+  /* if use viewport values and the navbar resizes, everything else with */
+  /* viewport values resize making scrolling and maybe other interactions */
+  /* not smooth/choppy */
+  height: 800px;
   width: 100%;
   /* border: 0.5rem solid var(--catppuccin-lavender); */
   border-radius: 8px;
@@ -128,18 +153,19 @@ onMounted(() => {
   --empty-space: 24px;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   justify-content: start;
   align-items: center;
   padding: var(--empty-space);
+  padding-top: calc(var(--empty-space) + var(--topbar-height));
   margin: 0;
   width: 100%;
-  height: 100%;
-  overflow: scroll;
+  height: max-content;
+  /* height: 100%; */
+  /* overflow: scroll; */
   gap: var(--empty-space);
   box-sizing: border-box; /* stop overflow when there is padding */
-  scrollbar-width: thin;
-  scrollbar-color: var(--catppuccin-lavender) var(--catppuccin-mantle);
-  z-index: 1;
+  z-index: 0;
 }
 
 
@@ -151,5 +177,30 @@ onMounted(() => {
   position: fixed;
   box-shadow: 0px 0px 8px 8px rgb(from var(--catppuccin-base) r g b);
   background-color: var(--catppuccin-base);
+}
+
+
+#topbar {
+  height: var(--topbar-height);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5em;
+  box-sizing: border-box;
+  background-color: inherit;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+}
+
+.logo {
+  height: 2em;
+  will-change: filter;
+  transition: filter 300ms;
+  border-radius: .5em;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 .2em var(--catppuccin-lavender));
 }
 </style>

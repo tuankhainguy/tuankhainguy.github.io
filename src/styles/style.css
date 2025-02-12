@@ -35,20 +35,28 @@
   color: var(--catppuccin-text);
 }
 
+/* html, body { */
+/*   overflow: hidden; */
+/* } */
+
 html {
   background-color: var(--catppuccin-base);
+  scrollbar-width: thin;
+  scrollbar-color: var(--catppuccin-lavender) var(--catppuccin-mantle);
 }
 
 body {
-  height: 100svh;
-  width: 100svw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* height: 100svh; */
+  /* width: 100svw; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
   font-size: 4rem;
   font-weight: bold;
   margin: 0;
+  padding: 0;
   background-color: inherit;
+  /* position: relative; */
 }
 
 button {
@@ -68,15 +76,16 @@ button {
 }
 
 #app {
-  width: 100%;
-  height: 100%;
+  width: 100svw;
+  height: max-content;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   font-size: 1rem;
   font-weight: bold;
   background-color: inherit;
+  isolation: isolate;
 }
 
 #title {
