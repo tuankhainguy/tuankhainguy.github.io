@@ -87,6 +87,7 @@ export default {
   background-color: transparent;
   border-radius: 0;
   transition: border .1s ease-in-out;
+  padding: 4px;
 }
 
 .tabs.active {
