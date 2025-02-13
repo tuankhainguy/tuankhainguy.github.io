@@ -9,6 +9,8 @@ export default {
     const keys = Object.keys(GlobalStore.sections as object);
 
     function onTabClick(e: MouseEvent) {
+      e.stopPropagation();
+
       if (!root || !mainContainer) return;
       const el = e.currentTarget as HTMLElement;
       const value: string | undefined = el.dataset.section;
@@ -63,7 +65,7 @@ export default {
   <div id="tabsContainer">
     <button
       v-for="key in keys"
-      :class="{tabs: true, active: key === 'home'}"
+      class="tabs"
       :data-section="key"
       @click="onTabClick"
     >

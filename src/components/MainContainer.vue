@@ -19,7 +19,7 @@ function onScroll() {
   let highestOpacityElement: HTMLElement | null = null;
   container.childNodes.forEach((section) => {
     const id = (section as HTMLElement).id;
-    if (id === "topShadow" || id === "topbar") return;
+    if (id === "topShadow" || id === "topbar" || id === "bgObjs" || id === "underlay") return;
     const frac = getFractionVisible(
       section as HTMLElement,
       scrollEl!,
@@ -55,6 +55,8 @@ onMounted(() => {
   const container = containerRef.value as HTMLElement;
   container.scrollTop = 0;
 
+  let highestOpacity = 0;
+  let highestOpacityElement: HTMLElement | null = null;
   // v-for creates 2 additional "#text" nodes that makes it not work
   Array.from(container.childNodes).forEach((section) => {
     const id = (section as HTMLElement).id;
@@ -62,7 +64,7 @@ onMounted(() => {
       section.remove();
       return;
     }
-    if (id === "topShadow" || id === "topbar") return;
+    if (id === "topShadow" || id === "topbar" || id === "bgObjs" || id === "underlay") return;
     sections![(section as HTMLElement).id].section = section as HTMLElement;
 
     const frac = getFractionVisible(
@@ -70,8 +72,20 @@ onMounted(() => {
       scrollEl!,
     );
 
-    (section as HTMLElement).style.opacity = `${frac}`;
+    if (frac > highestOpacity) {
+      highestOpacity = frac;
+      highestOpacityElement = section as HTMLElement
+    }
+
+    (section as HTMLElement).style.opacity = `${frac * 2 - 1}`;
   });
+
+  if (!highestOpacityElement) return;
+
+  const nextTab =
+    GlobalStore.sections![(highestOpacityElement as HTMLElement).id].tab;
+
+  selectTab(nextTab!);
 });
 </script>
 
@@ -111,7 +125,11 @@ onMounted(() => {
       <Tabs />
     </div>
     <div v-for="key in keys" :id="key" class="section"></div>
-    <div id="topShadow">
+    <div id="topShadow" />
+    <div id="underlay" />
+    <div id="bgObjs">
+      <div id="obj1" />
+      <div id="obj2" />
     </div>
   </div>
 </template>
@@ -129,22 +147,15 @@ onMounted(() => {
   /* not smooth/choppy */
   height: 800px;
   width: 100%;
-  /* border: 0.5rem solid var(--catppuccin-lavender); */
+  border: 2px solid var(--catppuccin-lavender);
   border-radius: 8px;
+  background: rgb(from var(--catppuccin-surface1) r g b / 0.4);
+  box-shadow: 0 4px 30px rgb(from var(--catppuccin-base) r g b / 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   /* left and right */
   /* border-inline: none; */
   box-sizing: border-box;
-  background:
-    linear-gradient(to bottom right, var(--catppuccin-surface1), var(--catppuccin-crust));
-	box-shadow:
-		-3px -3px 12px rgb(from var(--catppuccin-lavender) r g b / .83),
-		1px 2px 3px rgb(from var(--catppuccin-crust) r g b / .05),
-		3px 4px 7px rgb(from var(--catppuccin-crust) r g b / .1),
-		inset -2px -2px 2px rgb(from var(--catppuccin-crust) r g b / .1),
-		inset -1px -1px 3px rgb(from var(--catppuccin-lavender) r g b / .6),
-		inset 2px 2px 8px rgb(from var(--catppuccin-lavender) r g b / .2),
-		inset 1px 1px 8px rgb(from var(--catppuccin-lavender) r g b / .2),
-		-3px -3px 12px rgb(from var(--catppuccin-lavender) r g b / .8);
   z-index: 0;
 }
 
@@ -202,5 +213,52 @@ onMounted(() => {
 }
 .logo:hover {
   filter: drop-shadow(0 0 .2em var(--catppuccin-lavender));
+}
+
+
+#bgObjs #obj1 {
+  position: fixed;
+  width: 100px;
+  aspect-ratio: 1 / 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(50%, 50%);
+  content: '';
+  background-color: var(--catppuccin-maroon);
+  z-index: -2;
+  border-radius: 50px;
+}
+
+
+#bgObjs #obj2 {
+  position: fixed;
+  width: 400px;
+  aspect-ratio: 1 / 1;
+  top: 20%;
+  left: 30%;
+  transform: translate(-20%, -10%);
+  content: '';
+  background-color: var(--catppuccin-mauve);
+  z-index: -2;
+  border-radius: 200px;
+}
+
+
+#underlay {
+  position: fixed;
+  top: 0;
+  padding-top: calc(var(--empty-space) + var(--topbar-height));
+  margin: 0;
+  width: 100%;
+  height: max-content;
+  height: 100vh;
+  border-radius: 8px;
+  background: rgb(from var(--catppuccin-base) r g b / 0.3);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  /* left and right */
+  /* border-inline: none; */
+  box-sizing: border-box;
+  z-index: -1;
 }
 </style>
