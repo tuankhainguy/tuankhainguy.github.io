@@ -226,8 +226,8 @@ onMounted(() => {
   position: absolute;
   width: 200px;
   aspect-ratio: 1 / 1;
-  top: 50%;
-  left: 50%;
+  top: calc(var(--vh) / 2);
+  left: calc(var(--vw) / 2);
   transform: translate(-50%, -50%);
   content: '';
   background-color: var(--catppuccin-mauve);
