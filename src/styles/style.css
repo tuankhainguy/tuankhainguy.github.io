@@ -35,6 +35,36 @@
   color: var(--catppuccin-text);
 }
 
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  :root {
+    --vh: 200px;
+    --vw: 200px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  :root {
+    --vh: 400px;
+    --vw: 400px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
+
+
 /* html, body { */
 /*   overflow: hidden; */
 /* } */
@@ -44,6 +74,7 @@ html {
   scrollbar-width: thin;
   scrollbar-color: var(--catppuccin-lavender) var(--catppuccin-mantle);
 }
+
 
 body {
   /* height: 100svh; */
@@ -58,6 +89,7 @@ body {
   background-color: inherit;
   /* position: relative; */
 }
+
 
 button {
   border-radius: 0.3em;
@@ -75,6 +107,7 @@ button {
   box-sizing: border-box; /* stop overflow when there is padding */
 }
 
+
 #app {
   width: 100svw;
   height: max-content;
@@ -88,8 +121,35 @@ button {
   isolation: isolate;
 }
 
+
 #title {
   display: flex;
   justify-content: start;
   align-items: center;
+}
+
+
+.section {
+  display: flex;
+  flex-shrink: 0;
+  /* this is just place-holder value */
+  /* heights or widths using vh/vw or svh/svw or dvh/dvw */
+  /* have issues with mobile browsers because of browser navbar resizing */
+  /* especially so for moving elements like this */
+  /* if use viewport values and the navbar resizes, everything else with */
+  /* viewport values resize making scrolling and maybe other interactions */
+  /* not smooth/choppy */
+  height: 800px;
+  width: 100%;
+  border: 2px solid var(--catppuccin-lavender);
+  border-radius: 8px;
+  background: rgb(from var(--catppuccin-surface1) r g b / 0.4);
+  box-shadow: 0 4px 30px rgb(from var(--catppuccin-base) r g b / 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  /* left and right */
+  /* border-inline: none; */
+  box-sizing: border-box;
+  padding: 12px;
+  z-index: 0;
 }

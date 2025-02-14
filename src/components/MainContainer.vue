@@ -4,6 +4,10 @@ import { GlobalStore } from '../main';
 import Logo from '/src/assets/TKN.svg?component'
 import Tabs from './Tabs.vue'
 import { onMounted, useTemplateRef } from 'vue';
+import Home from './sections/Home.vue';
+import About from './sections/About.vue';
+import Contacts from './sections/Contacts.vue';
+import Portfolio from './sections/Portfolio.vue';
 
 const containerRef = useTemplateRef('main');
 const topbarRef = useTemplateRef("topbar");
@@ -124,42 +128,21 @@ onMounted(() => {
       <Logo class="logo" id="topLogo" />
       <Tabs />
     </div>
-    <div v-for="key in keys" :id="key" class="section"></div>
+    <!-- <div v-for="key in keys" :id="key" class="section"></div> -->
+    <Home :id="keys[0]" />
+    <About :id="keys[1]" />
+    <Portfolio :id="keys[2]" />
+    <Contacts :id="keys[3]" />
     <div id="topShadow" />
     <div id="underlay" />
     <div id="bgObjs">
-      <div id="obj1" />
+      <!-- <div id="obj1" /> -->
       <div id="obj2" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.section {
-  display: flex;
-  flex-shrink: 0;
-  /* this is just place-holder value */
-  /* heights or widths using vh/vw or svh/svw or dvh/dvw */
-  /* have issues with mobile browsers because of browser navbar resizing */
-  /* especially so for moving elements like this */
-  /* if use viewport values and the navbar resizes, everything else with */
-  /* viewport values resize making scrolling and maybe other interactions */
-  /* not smooth/choppy */
-  height: 800px;
-  width: 100%;
-  border: 2px solid var(--catppuccin-lavender);
-  border-radius: 8px;
-  background: rgb(from var(--catppuccin-surface1) r g b / 0.4);
-  box-shadow: 0 4px 30px rgb(from var(--catppuccin-base) r g b / 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  /* left and right */
-  /* border-inline: none; */
-  box-sizing: border-box;
-  z-index: 0;
-}
-
-
 #mainContainer {
   --empty-space: 24px;
   display: flex;
@@ -216,8 +199,18 @@ onMounted(() => {
 }
 
 
-#bgObjs #obj1 {
+#bgObjs {
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100lvw;
+  height: 100lvh;
+  z-index: -2;
+}
+
+
+#bgObjs #obj1 {
+  position: absolute;
   width: 100px;
   aspect-ratio: 1 / 1;
   top: 50%;
@@ -225,22 +218,20 @@ onMounted(() => {
   transform: translate(50%, 50%);
   content: '';
   background-color: var(--catppuccin-maroon);
-  z-index: -2;
   border-radius: 50px;
 }
 
 
 #bgObjs #obj2 {
-  position: fixed;
-  width: 400px;
+  position: absolute;
+  width: 200px;
   aspect-ratio: 1 / 1;
-  top: 20%;
-  left: 30%;
-  transform: translate(-20%, -10%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   content: '';
   background-color: var(--catppuccin-mauve);
-  z-index: -2;
-  border-radius: 200px;
+  border-radius: 100px;
 }
 
 
