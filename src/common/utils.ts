@@ -3,17 +3,18 @@ import { GlobalStore } from "../main";
 function getFractionVisible(
   element: HTMLElement, scrollEl: HTMLElement
 ) {
+  const padding = parseInt(window.getComputedStyle(element.parentElement!).paddingTop);
   const viewHeight = element.clientHeight;
-  const viewTop = element.offsetTop + element.clientTop - 16;
-  const viewBottom = viewTop + element.clientHeight + 16;
-  const scrollElTop = scrollEl.scrollTop + scrollEl.offsetTop,
-  scrollElBottom = scrollElTop + scrollEl.clientHeight;
+  const viewTop = element.offsetTop + element.clientTop;
+  const viewBottom = viewTop + element.clientHeight - element.clientTop;
+  const scrollElTop = scrollEl.scrollTop + padding,
+  scrollElBottom = scrollElTop + scrollEl.clientHeight - padding;
 
   const hiddenHeight =
     Math.max(0, scrollElTop - viewTop) +
     Math.max(0, viewBottom - scrollElBottom);
 
-  const fractionHeight = (viewHeight - hiddenHeight) / viewHeight;
+  const fractionHeight = (viewHeight - hiddenHeight) / (scrollEl.clientHeight - padding);
 
   return fractionHeight;
 }

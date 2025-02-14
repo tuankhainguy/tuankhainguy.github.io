@@ -139,7 +139,7 @@ button {
   /* if use viewport values and the navbar resizes, everything else with */
   /* viewport values resize making scrolling and maybe other interactions */
   /* not smooth/choppy */
-  height: 800px;
+  height: 1200px;
   width: 100%;
   border: 2px solid var(--catppuccin-lavender);
   border-radius: 8px;
