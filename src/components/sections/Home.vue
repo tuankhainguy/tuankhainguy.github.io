@@ -38,13 +38,13 @@ onMounted(() => {
 h1 {
   width: 100%;
   margin-top: 5rem;
-  font-size: max(4vw, 3rem);
+  font-size: min(max(4vw, 3rem), 5rem);
 }
 
 h2 {
   width: 100%;
   margin-top: 5rem;
-  font-size: max(2.5vw, 2rem);
+  font-size: min(max(2vw, 1.5rem), 2.5rem);
 }
 
 .typewriter-container {
@@ -52,7 +52,7 @@ h2 {
 }
 
 .typewriter {
-  font-size: max(2vw, 1.5rem);
+  font-size: max(1vw, 1rem);
   width: 0;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: .15em solid var(--catppuccin-maroon); /* The typwriter cursor */
