@@ -49,7 +49,8 @@ h2 {
   width: max-content;
   max-width: 100%;
   padding: 12px;
-  margin: 8px;
+	margin-top: 24px;
+	margin-bottom: 24px;
   position: relative;
 }
 
@@ -59,8 +60,8 @@ h2 {
   left: 0;
   content: '';
   height: 100%;
-  /* TO FIGURE OUT WHERE THESE VALUES ARE FROM */
-  width: calc(100dvw - var(--main-empty-space) - 12px - 12px - 12px - 12px - 8px - 8px);
+  /* Viewport - paddings */
+  width: calc(100dvw - 2 * var(--main-empty-space) - 2 * 12px);
   border-radius: 12px;
   background-color: var(--catppuccin-mantle);
   z-index: -1;
@@ -144,7 +145,7 @@ h2 {
     content: 'print("Hello world!")';
   }
   30% {
-    content: 'println("Hello world!")';
+    content: 'printf("Hello world!");';
   }
   50% {
     content: 'console.log("Hello world!")';
