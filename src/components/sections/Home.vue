@@ -9,9 +9,8 @@ onMounted(() => {
 <template>
   <div class="section">
     <h1>SOFTWARE ENGINEERING IS FUN</h1>
-    <div class="typewriter-container">
-      <div class="typewriter">
-      </div>
+    <div class="typewriterContainer">
+      <div class="typewriter"></div>
     </div>
     <h2>Really fun</h2>
   </div>
@@ -28,7 +27,6 @@ onMounted(() => {
   box-shadow: none;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  justify-content: space-between;
 }
 
 * {
@@ -47,8 +45,25 @@ h2 {
   font-size: min(max(2vw, 1.5rem), 2.5rem);
 }
 
-.typewriter-container {
+.typewriterContainer {
   width: max-content;
+  max-width: 100%;
+  padding: 12px;
+  margin: 8px;
+  position: relative;
+}
+
+.typewriterContainer:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  height: 100%;
+  /* TO FIGURE OUT WHERE THESE VALUES ARE FROM */
+  width: calc(100dvw - var(--main-empty-space) - 12px - 12px - 12px - 12px - 8px - 8px);
+  border-radius: 12px;
+  background-color: var(--catppuccin-mantle);
+  z-index: -1;
 }
 
 .typewriter {
@@ -76,37 +91,49 @@ h2 {
   }
 
   6%,
-  14% { width: 100% }
+  14% {
+    width: 100%;
+  }
 
   20% {
     width: 0;
   }
 
   26%,
-  34% { width: 100% }
+  34% {
+    width: 100%
+  }
 
   40% {
     width: 0;
   }
 
   46%,
-  54% { width: 100% }
+  54% {
+    width: 100%
+  }
 
   60% {
     width: 0;
   }
 
   66%,
-  74% { width: 100% }
+  74% {
+    width: 100%
+  }
 
   80% {
     width: 0;
   }
 
   86%,
-  94% { width: 100% }
+  94% {
+    width: 100%
+  }
 
-  100% { width: 0 }
+  100% {
+    width: 0;
+  }
 }
 
 /* I DO NOT understand why it has to be offsetted like that */

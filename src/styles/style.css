@@ -118,5 +118,6 @@ button {
   /* left and right */
   /* border-inline: none; */
   padding: 12px;
+  justify-content: start;
   z-index: 0;
 }
