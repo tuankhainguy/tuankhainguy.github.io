@@ -31,13 +31,14 @@
 	--catppuccin-crust: rgb(17, 17, 27);
 
   --topbar-height: 4rem;
+  --main-empty-space: 24px;
 
   color: var(--catppuccin-text);
 }
 
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+/* Extra small devices (phones, 599px and down) */
+@media only screen and (max-width: 599px) {
   :root {
     --vh: 200px;
     --vw: 200px;
@@ -46,6 +47,10 @@
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+  :root {
+    --vh: 300px;
+    --vw: 300px;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -139,7 +144,9 @@ button {
   /* if use viewport values and the navbar resizes, everything else with */
   /* viewport values resize making scrolling and maybe other interactions */
   /* not smooth/choppy */
-  height: 1200px;
+  min-height:
+    calc(var(--vh) - var(--topbar-height) - var(--main-empty-space) * 2);
+  height: max-content;
   width: 100%;
   border: 2px solid var(--catppuccin-lavender);
   border-radius: 8px;

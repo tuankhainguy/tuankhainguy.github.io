@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { getFractionVisible, selectTab } from '../common/utils';
 import { GlobalStore } from '../main';
-import Logo from '/src/assets/TKN.svg?component'
-import Tabs from './Tabs.vue'
 import { onMounted, useTemplateRef } from 'vue';
 import Home from './sections/Home.vue';
 import About from './sections/About.vue';
@@ -10,7 +8,6 @@ import Contacts from './sections/Contacts.vue';
 import Portfolio from './sections/Portfolio.vue';
 
 const containerRef = useTemplateRef('main');
-const topbarRef = useTemplateRef("topbar");
 let scrollEl: HTMLElement | null = null;
 
 const keys = Object.keys(GlobalStore.sections as object);
@@ -49,12 +46,6 @@ function onScroll() {
 onMounted(() => {
   document.addEventListener('scroll', onScroll);
   scrollEl = document.firstElementChild as HTMLElement;
-  const topbar = topbarRef.value;
-  const logo = topbar?.firstElementChild;
-  const logoBg = logo?.firstElementChild;
-  logoBg ?
-    (logoBg as HTMLElement).style.fill = "var(--catppuccin-base)" :
-    null;
   const sections = GlobalStore.sections;
   const container = containerRef.value as HTMLElement;
   container.scrollTop = 0;
@@ -93,41 +84,9 @@ onMounted(() => {
 });
 </script>
 
-<!-- can mix this type of script with Vue 3 Composition API to access DOM Element -->
-<!-- <script lang="ts"> -->
-<!-- export default { -->
-<!--   mounted() { -->
-<!--     const sections = GlobalStore.sections; -->
-<!--     const container = (this.$el as HTMLElement); -->
-<!--     container.scrollTop = 0; -->
-<!---->
-<!--     // v-for creates 2 additional "#text" nodes that makes it not work -->
-<!--     Array.from(container.childNodes).forEach((section) => { -->
-<!--       const id = (section as HTMLElement).id; -->
-<!--       if (!id) { -->
-<!--         section.remove(); -->
-<!--         return; -->
-<!--       } -->
-<!--       if (id === "topShadow") return; -->
-<!--       sections![(section as HTMLElement).id].section = section as HTMLElement; -->
-<!---->
-<!--       const frac = getFractionVisible( -->
-<!--         section as HTMLElement, -->
-<!--         container, -->
-<!--       ); -->
-<!---->
-<!--       (section as HTMLElement).style.opacity = `${frac}`; -->
-<!--     }); -->
-<!--   }, -->
-<!-- } -->
-<!-- </script> -->
 
 <template>
   <div id="mainContainer" ref="main" >
-    <div id="topbar" ref="topbar">
-      <Logo class="logo" id="topLogo" />
-      <Tabs />
-    </div>
     <!-- <div v-for="key in keys" :id="key" class="section"></div> -->
     <Home :id="keys[0]" />
     <About :id="keys[1]" />
@@ -142,22 +101,22 @@ onMounted(() => {
   </div>
 </template>
 
+
 <style scoped>
 #mainContainer {
-  --empty-space: 24px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   justify-content: start;
   align-items: center;
-  padding: var(--empty-space);
-  padding-top: calc(var(--empty-space) + var(--topbar-height));
+  padding: var(--main-empty-space);
+  padding-top: calc(var(--main-empty-space) + var(--topbar-height));
   margin: 0;
   width: 100%;
   height: max-content;
   /* height: 100%; */
   /* overflow: scroll; */
-  gap: var(--empty-space);
+  gap: var(--main-empty-space);
   box-sizing: border-box; /* stop overflow when there is padding */
   z-index: 0;
 }
@@ -171,31 +130,6 @@ onMounted(() => {
   position: fixed;
   box-shadow: 0px 0px 8px 8px rgb(from var(--catppuccin-base) r g b);
   background-color: var(--catppuccin-base);
-}
-
-
-#topbar {
-  height: var(--topbar-height);
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5em;
-  box-sizing: border-box;
-  background-color: inherit;
-  z-index: 10;
-  position: fixed;
-  top: 0;
-}
-
-.logo {
-  height: 2em;
-  will-change: filter;
-  transition: filter 300ms;
-  border-radius: .5em;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 .2em var(--catppuccin-lavender));
 }
 
 
@@ -231,14 +165,14 @@ onMounted(() => {
   transform: translate(-50%, -50%);
   content: '';
   background-color: var(--catppuccin-mauve);
-  border-radius: 100px;
+  border-radius: 50%;
 }
 
 
 #underlay {
   position: fixed;
   top: 0;
-  padding-top: calc(var(--empty-space) + var(--topbar-height));
+  padding-top: calc(var(--main-empty-space) + var(--topbar-height));
   margin: 0;
   width: 100%;
   height: max-content;
@@ -253,3 +187,34 @@ onMounted(() => {
   z-index: -1;
 }
 </style>
+
+
+<!-- can mix this type of script with Vue 3 Composition API to access DOM Element -->
+<!-- <script lang="ts"> -->
+<!-- export default { -->
+<!--   mounted() { -->
+<!--     const sections = GlobalStore.sections; -->
+<!--     const container = (this.$el as HTMLElement); -->
+<!--     container.scrollTop = 0; -->
+<!---->
+<!--     // v-for creates 2 additional "#text" nodes that makes it not work -->
+<!--     Array.from(container.childNodes).forEach((section) => { -->
+<!--       const id = (section as HTMLElement).id; -->
+<!--       if (!id) { -->
+<!--         section.remove(); -->
+<!--         return; -->
+<!--       } -->
+<!--       if (id === "topShadow") return; -->
+<!--       sections![(section as HTMLElement).id].section = section as HTMLElement; -->
+<!---->
+<!--       const frac = getFractionVisible( -->
+<!--         section as HTMLElement, -->
+<!--         container, -->
+<!--       ); -->
+<!---->
+<!--       (section as HTMLElement).style.opacity = `${frac}`; -->
+<!--     }); -->
+<!--   }, -->
+<!-- } -->
+<!-- </script> -->
+

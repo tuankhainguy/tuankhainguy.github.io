@@ -74,14 +74,16 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style>
 #tabsContainer {
   display: flex;
   margin: 4px;
   gap: 12px;
   font-size: 1rem;
   font-weight: bold;
+  justify-content: space-between;
 }
+
 
 .tabs {
   background-color: transparent;
@@ -90,8 +92,33 @@ export default {
   padding: 4px;
 }
 
+
 .tabs.active {
   color: var(--catppuccin-lavender);
   border-bottom: 0.1rem solid var(--catppuccin-lavender);
+}
+
+
+@media only screen and (max-width: 768px) {
+  #tabsContainer {
+    display: none;
+    position: absolute;
+    top: var(--topbar-height);
+    right: var(--main-empty-space);
+    flex-direction: column;
+    background: rgb(from var(--catppuccin-base) r g b / 0.4);
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgb(from var(--catppuccin-mantle) r g b /  0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgb(from var(--catppuccin-lavender) r g b / 0.75);
+    padding: 0.75rem;
+    scale: 0;
+  }
+
+
+  .tabs.active {
+    border: none;
+  }
 }
 </style>

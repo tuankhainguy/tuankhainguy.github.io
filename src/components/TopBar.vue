@@ -1,0 +1,89 @@
+<script setup lang="ts">
+import Logo from '/src/assets/TKN.svg?component'
+import Tabs from './Tabs.vue'
+import { onMounted, useTemplateRef } from 'vue';
+
+const topbarRef = useTemplateRef("topbar");
+
+onMounted(() => {
+  const topbar = topbarRef.value;
+  const logo = topbar?.firstElementChild;
+  const logoBg = logo?.firstElementChild;
+  logoBg ?
+    (logoBg as HTMLElement).style.fill = "var(--catppuccin-base)" :
+    null;
+});
+</script>
+
+
+<template>
+  <div id="topbar" ref="topbar">
+    <Logo class="logo" id="topLogo" />
+    <input type="checkbox" id="checkMenu" />
+    <label id="menu" for="checkMenu">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+    </label>
+    <Tabs />
+  </div>
+</template>
+
+
+<style scoped>
+#checkMenu {
+  display: none;
+}
+
+
+.size {
+  width: 1.2em;
+  height: 1.2em;
+  padding: 0;
+}
+
+
+#menu {
+  display: none;
+  width: max-content;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#topbar {
+  height: var(--topbar-height);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5em;
+  box-sizing: border-box;
+  background-color: inherit;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+}
+
+.logo {
+  height: 2em;
+  will-change: filter;
+  transition: filter 300ms;
+  border-radius: .5em;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 .2em var(--catppuccin-lavender));
+}
+
+
+@media only screen and (max-width: 768px) {
+  #menu {
+    display: flex;
+  }
+
+  #checkMenu:checked ~ #tabsContainer {
+    display: flex;
+    scale: 1;
+  }
+}
+</style>
