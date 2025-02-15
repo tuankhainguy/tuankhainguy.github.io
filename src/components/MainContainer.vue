@@ -20,7 +20,7 @@ function onScroll() {
   let highestOpacityElement: HTMLElement | null = null;
   container.childNodes.forEach((section) => {
     const id = (section as HTMLElement).id;
-    if (id === "topShadow" || id === "topbar" || id === "bgObjs" || id === "underlay") return;
+    if (id === "topShadow" || id === "bgObjs" || id === "underlay") return;
     const frac = getFractionVisible(
       section as HTMLElement,
       scrollEl!,
@@ -59,7 +59,7 @@ onMounted(() => {
       section.remove();
       return;
     }
-    if (id === "topShadow" || id === "topbar" || id === "bgObjs" || id === "underlay") return;
+    if (id === "topShadow" || id === "bgObjs" || id === "underlay") return;
     sections![(section as HTMLElement).id].section = section as HTMLElement;
 
     const frac = getFractionVisible(
@@ -94,10 +94,10 @@ onMounted(() => {
     <Contacts :id="keys[3]" />
     <div id="topShadow" />
     <div id="underlay" />
-    <div id="bgObjs">
-      <!-- <div id="obj1" /> -->
-      <div id="obj2" />
-    </div>
+    <!-- <div id="bgObjs"> -->
+    <!--   <!-- <div id="obj1" /> --> -->
+    <!--   <div id="obj2" /> -->
+    <!-- </div> -->
   </div>
 </template>
 
@@ -106,24 +106,26 @@ onMounted(() => {
 #mainContainer {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex-grow: 0;
   justify-content: start;
   align-items: center;
   padding: var(--main-empty-space);
   padding-top: calc(var(--main-empty-space) + var(--topbar-height));
   margin: 0;
   width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
   height: max-content;
   /* height: 100%; */
   /* overflow: scroll; */
   gap: var(--main-empty-space);
-  box-sizing: border-box; /* stop overflow when there is padding */
   z-index: 0;
 }
 
 
 #mainContainer #topShadow {
   top: 0;
+  left: 0;
   width: 100%;
   height: var(--topbar-height);
   content: '';
@@ -137,8 +139,8 @@ onMounted(() => {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100lvw;
-  height: 100lvh;
+  width: 100vw;
+  height: 100vh;
   z-index: -2;
 }
 
@@ -160,8 +162,8 @@ onMounted(() => {
   position: absolute;
   width: 200px;
   aspect-ratio: 1 / 1;
-  top: calc(var(--vh) / 2);
-  left: calc(var(--vw) / 2);
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   content: '';
   background-color: var(--catppuccin-mauve);
@@ -172,6 +174,7 @@ onMounted(() => {
 #underlay {
   position: fixed;
   top: 0;
+  left: 0;
   padding-top: calc(var(--main-empty-space) + var(--topbar-height));
   margin: 0;
   width: 100%;
@@ -183,7 +186,6 @@ onMounted(() => {
   -webkit-backdrop-filter: blur(30px);
   /* left and right */
   /* border-inline: none; */
-  box-sizing: border-box;
   z-index: -1;
 }
 </style>

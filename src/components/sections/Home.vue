@@ -16,9 +16,19 @@ onMounted(() => {
 
 <style scoped>
 h1 {
-  width: 75%;
+  width: 100%;
   margin: 0;
-  font-size: 5.5vw;
+  margin-top: 5rem;
+  font-size: 6vw;
+  font-weight: 300;
+}
+
+h2 {
+  width: 100%;
+  margin: 0;
+  margin-top: 5rem;
+  font-size: 4vw;
+  font-weight: 300;
 }
 
 .section {

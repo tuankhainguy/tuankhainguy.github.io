@@ -58,11 +58,11 @@ onMounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 1.5em;
-  box-sizing: border-box;
   background-color: inherit;
   z-index: 10;
   position: fixed;
   top: 0;
+  left: 0;
 }
 
 .logo {
@@ -79,11 +79,28 @@ onMounted(() => {
 @media only screen and (max-width: 768px) {
   #menu {
     display: flex;
+    z-index: 10;
+  }
+
+  /* to act as a menu disabler when click other places of page */
+  #menu:before {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    content: '';
   }
 
   #checkMenu:checked ~ #tabsContainer {
     display: flex;
     scale: 1;
+  }
+
+  #checkMenu:checked ~ #menu:before {
+    display: block;
   }
 }
 </style>

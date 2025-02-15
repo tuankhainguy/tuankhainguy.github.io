@@ -102,6 +102,7 @@ export default {
 @media only screen and (max-width: 768px) {
   #tabsContainer {
     display: none;
+    margin: 0;
     position: absolute;
     top: var(--topbar-height);
     right: var(--main-empty-space);
@@ -114,6 +115,7 @@ export default {
     border: 1px solid rgb(from var(--catppuccin-lavender) r g b / 0.75);
     padding: 0.75rem;
     scale: 0;
+    z-index: 20;
   }
 
 
