@@ -104,13 +104,13 @@ button {
 .section {
   display: flex;
   /* this is just place-holder value */
-  /* heights or widths using vh/vw or svh/svw or dvh/dvw */
+  /* heights or widths using viewport units */
   /* have issues with mobile browsers because of browser navbar resizing */
   /* especially so for moving elements like this */
   /* if use viewport values and the navbar resizes, everything else with */
   /* viewport values resize making scrolling and maybe other interactions */
   /* not smooth/choppy */
-  min-height: 100lvh;
+  min-height: 800px;
   height: max-content;
   width: 100%;
   border-radius: 8px;
