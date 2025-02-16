@@ -20,6 +20,8 @@ onMounted(() => {
 <style scoped>
 .section {
   flex-direction: column;
+  padding-top: 6rem;
+  font-size: min(max(4vw, 3rem), 5rem);
   border: none;
   border-radius: 0;
   background: none;
@@ -47,6 +49,7 @@ h2 {
 }
 
 .typewriterContainer:before {
+  font-size: max(1vw, 1rem);
   color: var(--catppuccin-flamingo);
   content: '$';
   margin-right: 8px;
