@@ -40,6 +40,7 @@
   box-sizing: border-box; /* stop overflow when there is padding */
   margin: 0;
   padding: 0;
+  font-weight: inherit;
 }
 
 
@@ -119,5 +120,13 @@ button {
   /* border-inline: none; */
   padding: 12px;
   justify-content: start;
+  font-weight: 300;
   z-index: 0;
+}
+
+
+h1 {
+  width: 100%;
+  margin-top: 5rem;
+  font-size: min(max(4vw, 3rem), 5rem);
 }

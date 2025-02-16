@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
+import Section from './Section.vue';
 
 onMounted(() => {
 });
@@ -7,19 +8,17 @@ onMounted(() => {
 
 
 <template>
-  <div class="section">
-    <h1>SOFTWARE ENGINEERING IS FUN</h1>
+  <Section section-title="SOFTWARE ENGINEERING IS FUN">
     <div class="typewriterContainer">
       <div class="typewriter"></div>
     </div>
     <h2>Really fun</h2>
-  </div>
+  </Section>
 </template>
 
 
 <style scoped>
 .section {
-  font-weight: 300;
   flex-direction: column;
   border: none;
   border-radius: 0;
@@ -27,16 +26,6 @@ onMounted(() => {
   box-shadow: none;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-}
-
-* {
-  font-weight: inherit;
-}
-
-h1 {
-  width: 100%;
-  margin-top: 5rem;
-  font-size: min(max(4vw, 3rem), 5rem);
 }
 
 h2 {
@@ -74,7 +63,7 @@ h2 {
   border-right: .15em solid var(--catppuccin-maroon); /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   animation:
-    typing 15s steps(24, end) infinite,
+    typing 20s steps(20, end) infinite,
     blink-caret .75s step-end infinite;
 }
 
@@ -82,7 +71,7 @@ h2 {
   content: '';
   animation:
     /* the steps are for timing with the typing */
-    text 15s steps(6, end) infinite;
+    text 20s steps(6, end) infinite;
 }
 
 /* The typing effect */

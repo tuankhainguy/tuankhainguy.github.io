@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import Section from './Section.vue';
 </script>
 
 
 <template>
-  <div class="section"></div>
+  <Section>
+  </Section>
 </template>
 
 

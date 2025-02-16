@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Section from './Section.vue';
+
 // const data: any = await fetch('https://api.github.com/repos/tuankhainguy/tuankhainguy.github.io')
 //   .then((res) => res.json())
 //   // .then((_data) => console.log(_data));
@@ -10,7 +12,9 @@
 </script>
 
 <template>
-  <div id="portfolioContainer" class="section" >
-    <!-- {{ data }} -->
-  </div>
+  <Section>
+  </Section>
 </template>
+<!-- <div id="portfolioContainer" class="section" > -->
+<!--   <!-- {{ data }} --> -->
+<!-- </div> -->
