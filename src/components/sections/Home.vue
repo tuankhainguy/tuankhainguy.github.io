@@ -35,12 +35,21 @@ h2 {
 }
 
 .typewriterContainer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
   width: max-content;
   max-width: 100%;
   padding: 12px;
 	margin-top: 24px;
 	margin-bottom: 24px;
   position: relative;
+}
+
+.typewriterContainer:before {
+  color: var(--catppuccin-flamingo);
+  content: '$';
+  margin-right: 8px;
 }
 
 .typewriterContainer:after {
@@ -63,7 +72,7 @@ h2 {
   border-right: .15em solid var(--catppuccin-maroon); /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   animation:
-    typing 20s steps(20, end) infinite,
+    typing 25s steps(20, end) infinite,
     blink-caret .75s step-end infinite;
 }
 
@@ -71,12 +80,13 @@ h2 {
   content: '';
   animation:
     /* the steps are for timing with the typing */
-    text 20s steps(6, end) infinite;
+    text 25s steps(6, end) infinite;
 }
 
 /* The typing effect */
 @keyframes typing {
-  0% {
+  0%,
+  2% {
     width: 0;
   }
 
@@ -85,7 +95,8 @@ h2 {
     width: 100%;
   }
 
-  20% {
+  18%,
+  22% {
     width: 0;
   }
 
@@ -94,7 +105,8 @@ h2 {
     width: 100%
   }
 
-  40% {
+  38%,
+  42% {
     width: 0;
   }
 
@@ -103,7 +115,8 @@ h2 {
     width: 100%
   }
 
-  60% {
+  58%,
+  62% {
     width: 0;
   }
 
@@ -112,7 +125,8 @@ h2 {
     width: 100%
   }
 
-  80% {
+  78%,
+  82% {
     width: 0;
   }
 
@@ -121,6 +135,7 @@ h2 {
     width: 100%
   }
 
+  98%,
   100% {
     width: 0;
   }
