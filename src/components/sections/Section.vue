@@ -24,14 +24,19 @@ const slots = useSlots();
 
 <style scoped>
 .primary {
+  display: flex;
   flex-direction: column;
-  justify-content: center;
+  flex-grow: 1;
+  height: 100%;
   width: 100%;
 }
 
 .secondary {
+  display: flex;
   flex-direction: column;
   justify-content: center;
+  flex-grow: 1;
+  height: 100%;
   width: 66%;
 }
 
