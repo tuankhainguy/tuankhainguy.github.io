@@ -9,7 +9,7 @@ export default {
     const keys = Object.keys(GlobalStore.sections as object);
 
     function onTabClick(e: MouseEvent) {
-      e.stopPropagation();
+      e.preventDefault();
 
       if (!root || !mainContainer) return;
       const el = e.currentTarget as HTMLElement;
@@ -74,7 +74,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 #tabsContainer {
   display: flex;
   margin: 4px;
@@ -86,6 +86,7 @@ export default {
 
 
 .tabs {
+  display: flex;
   background-color: transparent;
   border-radius: 0;
   transition: border .1s ease-in-out;
@@ -107,6 +108,7 @@ export default {
     top: var(--topbar-height);
     right: var(--main-empty-space);
     flex-direction: column;
+    align-items: end;
     background: rgb(from var(--catppuccin-base) r g b / 0.4);
     border-radius: 8px;
     box-shadow: 0 4px 30px rgb(from var(--catppuccin-mantle) r g b /  0.1);
@@ -116,6 +118,11 @@ export default {
     padding: 0.75rem;
     scale: 0;
     z-index: 20;
+  }
+
+
+  .tabs {
+    justify-content: end;
   }
 
 

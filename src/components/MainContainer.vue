@@ -20,7 +20,7 @@ function onScroll() {
   let highestOpacityElement: HTMLElement | null = null;
   container.childNodes.forEach((section) => {
     const id = (section as HTMLElement).id;
-    if (id === "topShadow" || id === "bgObjs" || id === "underlay") return;
+    if (!keys.includes(id)) return;
     const frac = getFractionVisible(
       section as HTMLElement,
       scrollEl!,
@@ -59,7 +59,7 @@ onMounted(() => {
       section.remove();
       return;
     }
-    if (id === "topShadow" || id === "bgObjs" || id === "underlay") return;
+    if (!keys.includes(id)) return;
     sections![(section as HTMLElement).id].section = section as HTMLElement;
 
     const frac = getFractionVisible(

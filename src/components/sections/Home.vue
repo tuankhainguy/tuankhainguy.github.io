@@ -1,6 +1,21 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import Section from './Section.vue';
+import { GlobalStore } from '../../main';
+
+
+const keys = Object.keys(GlobalStore.sections as object).splice(1);
+
+const onTabClick = (e: Event) => {
+  e.preventDefault();
+
+  const el = e.currentTarget as HTMLElement;
+  const value: string | undefined = el.dataset.section;
+
+  if (!value || !GlobalStore.sections) return;
+
+  GlobalStore.sections[value].tab?.click();
+}
 
 onMounted(() => {
 });
@@ -8,20 +23,39 @@ onMounted(() => {
 
 
 <template>
-  <Section section-title="SOFTWARE ENGINEERING IS FUN">
-    <div class="typewriterContainer">
-      <div class="typewriter"></div>
-    </div>
-    <h2>Really fun</h2>
+  <Section section-title="SOFTWARE ENGINEER">
+    <template v-slot:primary>
+      <h3>Frontend Web Developer</h3>
+      <h3>Knows a bit about Full-stack</h3>
+      <h3>Computer Science Student</h3>
+      <div class="buttons">
+        <button
+          v-for="key in keys"
+          class="tabs"
+          :data-section="key"
+          @click="onTabClick"
+        >
+          {{ ((key === "contacts") ? key.slice(0, key.length - 1) + " me" : key) }}
+        </button>
+      </div>
+    </template>
+    <template v-slot:secondary>
+      <div class="typewriterContainer">
+        <div class="typewriter">
+          <div class="typewriterText"></div>
+        </div>
+      </div>
+    </template>
   </Section>
 </template>
 
 
 <style scoped>
 .section {
-  flex-direction: column;
+  --h1-font-size: min(max(4vw, 3rem), 5rem);
+  align-items: center;
   padding-top: 6rem;
-  font-size: min(max(4vw, 3rem), 5rem);
+  font-size: max(1.2vw, 1.2rem);
   border: none;
   border-radius: 0;
   background: none;
@@ -30,45 +64,59 @@ onMounted(() => {
   -webkit-backdrop-filter: none;
 }
 
+
 h2 {
   width: 100%;
   margin-top: 5rem;
   font-size: min(max(2vw, 1.5rem), 2.5rem);
 }
 
+
+h3 {
+  padding: 4px;
+}
+
+
 .typewriterContainer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  padding: 12px;
+	margin-top: 24px;
+	margin-bottom: 24px;
+}
+
+
+.typewriter {
   display: flex;
   justify-content: start;
   align-items: center;
   width: max-content;
   max-width: 100%;
-  padding: 12px;
-	margin-top: 24px;
-	margin-bottom: 24px;
-  position: relative;
 }
 
-.typewriterContainer:before {
+.typewriter:before {
   font-size: max(1vw, 1rem);
   color: var(--catppuccin-flamingo);
   content: '$';
   margin-right: 8px;
 }
 
-.typewriterContainer:after {
+.typewriter:after {
   position: absolute;
   top: 0;
   left: 0;
   content: '';
   height: 100%;
-  /* Viewport - paddings */
-  width: calc(100dvw - 2 * var(--main-empty-space) - 2 * 12px);
+  width: 100%;
   border-radius: 12px;
   background-color: var(--catppuccin-mantle);
   z-index: -1;
 }
 
-.typewriter {
+.typewriterText {
   font-size: max(1vw, 1rem);
   width: 0;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
@@ -79,7 +127,7 @@ h2 {
     blink-caret .75s step-end infinite;
 }
 
-.typewriter:after {
+.typewriterText:after {
   content: '';
   animation:
     /* the steps are for timing with the typing */
@@ -172,4 +220,72 @@ h2 {
   50% { border-color: var(--catppuccin-maroon) }
 }
 
+
+.buttons {
+  margin: 1.5rem;
+  margin-inline: 0;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 24px;
+}
+
+
+.tabs {
+  background: none;
+  color: var(--catppuccin-mantle);
+  border-radius: 8px;
+  padding: 4px;
+  padding-inline: 8px;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--catppuccin-peach);
+  box-shadow:
+    0 0 4px 2px rgb(from var(--catppuccin-peach) r g b /  0.5);
+  transition: box-shadow .2s ease-in-out;
+}
+
+
+.tabs:hover {
+  box-shadow:
+    0 0 4px 2px rgb(from var(--catppuccin-peach) r g b / 0.8),
+    inset 0 0 5px 3px rgb(from var(--catppuccin-yellow) r g b / 0.8);
+}
+/**/
+/**/
+/* .tabs:before { */
+/*   position: absolute; */
+/*   top: 0; */
+/*   left: 0; */
+/*   width: 100%; */
+/*   height: 100%; */
+/*   z-index: -1; */
+/*   content: ''; */
+/*   background-color: var(--catppuccin-peach); */
+/* } */
+/**/
+/**/
+/* .tabs:after { */
+/*   position: absolute; */
+/*   top: 0; */
+/*   left: 0; */
+/*   width: 100%; */
+/*   height: 0; */
+/*   z-index: -1; */
+/*   content: ''; */
+/*   background-color: rgb(from var(--catppuccin-maroon) r g b / 0.8); */
+/*   transition: height .2s ease-in-out; */
+/* } */
+/**/
+/**/
+/**/
+/* .tabs:hover:after { */
+/*   height: 100%; */
+/* } */
+
+
+/* :deep selector to affect the Section style */
+/* .section :deep(.secondary) { */
+/*   width: 66%; */
+/* } */
 </style>

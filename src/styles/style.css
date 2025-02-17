@@ -31,15 +31,24 @@
 	--catppuccin-crust: rgb(17, 17, 27);
 
   --topbar-height: 4rem;
-  --tabs-height: 1.5rem;
-  --tabs-gap: 0.75rem;
+  --app-empty-space: 36px;
   --main-empty-space: 24px;
+  --h1-font-size: min(max(2vw, 1.75rem), 2.75rem);
 
   color: var(--catppuccin-text);
 }
 
+@media only screen and (max-width: 768px) {
+  /* needs px for the calc to work */
+  :root {
+    --app-empty-space: 0px;
+  }
+}
+
 * {
   box-sizing: border-box; /* stop overflow when there is padding */
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-size: inherit;
@@ -66,7 +75,6 @@ body {
 button {
   border-radius: 0.3em;
   font-size: 1rem;
-  font-weight: bold;
   font-family: inherit;
   background-color: var(--catppuccin-base);
   cursor: pointer;
@@ -76,6 +84,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
 
 
@@ -91,6 +100,7 @@ button {
   font-size: 1rem;
   font-weight: bold;
   background-color: inherit;
+  padding: var(--app-empty-space);
 }
 
 
@@ -122,13 +132,22 @@ button {
   /* left and right */
   /* border-inline: none; */
   padding: 12px;
-  justify-content: start;
+  justify-content: space-between;
   font-weight: 300;
   font-size: min(max(3vw, 2rem), 3.5rem);
   z-index: 0;
 }
 
 
+@media only screen and (max-width: 768px) {
+  .section {
+    flex-direction: column;
+    justify-content: start;
+  }
+}
+
+
 h1 {
   width: 100%;
+  font-size: var(--h1-font-size);
 }
