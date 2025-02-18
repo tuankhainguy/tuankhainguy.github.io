@@ -72,7 +72,7 @@ onMounted(() => {
   border-radius: .5em;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 .2em var(--catppuccin-lavender));
+  filter: drop-shadow(0 0 .2em var(--accent));
 }
 
 

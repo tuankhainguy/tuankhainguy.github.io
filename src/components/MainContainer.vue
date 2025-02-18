@@ -130,8 +130,8 @@ onMounted(() => {
   height: var(--topbar-height);
   content: '';
   position: fixed;
-  box-shadow: 0px 0px 8px 8px rgb(from var(--catppuccin-base) r g b);
-  background-color: var(--catppuccin-base);
+  box-shadow: 0px 0px 8px 8px rgb(from var(--base) r g b);
+  background-color: var(--base);
 }
 
 
@@ -181,7 +181,7 @@ onMounted(() => {
   height: max-content;
   height: 100vh;
   border-radius: 8px;
-  background: rgb(from var(--catppuccin-base) r g b / 0.3);
+  background: rgb(from var(--base) r g b / 0.3);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   /* left and right */

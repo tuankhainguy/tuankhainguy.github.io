@@ -2,8 +2,9 @@
 import { onMounted } from 'vue';
 import Section from './Section.vue';
 import { GlobalStore } from '../../main';
-import Card from '../Card.vue';
-import Typewriter from '../Typewriter.vue';
+import Python from '../typewriter_cards/Python.vue';
+import JS from '../typewriter_cards/JS.vue';
+import Clang from '../typewriter_cards/Clang.vue';
 
 
 const keys = Object.keys(GlobalStore.sections as object).splice(1);
@@ -42,11 +43,14 @@ onMounted(() => {
       </div>
     </template>
     <template v-slot:secondary>
-      <Typewriter />
+      <!-- <Typewriter /> -->
       <div class="cardCollection">
-        <Card v-for="i in 4" :key="i" :style="{ 'z-index': i }">
-          <Typewriter :class="{ full: true }" />
-        </Card>
+        <Python />
+        <Clang />
+        <JS />
+        <!-- <Card v-for="i in 4" :key="i" :style="{ 'z-index': i }"> -->
+        <!--   <Typewriter :class="{ full: true }" /> -->
+        <!-- </Card> -->
       </div>
     </template>
   </Section>
@@ -73,6 +77,24 @@ onMounted(() => {
   justify-content: center;
 }
 
+.section :deep(.secondary) {
+  border-radius: 12px;
+  box-shadow: 0 0 4px 2px rgb(from var(--accent) r g b / 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgb(from var(--accent) r g b / 0.5);
+}
+
+@media only screen and (max-width: 768px) {
+  .section :deep(.primary) {
+    justify-content: end;
+  }
+
+  .section :deep(.secondary) {
+    justify-content: start;
+  }
+}
+
 
 h2 {
   width: 100%;
@@ -93,12 +115,13 @@ h3 {
   justify-content: start;
   align-items: center;
   gap: 24px;
+  flex-wrap: wrap;
 }
 
 
 .tabs {
   background: none;
-  color: var(--catppuccin-mantle);
+  color: var(--accent-compliment);
   border-radius: 8px;
   padding: 4px;
   padding-inline: 8px;
@@ -129,10 +152,11 @@ h3 {
 .cardCollection {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 12px;
   padding: 12px;
   position: relative;
-  height: 200px;
+  height: 100%;
 }
 /**/
 /**/
