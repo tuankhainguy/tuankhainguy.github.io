@@ -20,6 +20,8 @@ import Python from './TypewriterCards/Python.vue';
   position: relative;
   height: 100%;
   width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .card {

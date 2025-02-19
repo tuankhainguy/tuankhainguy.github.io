@@ -15,7 +15,8 @@
   top: 0;
   /* left: 4px; */
   /* right: 4px; */
-  height: 20rem;
+  height: 100%;
+  max-height: 30rem;
   width: 90%;
   display: flex;
   flex-direction: column;
