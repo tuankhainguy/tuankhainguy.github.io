@@ -26,8 +26,8 @@
 .return {
   font-size: 1rem;
   position: absolute;
-  bottom: 12px;
-  right: 16px;
+  bottom: 16px;
+  right: 20px;
   color: var(--subtext);
   width: max-content;
   height: max-content;
