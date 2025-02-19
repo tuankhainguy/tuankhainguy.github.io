@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import Card from '../Card.vue';
 import Typewriter from '../Typewriter.vue';
+import Return from './Return.vue';
 </script>
 
 
 <template>
   <Card>
-    <Typewriter :class="{ full: true }">
+    <Typewriter :class="{ full: true, editor: true }">
       <template v-slot:above>
         <div class="textline" data-row="1">
           <span style="color: var(--highlight2);">#include</span>
@@ -36,6 +37,17 @@ import Typewriter from '../Typewriter.vue';
         </div>
       </template>
     </Typewriter>
+    <Typewriter :class="{ full: true, once: true }">
+      <template v-slot:text>
+          gcc hello_world.c -o hello_world
+      </template>
+    </Typewriter>
+    <Typewriter :class="{ full: true }">
+      <template v-slot:below>
+        <div class="textline"></div>
+      </template>
+    </Typewriter>
+    <Return />
   </Card>
 </template>
 
@@ -45,11 +57,11 @@ import Typewriter from '../Typewriter.vue';
 /*   flex-basis: 300%; */
 /* } */
 /**/
-.textline.textline {
+.typewriterContainer.editor .textline {
   color: var(--subtext);
 }
 
-.textline.textline:before {
+.typewriterContainer.editor .textline:before {
   color: var(--subtext);
   margin-inline: 12px;
   content: attr(data-row);
@@ -57,19 +69,75 @@ import Typewriter from '../Typewriter.vue';
 
 /* .typewriter.typewriter increase importance */
 /* \00a0 white space code point */
-.typewriterContainer :deep(.typewriter.typewriter:before) {
+.typewriterContainer.editor :deep(.typewriter:before) {
   content: '3\00a0\00a0\00a0\00a0' !important;
   margin-left: 0;
   margin-right: 24px;
 }
 
-.typewriterContainer :deep(.typewriter .typewriterText) {
+.typewriterContainer:not(:is(.editor)) {
+  border-top: 0.1em solid var(--subtext);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.typewriterContainer.editor :deep(.typewriter .typewriterText) {
   color: var(--subtext);
   animation-iteration-count: 1, 5;
   animation-fill-mode: forwards;
 }
 
-.typewriterContainer :deep(.typewriter .typewriterText:before) {
+.typewriterContainer.editor :deep(.typewriter .typewriterText:before) {
   animation: none;
+}
+
+.typewriterContainer:not(:is(.editor)).once {
+  height: max-content;
+}
+
+.typewriterContainer:not(:is(.editor)).once :deep(.typewriter .typewriterText) {
+  height: max-content;
+  animation-delay: 5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1, 4;
+}
+
+.typewriterContainer:not(:is(.editor)):not(:is(.once)) :deep(.typewriter .typewriterText) {
+  animation-delay: 10s;
+  animation-name: typing, blink-caret;
+  animation-timing-function: steps(15, end), step-end;
+}
+
+.typewriterContainer:not(:is(.editor)):not(:is(.once)) .textline:after {
+  color: var(--text);
+  animation:
+    return 5s step-end 10s infinite;
+}
+
+.typewriterContainer:not(:is(.editor)):not(:is(.once)) :deep(.typewriter .typewriterText:before) {
+  animation: none;
+  content: './hello_world';
+}
+
+.return {
+  animation-delay: 10s;
+}
+
+@keyframes return {
+  from, to { content: ''; }
+  40%,
+  100% { content: 'Hello, World!'; }
+}
+
+/* The typing effect */
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+
+  20%,
+  100% {
+    width: 100%
+  }
 }
 </style>

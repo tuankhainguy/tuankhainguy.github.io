@@ -84,7 +84,6 @@
 
 
 .typewriterContainer.full > .typewriter:before {
-  content: '1';
   margin-inline: 12px;
 }
 
@@ -103,7 +102,7 @@
   font-size: min(max(1vw, 0.75rem), 1.2rem);
   width: 0;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid var(--highlight3); /* The typwriter cursor */
+  border-right: .15em solid transparent; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   animation:
     typing 5s steps(25, end) infinite,
@@ -128,13 +127,6 @@
   100% {
     width: 100%
   }
-}
-
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: var(--highlight3) }
 }
 /* .typewriterText { */
 /*   font-size: min(max(1vw, 0.75rem), 1.2rem); */

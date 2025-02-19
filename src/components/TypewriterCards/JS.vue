@@ -20,13 +20,13 @@ import Return from './Return.vue';
 <style scoped>
 .textline.textline {
   width: 100%;
-  animation: show-line 5s step-end 12s infinite;
+  animation: show-line 5s step-end 22s infinite;
 }
 
 .textline.textline:after {
   color: var(--text);
   animation:
-    return 5s step-end 12s infinite;
+    return 5s step-end 22s infinite;
 }
 
 .textline.textline:before {
@@ -44,7 +44,7 @@ import Return from './Return.vue';
 }
 
 .typewriterContainer :deep(.typewriter .typewriterText) {
-  animation-delay: 12s;
+  animation-delay: 22s;
 }
 
 .typewriterContainer :deep(.typewriter .typewriterText:before) {
@@ -53,7 +53,7 @@ import Return from './Return.vue';
 }
 
 .return {
-  animation-delay: 12s;
+  animation-delay: 22s;
 }
 
 @keyframes return {

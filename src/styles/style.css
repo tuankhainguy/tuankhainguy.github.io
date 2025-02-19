@@ -175,3 +175,9 @@ h1 {
   height: 1.5rem;
 }
 
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--highlight3) }
+}

@@ -27,7 +27,7 @@ import Python from './TypewriterCards/Python.vue';
   --back: calc(5% - 50%) calc(5% - 50%);
   top: 50%;
   left: 50%;
-  animation: onFront 15s ease 5s infinite;
+  animation: onFront 15s ease 15s infinite;
 }
 
 .card.nearest {
