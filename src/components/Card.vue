@@ -16,7 +16,7 @@
   /* left: 4px; */
   /* right: 4px; */
   height: 20rem;
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   border-radius: 8px;

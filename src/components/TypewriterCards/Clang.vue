@@ -76,7 +76,7 @@ import Return from './Return.vue';
 }
 
 .typewriterContainer.editor {
-  border-bottom: 0.1em solid var(--subtext);
+  border-bottom: 1px solid var(--subtext);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -93,6 +93,7 @@ import Return from './Return.vue';
 
 .typewriterContainer:not(:is(.editor)).once {
   height: max-content;
+	padding-bottom: 0px;
 }
 
 .typewriterContainer:not(:is(.editor)).once :deep(.typewriter .typewriterText) {
