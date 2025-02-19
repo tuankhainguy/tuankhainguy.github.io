@@ -20,13 +20,13 @@ import Return from './Return.vue';
 <style scoped>
 .textline.textline {
   width: 100%;
-  animation: show-line 5s step-end .5s infinite;
+  animation: show-line 5s step-end 12s infinite;
 }
 
 .textline.textline:after {
   color: var(--text);
   animation:
-    return 5s step-end .5s infinite;
+    return 5s step-end 12s infinite;
 }
 
 .textline.textline:before {
@@ -34,11 +34,6 @@ import Return from './Return.vue';
   color: transparent;
   content: '>>';
   margin-right: 8px;
-}
-
-.textline.textline:after {
-  color: var(--text);
-  animation: return 5s step-end .5s infinite;
 }
 
 /* ,typewriter.typewriter increase importance */
@@ -49,7 +44,7 @@ import Return from './Return.vue';
 }
 
 .typewriterContainer :deep(.typewriter .typewriterText) {
-  animation-delay: 0.5s;
+  animation-delay: 12s;
 }
 
 .typewriterContainer :deep(.typewriter .typewriterText:before) {
@@ -58,7 +53,7 @@ import Return from './Return.vue';
 }
 
 .return {
-  animation-delay: 0.5s;
+  animation-delay: 12s;
 }
 
 @keyframes return {

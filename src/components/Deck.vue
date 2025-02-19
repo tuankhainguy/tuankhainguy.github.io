@@ -55,7 +55,7 @@ import Python from './typewriter_cards/Python.vue';
 
 @keyframes onFront {
   5% {
-    transform: translateY(-300px);
+    transform: translateY(-200px);
     z-index: 3;
     translate: var(--middle);
   }
@@ -97,7 +97,7 @@ import Python from './typewriter_cards/Python.vue';
     translate: var(--front);
   }
   45% {
-    transform: translateY(-300px);
+    transform: translateY(-200px);
     z-index: 3;
     translate: var(--middle);
   }
@@ -139,7 +139,7 @@ import Python from './typewriter_cards/Python.vue';
     translate: var(--front);
   }
   75% {
-    transform: translateY(-300px);
+    transform: translateY(-200px);
     z-index: 3;
     translate: var(--middle);
   }

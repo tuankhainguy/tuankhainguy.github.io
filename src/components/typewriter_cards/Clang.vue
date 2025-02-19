@@ -65,7 +65,6 @@ import Typewriter from '../Typewriter.vue';
 
 .typewriterContainer :deep(.typewriter .typewriterText) {
   color: var(--subtext);
-  animation-delay: 1s, 0s;
   animation-iteration-count: 1, 5;
   animation-fill-mode: forwards;
 }

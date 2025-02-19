@@ -21,7 +21,7 @@ import Return from './Return.vue';
 .textline.textline:after {
   color: var(--text);
   animation:
-    return 5s step-end infinite;
+    return 5s step-end 6s infinite;
 }
 
 .textline.textline:before {
@@ -35,9 +35,17 @@ import Return from './Return.vue';
   margin-right: 8px;
 }
 
+.typewriterContainer :deep(.typewriter .typewriterText) {
+  animation-delay: 6s;
+}
+
 .typewriterContainer :deep(.typewriter .typewriterText:before) {
   animation: none;
   content: 'print("Hello, World!")';
+}
+
+.return {
+  animation-delay: 6s;
 }
 
 @keyframes return {
