@@ -95,7 +95,7 @@ h3 {
   justify-content: start;
   align-items: center;
   gap: 24px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 
@@ -111,6 +111,9 @@ h3 {
   box-shadow:
     0 0 4px 2px rgb(from var(--catppuccin-peach) r g b /  0.5);
   transition: box-shadow .2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -139,7 +142,15 @@ h3 {
   }
 
   .buttons {
-    gap: 12px;
+    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row;
+    height: max-content;
+  }
+
+  .tabs {
+    height: 100%;
   }
 }
 /**/

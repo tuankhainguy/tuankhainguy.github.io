@@ -87,7 +87,6 @@ onMounted(() => {
 
 <template>
   <div id="mainContainer" ref="main" >
-    <!-- <div v-for="key in keys" :id="key" class="section"></div> -->
     <Home :id="keys[0]" />
     <About :id="keys[1]" />
     <Portfolio :id="keys[2]" />
@@ -114,7 +113,6 @@ onMounted(() => {
   margin: 0;
   width: 100%;
   max-width: 100vw;
-  overflow-x: hidden;
   height: max-content;
   /* height: 100%; */
   /* overflow: scroll; */
