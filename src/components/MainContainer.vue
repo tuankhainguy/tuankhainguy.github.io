@@ -31,7 +31,7 @@ function onScroll() {
       highestOpacityElement = section as HTMLElement
     }
 
-    (section as HTMLElement).style.opacity = `${frac * 2 - 1}`;
+    (section as HTMLElement).style.opacity = `${frac * 3 - 1}`;
   });
 
   if (!highestOpacityElement) return;
@@ -72,7 +72,7 @@ onMounted(() => {
       highestOpacityElement = section as HTMLElement
     }
 
-    (section as HTMLElement).style.opacity = `${frac * 2 - 1}`;
+    (section as HTMLElement).style.opacity = `${frac * 3 - 1}`;
   });
 
   if (!highestOpacityElement) return;

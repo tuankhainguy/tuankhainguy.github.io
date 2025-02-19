@@ -2,9 +2,7 @@
 import { onMounted } from 'vue';
 import Section from './Section.vue';
 import { GlobalStore } from '../../main';
-import Python from '../typewriter_cards/Python.vue';
-import JS from '../typewriter_cards/JS.vue';
-import Clang from '../typewriter_cards/Clang.vue';
+import CardCollection from '../CardCollection.vue';
 
 
 const keys = Object.keys(GlobalStore.sections as object).splice(1);
@@ -43,15 +41,7 @@ onMounted(() => {
       </div>
     </template>
     <template v-slot:secondary>
-      <!-- <Typewriter /> -->
-      <div class="cardCollection">
-        <Python />
-        <Clang />
-        <JS />
-        <!-- <Card v-for="i in 4" :key="i" :style="{ 'z-index': i }"> -->
-        <!--   <Typewriter :class="{ full: true }" /> -->
-        <!-- </Card> -->
-      </div>
+      <CardCollection />
     </template>
   </Section>
 </template>
@@ -83,16 +73,6 @@ onMounted(() => {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgb(from var(--accent) r g b / 0.5);
-}
-
-@media only screen and (max-width: 768px) {
-  .section :deep(.primary) {
-    justify-content: end;
-  }
-
-  .section :deep(.secondary) {
-    justify-content: start;
-  }
 }
 
 
@@ -149,14 +129,18 @@ h3 {
 }
 
 
-.cardCollection {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 12px;
-  padding: 12px;
-  position: relative;
-  height: 100%;
+@media only screen and (max-width: 768px) {
+  .section :deep(.primary) {
+    justify-content: end;
+  }
+
+  .section :deep(.secondary) {
+    justify-content: start;
+  }
+
+  .buttons {
+    gap: 12px;
+  }
 }
 /**/
 /**/

@@ -3,16 +3,21 @@ import { GlobalStore } from "../main";
 function getFractionVisible(
   element: HTMLElement, scrollEl: HTMLElement
 ) {
-  const padding =
-    parseInt(window.getComputedStyle(element.parentElement!).paddingTop);
+  const paddingTop =
+    parseInt(window.getComputedStyle(element.parentElement!).paddingTop) +
+    parseInt(window.getComputedStyle(element.parentElement!.parentElement!).paddingTop);
+  const paddingBottom =
+    parseInt(window.getComputedStyle(element.parentElement!).paddingBottom) +
+    parseInt(window.getComputedStyle(element.parentElement!.parentElement!).paddingBottom);
   const viewHeight = element.clientHeight;
   const viewTop =
     element.offsetTop + parseInt(window.getComputedStyle(element).borderTop);
   const viewBottom =
     viewTop + element.clientHeight -
       parseInt(window.getComputedStyle(element).borderBottom);
-  const scrollElTop = scrollEl.scrollTop + padding,
-  scrollElBottom = scrollElTop + scrollEl.clientHeight - padding;
+  const scrollElTop = scrollEl.scrollTop + paddingTop;
+  const scrollElBottom =
+    scrollElTop + scrollEl.clientHeight - paddingTop - paddingBottom;
 
   const hiddenHeight =
     Math.max(0, scrollElTop - viewTop) +
@@ -20,10 +25,11 @@ function getFractionVisible(
 
   const fractionHeight =
     (viewHeight - hiddenHeight) /
-      Math.min((scrollEl.clientHeight - padding), viewHeight);
+      Math.min((scrollEl.clientHeight - paddingTop - paddingBottom), viewHeight);
 
   return fractionHeight;
 }
+
 
 function selectTab(tab: HTMLElement) {
   const value: string | undefined = tab.dataset.section;

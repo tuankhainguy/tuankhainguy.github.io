@@ -26,4 +26,10 @@
   padding: 12px;
   flex-basis: 100%;
 }
+
+@media only screen and (max-width: 768px) {
+  .card {
+    min-height: 10rem;
+  }
+}
 </style>
