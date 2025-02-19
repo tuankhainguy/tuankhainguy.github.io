@@ -26,7 +26,6 @@ const slots = useSlots();
 .primary {
   display: flex;
   flex-direction: column;
-  flex-basis: 100%;
   height: 100%;
   width: 100%;
 }
@@ -35,7 +34,6 @@ const slots = useSlots();
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-basis: 100%;
   height: 100%;
   width: 66%;
 }

@@ -41,10 +41,10 @@ import Typewriter from '../Typewriter.vue';
 
 
 <style scoped>
-.card {
-  flex-basis: 300%;
-}
-
+/* .card { */
+/*   flex-basis: 300%; */
+/* } */
+/**/
 .textline.textline {
   color: var(--subtext);
 }

@@ -41,7 +41,7 @@
 
 
 .typewriterContainer :deep(.textline) {
-  font-size: max(1vw, 1rem);
+  font-size: min(max(1vw, 0.75rem), 1.2rem);
   display: flex;
   justify-content: start;
   align-items: center;
@@ -49,20 +49,22 @@
   max-width: 100%;
   padding: 4px;
   z-index: 2;
+  overflow: hidden;
 }
 
 .typewriterContainer :deep(.textline:before),
 .typewriterContainer :deep(.textline:after) {
-  font-size: max(1vw, 1rem);
+  font-size: min(max(1vw, 0.75rem), 1.2rem);
   color: var(--highlight1);
   content: '';
   margin-right: 8px;
   z-index: 2;
+  overflow: hidden;
 }
 
 
 .typewriter {
-  font-size: max(1vw, 1rem);
+  font-size: min(max(1vw, 0.75rem), 1.2rem);
   display: flex;
   justify-content: start;
   align-items: center;
@@ -73,7 +75,7 @@
 }
 
 .typewriter:before {
-  font-size: max(1vw, 1rem);
+  font-size: min(max(1vw, 0.75rem), 1.2rem);
   color: var(--highlight1);
   content: '$';
   margin-right: 8px;
@@ -98,7 +100,7 @@
 /* } */
 
 .typewriterText {
-  font-size: max(1vw, 1rem);
+  font-size: min(max(1vw, 0.75rem), 1.2rem);
   width: 0;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: .15em solid var(--highlight3); /* The typwriter cursor */
@@ -135,7 +137,7 @@
   50% { border-color: var(--highlight3) }
 }
 /* .typewriterText { */
-/*   font-size: max(1vw, 1rem); */
+/*   font-size: min(max(1vw, 0.75rem), 1.2rem); */
 /*   width: 0; */
 /*  overflow: hidden; /* Ensures the content is not revealed until the animation */
 /*  border-right: .15em solid var(--highlight3); /* The typwriter cursor */

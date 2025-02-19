@@ -11,11 +11,12 @@
 
 <style scoped>
 .card {
-  /* position: absolute; */
-  /* top: 4px; */
+  position: absolute;
+  top: 0;
   /* left: 4px; */
   /* right: 4px; */
-  height: 100%;
+  height: 20rem;
+  width: 80%;
   display: flex;
   background: rgb(from var(--base) r g b / 0.4);
   border-radius: 8px;
@@ -25,11 +26,5 @@
   border: 1px solid rgb(from var(--accent) r g b / 0.5);
   padding: 12px;
   flex-basis: 100%;
-}
-
-@media only screen and (max-width: 768px) {
-  .card {
-    min-height: 10rem;
-  }
 }
 </style>

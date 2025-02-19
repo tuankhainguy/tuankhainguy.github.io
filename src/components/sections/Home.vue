@@ -2,7 +2,7 @@
 import { onMounted } from 'vue';
 import Section from './Section.vue';
 import { GlobalStore } from '../../main';
-import CardCollection from '../CardCollection.vue';
+import Deck from '../Deck.vue';
 
 
 const keys = Object.keys(GlobalStore.sections as object).splice(1);
@@ -41,7 +41,7 @@ onMounted(() => {
       </div>
     </template>
     <template v-slot:secondary>
-      <CardCollection />
+      <Deck />
     </template>
   </Section>
 </template>
@@ -66,14 +66,14 @@ onMounted(() => {
 .section :deep(.secondary) {
   justify-content: center;
 }
-
-.section :deep(.secondary) {
-  border-radius: 12px;
-  box-shadow: 0 0 4px 2px rgb(from var(--accent) r g b / 0.4);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgb(from var(--accent) r g b / 0.5);
-}
+/**/
+/* .section :deep(.secondary) { */
+/*   border-radius: 12px; */
+/*   box-shadow: 0 0 4px 2px rgb(from var(--accent) r g b / 0.4); */
+/*   backdrop-filter: blur(5px); */
+/*   -webkit-backdrop-filter: blur(5px); */
+/*   border: 1px solid rgb(from var(--accent) r g b / 0.5); */
+/* } */
 
 
 h2 {
