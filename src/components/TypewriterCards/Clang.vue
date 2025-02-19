@@ -75,10 +75,10 @@ import Return from './Return.vue';
   margin-right: 24px;
 }
 
-.typewriterContainer:not(:is(.editor)) {
-  border-top: 0.1em solid var(--subtext);
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.typewriterContainer.editor {
+  border-bottom: 0.1em solid var(--subtext);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .typewriterContainer.editor :deep(.typewriter .typewriterText) {
@@ -119,6 +119,11 @@ import Return from './Return.vue';
   content: './hello_world';
 }
 
+.typewriterContainer:not(:is(.editor)):not(:is(.once)) :deep(.typewriter) {
+  opacity: 0;
+  animation: show 0s step-end 8s forwards;
+}
+
 .return {
   animation-delay: 10s;
 }
@@ -138,6 +143,15 @@ import Return from './Return.vue';
   20%,
   100% {
     width: 100%
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>
