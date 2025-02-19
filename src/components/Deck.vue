@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Clang from './typewriter_cards/Clang.vue';
-import JS from './typewriter_cards/JS.vue';
-import Python from './typewriter_cards/Python.vue';
+import Clang from './TypewriterCards/Clang.vue';
+import JS from './TypewriterCards/JS.vue';
+import Python from './TypewriterCards/Python.vue';
 
 </script>
 
