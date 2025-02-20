@@ -89,5 +89,9 @@ p:before {
   h2, h3, h4 {
     padding-inline: 12px;
   }
+
+  .content {
+    margin-top: 2rem;
+  }
 }
 </style>

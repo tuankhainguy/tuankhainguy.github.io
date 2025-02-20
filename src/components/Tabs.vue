@@ -96,6 +96,11 @@ export default {
 .tabs.active {
   color: var(--accent);
   border-bottom: 0.1rem solid var(--accent);
+  background:
+    linear-gradient(to bottom, var(--highlight3), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 
@@ -121,11 +126,32 @@ export default {
 
   .tabs {
     justify-content: end;
+    border-radius: 8px;
+    padding: 4px 8px;
+    position: relative;
+    overflow: hidden;
   }
 
+  .tabs:before {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    inset: 100%;
+    transition: inset .1s ease-in-out;
+    background:
+      linear-gradient(to bottom right, var(--highlight3), var(--accent));
+  }
 
   .tabs.active {
     border: none;
+    color: var(--base);
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: unset;
+  }
+
+  .tabs.active:before {
+    inset: 0;
   }
 }
 </style>
