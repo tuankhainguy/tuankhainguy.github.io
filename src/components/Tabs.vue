@@ -103,17 +103,16 @@ export default {
   #tabsContainer {
     display: none;
     margin: 0;
-    position: absolute;
+    position: fixed;
+    inset-inline: 0;
     top: var(--topbar-height);
-    right: var(--main-empty-space);
     flex-direction: column;
     align-items: end;
     background: rgb(from var(--base) r g b / 0.4);
-    border-radius: 8px;
     box-shadow: 0 4px 30px rgb(from var(--accent-compliment) r g b /  0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgb(from var(--accent) r g b / 0.75);
+    border-bottom: 1px solid rgb(from var(--accent) r g b / 0.75);
     padding: 0.75rem;
     scale: 0;
     z-index: 20;
