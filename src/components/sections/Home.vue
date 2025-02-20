@@ -25,9 +25,9 @@ onMounted(() => {
 
 <template>
   <Section section-title="SOFTWARE ENGINEER">
-    <h3>Frontend Web Developer</h3>
-    <h3>Knows a bit about Full-stack</h3>
-    <h3>Computer Science Student</h3>
+    <h4>Frontend Web Developer</h4>
+    <h4>Knows a bit about Full-stack</h4>
+    <h4>Computer Science Student</h4>
     <div class="buttons">
       <button
         v-for="key in keys"

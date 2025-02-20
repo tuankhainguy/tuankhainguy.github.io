@@ -17,6 +17,7 @@
   /* right: 4px; */
   height: 100%;
   max-height: 30rem;
+  min-height: max-content;
   width: 90%;
   display: flex;
   flex-direction: column;

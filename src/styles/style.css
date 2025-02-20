@@ -68,7 +68,6 @@
   -moz-box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-size: inherit;
   font-weight: inherit;
 }
 
@@ -137,8 +136,7 @@ button {
   /* if use viewport values and the navbar resizes, everything else with */
   /* viewport values resize making scrolling and maybe other interactions */
   /* not smooth/choppy */
-  min-height: 800px;
-  height: max-content;
+  height: calc(100lvh - var(--topbar-height) - (2 * var(--main-empty-space)));
   width: 100%;
   border-radius: 8px;
   /* border: 2px solid var(--catppuccin-lavender); */
@@ -160,13 +158,30 @@ button {
   .section {
     flex-direction: column;
     justify-content: start;
+    min-height: 800px;
+    height: max-content;
   }
 }
 
 
 h1 {
-  width: 100%;
   font-size: min(max(4vw, 3rem), 5rem);
+}
+
+h2 {
+  font-size: min(max(3vw, 2rem), 2.5rem);
+}
+
+h3 {
+  font-size: min(max(2vw, 1.5rem), 2rem);
+}
+
+h4 {
+  font-size: min(max(1.5vw, 1.25rem), 1.5rem);
+}
+
+p {
+  font-size: min(max(1.25vw, 0.9rem), 1.25rem);
 }
 
 

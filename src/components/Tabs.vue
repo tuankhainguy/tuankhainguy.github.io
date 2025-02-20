@@ -22,9 +22,8 @@ export default {
       // no need to subtract sectionEl.clienTop (border width)
       // because we need to add it again later for the border from
       // the section above to not show
-      const scrollTop = sectionEl.offsetTop -
-        root.offsetTop -
-        root.clientTop -
+      const scrollTop =
+        sectionEl.offsetTop -
         parseInt(window.getComputedStyle(mainContainer).paddingTop);
 
       root.scrollTo({
