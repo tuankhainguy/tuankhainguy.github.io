@@ -105,22 +105,29 @@ export default {
 
 
 @media only screen and (max-width: 768px) {
-  #tabsContainer {
-    display: none;
+  #tabsContainer#tabsContainer {
+    display: flex;
     margin: 0;
     position: fixed;
     inset-inline: 0;
     top: var(--topbar-height);
+    height: 0;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: end;
     background: rgb(from var(--base) r g b / 0.4);
     box-shadow: 0 4px 30px rgb(from var(--accent-compliment) r g b /  0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    border-bottom: 1px solid rgb(from var(--accent) r g b / 0.75);
-    padding: 0.75rem;
-    scale: 0;
-    z-index: 20;
+    padding-inline: 0.75rem;
+    z-index: 5;
+
+    /* what the engine will use when closing the container */
+    /* only happens when dest state has new transition */
+    transition:
+      height .3s ease-in-out,
+      border-bottom .3s ease-in-out .3s;
+    overflow: hidden;
   }
 
 
@@ -137,14 +144,15 @@ export default {
     content: '';
     position: absolute;
     inset: 100%;
-    transition: inset .1s ease-in-out;
+    transition: inset .15s ease-in-out;
     background:
-      linear-gradient(to bottom right, var(--highlight3), var(--accent));
+      linear-gradient(to bottom, var(--highlight3), var(--accent));
   }
 
   .tabs.active {
     border: none;
     color: var(--base);
+    background: none;
     -webkit-background-clip: unset;
     background-clip: unset;
     -webkit-text-fill-color: unset;

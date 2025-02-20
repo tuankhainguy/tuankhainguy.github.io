@@ -65,6 +65,10 @@ onMounted(() => {
   left: 0;
 }
 
+#topbar > * {
+  z-index: 10;
+}
+
 .logo {
   height: 2em;
   will-change: filter;
@@ -79,24 +83,27 @@ onMounted(() => {
 @media only screen and (max-width: 768px) {
   #menu {
     display: flex;
-    z-index: 10;
+    z-index: 5;
   }
 
   /* to act as a menu disabler when click other places of page */
   #menu:before {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     opacity: 0;
     content: '';
   }
 
   #checkMenu:checked ~ #tabsContainer {
-    display: flex;
-    scale: 1;
+    height: 12rem;
+    border-bottom: 1px solid rgb(from var(--accent) r g b / 0.75);
+    padding: 0.75rem;
+
+    /* what the engine will use when opening the container */
+    transition:
+      height .3s ease-in-out,
+      border-bottom .3s ease-in-out;
   }
 
   #checkMenu:checked ~ #menu:before {
