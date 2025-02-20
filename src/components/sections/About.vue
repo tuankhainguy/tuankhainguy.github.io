@@ -35,6 +35,10 @@ h2 {
   -webkit-text-fill-color: transparent;
 }
 
+h4 {
+  margin: 2rem;
+}
+
 h2, h3, h4 {
   padding-inline: 36px;
   width: 100%;

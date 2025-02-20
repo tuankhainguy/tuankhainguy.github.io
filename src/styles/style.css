@@ -138,6 +138,7 @@ button {
   /* not smooth/choppy */
   height: calc(100lvh - var(--topbar-height) - (2 * var(--main-empty-space)));
   width: 100%;
+  flex-direction: column;
   border-radius: 8px;
   /* border: 2px solid var(--catppuccin-lavender); */
   /* background: rgb(from var(--catppuccin-surface1) r g b / 0.4); */
@@ -156,7 +157,6 @@ button {
 
 @media only screen and (max-width: 768px) {
   .section {
-    flex-direction: column;
     justify-content: start;
     min-height: 800px;
     height: max-content;
