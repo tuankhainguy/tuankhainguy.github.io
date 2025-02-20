@@ -50,7 +50,10 @@
   --highlight4: var(--catppuccin-yellow);
   --highlight5: var(--catppuccin-peach);
   --highlight6: var(--catppuccin-green);
-  --highlight7: var(--catppuccin-blue);
+  --highlight7: var(--catppuccin-teal);
+  --highlight8: var(--catppuccin-sky);
+  --highlight9: var(--catppuccin-sapphire);
+  --highlight10: var(--catppuccin-blue);
 
   color: var(--catppuccin-text);
 }

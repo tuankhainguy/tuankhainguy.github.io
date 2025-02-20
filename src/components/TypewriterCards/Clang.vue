@@ -17,7 +17,7 @@ import Return from './Return.vue';
         <div class="textline" data-row="2">
           <span style="color: var(--highlight4)">int</span>
           &nbsp
-          <span style="color: var(--highlight7)">main()</span>
+          <span style="color: var(--highlight10)">main()</span>
           &nbsp{
         </div>
       </template>
@@ -106,7 +106,7 @@ import Return from './Return.vue';
 .typewriterContainer:not(:is(.editor)):not(:is(.once)) :deep(.typewriter .typewriterText) {
   animation-delay: 10s;
   animation-name: typing, blink-caret;
-  animation-timing-function: steps(15, end), step-end;
+  animation-timing-function: steps(13, end), step-end;
 }
 
 .typewriterContainer:not(:is(.editor)):not(:is(.once)) .textline:after {
