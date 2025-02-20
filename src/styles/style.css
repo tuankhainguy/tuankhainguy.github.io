@@ -1,7 +1,7 @@
 @import url("font.css");
 
 :root {
-  font-family: "JetBrainsMono Nerd Font Mono";
+  font-family: "JetBrainsMono Nerd Font Mono", 'Courier New', Courier, monospace;
 
  	--catppuccin-rosewater: rgb(245, 224, 220);
 	--catppuccin-flamingo: rgb(242, 205, 205);
@@ -46,7 +46,7 @@
   --accent-compliment: var(--catppuccin-mantle);
   --highlight1: var(--catppuccin-flamingo);
   --highlight2: var(--catppuccin-mauve);
-  --highlight3: var(--catppuccin-maroon);
+  --highlight3: var(--catppuccin-red);
   --highlight4: var(--catppuccin-yellow);
   --highlight5: var(--catppuccin-peach);
   --highlight6: var(--catppuccin-green);
@@ -166,7 +166,7 @@ button {
 
 h1 {
   width: 100%;
-  font-size: var(--h1-font-size);
+  font-size: min(max(4vw, 3rem), 5rem);
 }
 
 

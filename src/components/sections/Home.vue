@@ -25,21 +25,19 @@ onMounted(() => {
 
 <template>
   <Section section-title="SOFTWARE ENGINEER">
-    <template v-slot:primary>
-      <h3>Frontend Web Developer</h3>
-      <h3>Knows a bit about Full-stack</h3>
-      <h3>Computer Science Student</h3>
-      <div class="buttons">
-        <button
-          v-for="key in keys"
-          class="tabs"
-          :data-section="key"
-          @click="onTabClick"
-        >
-          {{ ((key === "contacts") ? key.slice(0, key.length - 1) + " me" : key) }}
-        </button>
-      </div>
-    </template>
+    <h3>Frontend Web Developer</h3>
+    <h3>Knows a bit about Full-stack</h3>
+    <h3>Computer Science Student</h3>
+    <div class="buttons">
+      <button
+        v-for="key in keys"
+        class="tabs"
+        :data-section="key"
+        @click="onTabClick"
+      >
+        {{ ((key === "contacts") ? key.slice(0, key.length - 1) + " me" : key) }}
+      </button>
+    </div>
     <template v-slot:secondary>
       <Deck />
     </template>
@@ -49,7 +47,6 @@ onMounted(() => {
 
 <style scoped>
 .section {
-  --h1-font-size: min(max(4vw, 3rem), 5rem);
   height: 800px;
   align-items: center;
   font-size: max(1.2vw, 1.2rem);
@@ -120,7 +117,7 @@ h3 {
 .tabs:hover {
   box-shadow:
     0 0 4px 2px rgb(from var(--catppuccin-peach) r g b / 0.8),
-    inset 0 0 5px 3px rgb(from var(--catppuccin-yellow) r g b / 0.8);
+    inset 0 0 5px 12px rgb(from var(--catppuccin-yellow) r g b / 0.4);
 }
 
 

@@ -12,8 +12,9 @@ const slots = useSlots();
 <template>
   <div class="section" ref="section">
     <div class="primary">
-      <h1>{{ sectionTitle ?? `/${$attrs.id}` }}</h1>
-      <slot name="primary" />
+      <h1 v-if="sectionTitle">{{ sectionTitle }}</h1>
+      <span class="sectionName" v-if="!sectionTitle">{{ `/${$attrs.id}` }}</span>
+      <slot />
     </div>
     <div v-if="slots.secondary" class="secondary">
       <slot name="secondary" />
@@ -23,11 +24,34 @@ const slots = useSlots();
 
 
 <style scoped>
+h1 {
+  width: max-content;
+  max-width: 100%;
+  background:
+    linear-gradient(to bottom right, var(--highlight3), var(--highlight5));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section span.sectionName {
+  max-width: 100%;
+  margin-bottom: 2.5rem;
+  font-size: min(max(1vw, .75rem), 1.5rem);
+  width: max-content;
+  background:
+    linear-gradient(to bottom right, var(--highlight3), var(--highlight5));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .primary {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
+  gap: 12px;
 }
 
 .secondary {
@@ -36,6 +60,7 @@ const slots = useSlots();
   justify-content: center;
   height: 100%;
   width: 66%;
+  gap: 12px;
 }
 
 @media only screen and (max-width: 768px) {
