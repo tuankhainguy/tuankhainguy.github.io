@@ -37,7 +37,7 @@ h1 {
 .section span.sectionName {
   max-width: 100%;
   margin-bottom: 2.5rem;
-  font-size: min(max(1vw, .75rem), 1.5rem);
+  font-size: min(max(1.5vw, 1rem), 1.25rem);
   width: max-content;
   background:
     linear-gradient(to bottom right, var(--highlight3), var(--highlight5));

@@ -11,6 +11,9 @@ import Section from './Section.vue';
     <h2>
       TUAN KHAI NGUY
     </h2>
+    <h4>
+      SWE Intern @ WEHI | CS @ UniMelb
+    </h4>
   </Section>
 </template>
 
