@@ -104,7 +104,7 @@ import Return from './Return.vue';
 }
 
 .typewriterContainer:not(:is(.editor)):not(:is(.once)) :deep(.typewriter .typewriterText) {
-  animation-delay: 10s;
+  animation-delay: 11s;
   animation-name: typing, blink-caret;
   animation-timing-function: steps(13, end), step-end;
 }
@@ -112,7 +112,7 @@ import Return from './Return.vue';
 .typewriterContainer:not(:is(.editor)):not(:is(.once)) .textline:after {
   color: var(--text);
   animation:
-    return 5s step-end 10s infinite;
+    return 5s step-end 11s infinite;
 }
 
 .typewriterContainer:not(:is(.editor)):not(:is(.once)) :deep(.typewriter .typewriterText:before) {
@@ -126,7 +126,7 @@ import Return from './Return.vue';
 }
 
 .return {
-  animation-delay: 10s;
+  animation-delay: 11s;
 }
 
 @keyframes return {
