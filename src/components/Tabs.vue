@@ -125,8 +125,7 @@ export default {
     /* what the engine will use when closing the container */
     /* only happens when dest state has new transition */
     transition:
-      height .3s ease-in-out,
-      border-bottom .3s ease-in-out .3s;
+      height .3s ease-in-out;
     overflow: hidden;
   }
 

@@ -102,8 +102,7 @@ onMounted(() => {
 
     /* what the engine will use when opening the container */
     transition:
-      height .3s ease-in-out,
-      border-bottom .3s ease-in-out;
+      height .3s ease-in-out;
   }
 
   #checkMenu:checked ~ #menu:before {

@@ -1,44 +1,38 @@
 <script setup lang="ts">
-import ProjectCard from '../ProjectCard.vue';
+import { ref } from 'vue';
+import Projects from './PortfolioAreas/Projects.vue';
 import Section from './Section.vue';
+import TechStacks from './PortfolioAreas/TechStacks.vue';
+
+const currentArea = ref('projects');
+
+const changeArea = (e: Event) => {
+  e.preventDefault();
+  currentArea.value =
+    (e.currentTarget as HTMLElement).dataset.area ?? currentArea.value;
+}
 </script>
 
 <template>
   <Section>
     <div id="portfolioAreas">
-      <button class="area">
-        <h4>Projects</h4>
+      <button class="area" data-area="projects" @click="changeArea">
+        <p>Projects</p>
       </button>
-      <button class="area">
-        <h4>Tech stack</h4>
+      <button class="area" data-area="techStacks" @click="changeArea">
+        <p>Tech stacks</p>
       </button>
     </div>
-    <div class="container">
-      <Suspense>
-        <ProjectCard repo="algorithms-in-action/algorithms-in-action.github.io"/>
-        <template #fallback>
-          <p>Loading...</p>
-        </template>
-      </Suspense>
-      <Suspense>
-        <ProjectCard repo="WEHI-RCPStudentInternship/pdf-coder"/>
-        <template #fallback>
-          <p>Loading...</p>
-        </template>
-      </Suspense>
-    </div>
+    <Projects id='projects' v-if='currentArea === "projects"' />
+    <TechStacks id='techStacks' v-if='currentArea === "techStacks"' />
   </Section>
 </template>
 
 <style scoped>
-.container {
-  gap: 12px;
-  padding-inline: 12px;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  grid-auto-flow: row;
+@media only screen and (min-width: 769px) {
+  .section :deep(.primary) {
+    padding-inline: 56px;
+  }
 }
 
 #portfolioAreas {
@@ -76,9 +70,9 @@ import Section from './Section.vue';
   align-items: center;
 }
 
-.area > h4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+.area > p {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
   font-weight: 700;
 }
 

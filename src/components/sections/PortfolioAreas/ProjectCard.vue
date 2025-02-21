@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Card from './Card.vue';
 // import { octokit, repoSearch, searchCommits } from '../../common/actions';
-import { getRepository } from '../common/actions';
+import { getRepository } from '../../../common/actions';
+import Card from '../../Card.vue';
 
 
 const { repo } = defineProps<{
