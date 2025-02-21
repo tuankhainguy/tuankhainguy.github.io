@@ -119,12 +119,13 @@ export default {
     box-shadow: 0 4px 30px rgb(from var(--accent-compliment) r g b /  0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    padding-inline: 0.75rem;
+    padding: 0 0.75rem;
     z-index: 5;
 
     /* what the engine will use when closing the container */
     /* only happens when dest state has new transition */
     transition:
+      padding .3s ease-in-out,
       height .3s ease-in-out;
     overflow: hidden;
   }

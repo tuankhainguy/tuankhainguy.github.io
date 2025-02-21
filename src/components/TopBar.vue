@@ -102,6 +102,7 @@ onMounted(() => {
 
     /* what the engine will use when opening the container */
     transition:
+      padding .3s ease-in-out,
       height .3s ease-in-out;
   }
 
