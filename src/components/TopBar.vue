@@ -97,7 +97,7 @@ onMounted(() => {
 
   #checkMenu:checked ~ #tabsContainer {
     height: 12rem;
-    border-bottom: 1px solid rgb(from var(--accent) r g b / 0.75);
+    /* border-bottom: 1px solid rgb(from var(--accent) r g b / 0.75); */
     padding: 0.75rem;
 
     /* what the engine will use when opening the container */
@@ -108,6 +108,25 @@ onMounted(() => {
 
   #checkMenu:checked ~ #menu:before {
     display: block;
+  }
+
+
+  #checkMenu:checked ~ #tabsContainer :deep(.tabs) {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: fade-in .3s linear forwards;
+  }
+}
+
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 </style>

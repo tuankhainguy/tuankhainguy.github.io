@@ -63,12 +63,13 @@ export default {
 <template>
   <div id="tabsContainer">
     <button
-      v-for="key in keys"
+      v-for="(value, key) in keys"
       class="tabs"
-      :data-section="key"
+      :class="`delay-${key}`"
+      :data-section="value"
       @click="onTabClick"
     >
-      {{ key.charAt(0).toUpperCase() + key.slice(1) }}
+      {{ value.charAt(0).toUpperCase() + value.slice(1) }}
     </button>
   </div>
 </template>
@@ -103,6 +104,19 @@ export default {
   -webkit-text-fill-color: transparent;
 }
 
+.delay-1 {
+  animation-delay: 0.2s !important;
+}
+.delay-2 {
+  animation-delay: 0.25s !important;
+}
+.delay-3 {
+  animation-delay: 0.3s !important;
+}
+.delay-4 {
+  animation-delay: 0.35s !important;
+}
+
 
 @media only screen and (max-width: 768px) {
   #tabsContainer#tabsContainer {
@@ -115,10 +129,11 @@ export default {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: end;
-    background: rgb(from var(--base) r g b / 0.4);
-    box-shadow: 0 4px 30px rgb(from var(--accent-compliment) r g b /  0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background: var(--base);
+    box-shadow: 0px 0px 8px 8px rgb(from var(--base) r g b);
+    /* box-shadow: 0 4px 30px rgb(from var(--accent-compliment) r g b /  0.1); */
+    /* backdrop-filter: blur(5px); */
+    /* -webkit-backdrop-filter: blur(5px); */
     padding: 0 0.75rem;
     z-index: 5;
 
