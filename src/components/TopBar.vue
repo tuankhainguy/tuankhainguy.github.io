@@ -111,22 +111,10 @@ onMounted(() => {
   }
 
 
-  #checkMenu:checked ~ #tabsContainer :deep(.tabs) {
-    opacity: 0;
-    transform: translateX(-20px);
-    animation: fade-in .3s linear forwards;
-  }
-}
-
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
+  #checkMenu:checked ~ #tabsContainer :deep([class*='delay-']) {
     opacity: 1;
     transform: translateX(0);
+    transition-delay: var(--delay-in);
   }
 }
 </style>

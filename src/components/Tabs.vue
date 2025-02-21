@@ -65,7 +65,7 @@ export default {
     <button
       v-for="(value, key) in keys"
       class="tabs"
-      :class="`delay-${key}`"
+      :class="`delay-${key + 1}`"
       :data-section="value"
       @click="onTabClick"
     >
@@ -104,19 +104,6 @@ export default {
   -webkit-text-fill-color: transparent;
 }
 
-.delay-1 {
-  animation-delay: 0.2s !important;
-}
-.delay-2 {
-  animation-delay: 0.25s !important;
-}
-.delay-3 {
-  animation-delay: 0.3s !important;
-}
-.delay-4 {
-  animation-delay: 0.35s !important;
-}
-
 
 @media only screen and (max-width: 768px) {
   #tabsContainer#tabsContainer {
@@ -140,11 +127,34 @@ export default {
     /* what the engine will use when closing the container */
     /* only happens when dest state has new transition */
     transition:
-      padding .3s ease-in-out,
-      height .3s ease-in-out;
+      padding .3s ease-in-out .2s,
+      height .3s ease-in-out .2s;
     overflow: hidden;
   }
 
+
+  .delay-1 {
+    --delay-in: 0.2s;
+    --delay-out: 0.2s;
+  }
+  .delay-2 {
+    --delay-in: 0.25s;
+    --delay-out: 0.15s;
+  }
+  .delay-3 {
+    --delay-in: 0.3s;
+    --delay-out: 0.05s;
+  }
+  .delay-4 {
+    --delay-in: 0.35s;
+    --delay-out: 0s;
+  }
+  [class*='delay-'] {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: 0.3s linear;
+    transition-delay: var(--delay-out);
+  }
 
   .tabs {
     justify-content: end;
