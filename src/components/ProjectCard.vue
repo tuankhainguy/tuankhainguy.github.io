@@ -107,4 +107,11 @@ p {
   color: var(--text);
   cursor: inherit;
 }
+
+
+@media only screen and (max-width: 768px) {
+  .card {
+    height: max-content;
+  }
+}
 </style>
