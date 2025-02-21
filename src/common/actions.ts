@@ -31,13 +31,27 @@ const searchCommits = async (
   return res;
 }
 
-async function getRepository(
-  { owner, repo }: { owner: string, repo: string }
-) {
-  if (!owner || !repo) return;
 
-  const data: any = await fetch(`https://api.github.com/repos/${owner}/${repo}`)
-    .then((res) => res.json())
+/**
+  * getting the specified repo data
+  * @param {Object} options options to get repo
+  * @param {string} options.repo part of url format '[owner]/[repo-name]'
+  */
+async function getRepository({ repo }: { repo: string }) {
+  // just a nvim issue
+  // 'if (!repo) return;' makes auto indent dumb
+  if (!repo) {
+    return;
+  }
+
+  const formatRegex = '.+[^/].+/.+[^/].+';
+  if (!repo.match(formatRegex)) {
+    return;
+  }
+
+  const data: any = await fetch(`https://api.github.com/repos/${repo}`)
+    .then((res) => res.json());
+  console.log(data);
 
   return data;
 }

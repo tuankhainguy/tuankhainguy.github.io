@@ -4,8 +4,7 @@ import Card from './Card.vue';
 import { getRepository } from '../common/actions';
 
 
-const { owner, repo } = defineProps<{
-  owner: string,
+const { repo } = defineProps<{
   repo: string
 }>();
 
@@ -58,7 +57,6 @@ const { owner, repo } = defineProps<{
 // });
 // console.log(aia);
 const data = await getRepository({
-  owner: owner,
   repo: repo
 });
 </script>
@@ -66,12 +64,14 @@ const data = await getRepository({
 
 <template>
   <Card>
-    <p>
-      {{ data.name }}
-    </p>
-    <p>
-      {{ data.description }}
-    </p>
+    <div class="preview">
+    </div>
+      <h4>
+        {{ data?.name }}
+      </h4>
+      <p>
+        {{ data?.description }}
+      </p>
   </Card>
 </template>
 
@@ -81,5 +81,30 @@ const data = await getRepository({
   position: relative;
   width: 100%;
   height: 100%;
+  padding: 12px;
+  gap: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.preview {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+}
+
+.info {
+  width: 100%;
+}
+
+h4 {
+  font-weight: 700;
+}
+
+p {
+  all: initial;
+  color: var(--text);
+  cursor: inherit;
 }
 </style>
