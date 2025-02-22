@@ -15,7 +15,7 @@
   top: 0;
   /* left: 4px; */
   /* right: 4px; */
-  color: --var(--text);
+  color: var(--text);
   height: 100%;
   max-height: 30rem;
   overflow: hidden;
