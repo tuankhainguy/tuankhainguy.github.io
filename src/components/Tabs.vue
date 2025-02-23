@@ -152,7 +152,7 @@ export default {
   [class*='delay-'] {
     opacity: 0;
     transform: translateX(-20px);
-    transition: 0.3s linear;
+    transition: transform 0.3s linear, opacity 0.3s linear;
     transition-delay: var(--delay-out);
   }
 
