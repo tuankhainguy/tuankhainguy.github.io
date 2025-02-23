@@ -125,7 +125,7 @@ p {
 
 @media only screen and (max-width: 768px) {
   /* .card { */
-  /*   height: max-content; */
+  /*   --scroll-delay: 10s; */
   /* } */
 }
 </style>

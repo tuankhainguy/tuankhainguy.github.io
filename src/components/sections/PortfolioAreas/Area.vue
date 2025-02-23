@@ -11,12 +11,12 @@
 
 <style scoped>
 .container {
-  gap: 12px;
-  padding-inline: 12px;
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  grid-auto-flow: row;
+  /* gap: 12px; */
+  /* padding-inline: 12px; */
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); */
+  /* grid-auto-flow: row; */
 }
 </style>
