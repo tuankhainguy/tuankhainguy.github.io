@@ -2,14 +2,27 @@
 import ProjectCard from './ProjectCard.vue';
 import Area from './Area.vue';
 import Card from '../../Card.vue';
+import { onMounted, useTemplateRef } from 'vue';
 
-const scrollDelay = 3 * 5;
+const inner = useTemplateRef("inner");
+
+onMounted(() => {
+  inner.value?.children.length
+    ? inner.value?.setAttribute("style", `${inner.value?.children.length}s`)
+    : null;
+
+  Array.from(inner.value?.children ?? []).forEach((card) => {
+    const duplicatedCard = card.cloneNode(true) as HTMLElement;
+    duplicatedCard.setAttribute("aria-hidden", "true");
+    inner.value?.appendChild(duplicatedCard);
+  });
+});
 </script>
 
 
 <template>
   <Area>
-    <div class="innerContainer" :style="`--scroll-delay: ${scrollDelay}s`">
+    <div class="innerContainer" ref="inner">
       <Suspense>
         <ProjectCard repo="algorithms-in-action/algorithms-in-action.github.io"/>
         <template #fallback>
@@ -36,8 +49,10 @@ const scrollDelay = 3 * 5;
 
 <style scoped>
 .innerContainer {
-  gap: 12px;
-  padding-inline: 12px;
+  --gap: 12px;
+  gap: var(--gap);
+  padding-top: 12px;
+  padding-bottom: 12px;
   width: 100%;
   height: 100%;
   display: grid;
@@ -65,27 +80,21 @@ const scrollDelay = 3 * 5;
     display: flex;
     overflow-x: hidden;
     -webkit-mask:
-      linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+      linear-gradient(to right, transparent, white 20% 80%, transparent);
     mask:
-      linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+      linear-gradient(to right, transparent, white 20% 80%, transparent);
   }
 
   .innerContainer {
-    --scroll-delay: 10s;
+    --scroll-speed: 10s;
     width: max-content;
     display: flex;
     flex-wrap: nowrap;
     flex-shrink: 0;
-    animation: scroll var(--scroll-delay) linear infinite;
-  }
-
-  .innerContainer:after {
-    content: ".";
-    visibility: hidden;
-    display: block;
-    clear: both;
-    height: 100%;
-    font-size: 0;
+    animation: scroll var(--scroll-speed) linear infinite;
+    /* somehow this is necessary for the mask to show on grandchildren elements */
+    /* but this is not added in Kevin Powell tutorial */
+    mask: inherit;
   }
 
   .innerContainer > :deep(.card) {
@@ -94,7 +103,6 @@ const scrollDelay = 3 * 5;
 }
 
 @keyframes scroll {
-  from, to { transform: translateX(0); }
-  50% { transform: translateX(-100%); }
+  to { transform: translateX(calc(-50% - var(--gap) / 2)); }
 }
 </style>
