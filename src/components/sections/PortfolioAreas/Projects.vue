@@ -97,7 +97,10 @@ onMounted(() => {
     animation: scroll var(--scroll-speed) linear infinite;
     /* somehow this is necessary for the mask to show on grandchildren elements */
     /* but this is not added in Kevin Powell tutorial */
-    mask: inherit;
+    -webkit-mask:
+      linear-gradient(to right, white, white);
+    mask:
+      linear-gradient(to right, white, white);
   }
 
   .innerContainer > :deep(.card) {
