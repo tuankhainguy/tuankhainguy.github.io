@@ -3,12 +3,18 @@
 import { onMounted, useTemplateRef } from 'vue';
 import { getRepository } from '../../../common/actions';
 import Card from '../../Card.vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 
 const { repo } = defineProps<{
   repo: string
 }>();
+const repoName = repo.match('/(.*)')?.[1];
 
+const onClick = () => {
+  router.push(`/${repoName}`);
+}
 
 // const data: any = await fetch('https://api.github.com/repos/tuankhainguy/tuankhainguy.github.io')
 //   .then((res) => res.json())
@@ -69,9 +75,11 @@ if (data) onMounted(() => {
   if (!duplicate) { return; }
 
   const parent = duplicate.parentElement;
-  const cardEl = card.value?.$el.cloneNode(true);
-  (cardEl as HTMLElement).classList.add("duplicate");
+  const cardEl = card.value?.$el.cloneNode(true) as HTMLElement;
   if (!cardEl) { return; }
+
+  cardEl.classList.add("duplicate");
+  cardEl.onclick = onClick;
 
   parent?.replaceChild(cardEl, duplicate);
 });
@@ -79,7 +87,7 @@ if (data) onMounted(() => {
 
 
 <template>
-  <Card ref="card">
+  <Card ref="card" :onclick="onClick">
     <div class="preview">
     </div>
     <div class="info">

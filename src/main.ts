@@ -1,7 +1,20 @@
 import { createApp } from 'vue'
 import './styles/style.css'
 import App from './App.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 
+import HomeView from './views/HomeView.vue'
+import ProjectView from './views/ProjectView.vue'
+
+const routes = [
+  { path: '/', component: HomeView },
+  { path: '/:project', component: ProjectView },
+]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
 
 export type SectionType = {
   tab: HTMLElement | null,
@@ -36,4 +49,6 @@ export const GlobalStore: GlobalStoreType = {
 }
 
 
-createApp(App).mount('#app')
+createApp(App)
+  .use(router)
+  .mount('#app')

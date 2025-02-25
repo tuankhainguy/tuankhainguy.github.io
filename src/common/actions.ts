@@ -33,10 +33,10 @@ const searchCommits = async (
 
 
 /**
-  * getting the specified repo data
-  * @param {Object} options options to get repo
-  * @param {string} options.repo part of url format '[owner]/[repo-name]'
-  */
+ * getting the specified repo data
+ * @param {Object} options options to get repo
+ * @param {string} options.repo part of url format '[owner]/[repo-name]'
+ */
 async function getRepository({ repo }: { repo: string }) {
   // just a nvim issue
   // 'if (!repo) return;' makes auto indent dumb
@@ -51,7 +51,7 @@ async function getRepository({ repo }: { repo: string }) {
 
   const data: any = await fetch(`https://api.github.com/repos/${repo}`)
     .then((res) => res.json());
-  console.log(data);
+  // console.log(data);
 
   return data;
 }
