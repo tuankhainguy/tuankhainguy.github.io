@@ -1,5 +1,6 @@
 <script setup lang="ts">
 // import { octokit, repoSearch, searchCommits } from '../../common/actions';
+import { onMounted, useTemplateRef } from 'vue';
 import { getRepository } from '../../../common/actions';
 import Card from '../../Card.vue';
 
@@ -59,11 +60,26 @@ const { repo } = defineProps<{
 const data = await getRepository({
   repo: repo
 });
+
+const card = useTemplateRef("card");
+
+if (data) onMounted(() => {
+  // the duplicate to be replaced
+  const duplicate = document.getElementById(repo);
+  if (!duplicate) { return; }
+
+  const parent = duplicate.parentElement;
+  const cardEl = card.value?.$el.cloneNode(true);
+  (cardEl as HTMLElement).classList.add("duplicate");
+  if (!cardEl) { return; }
+
+  parent?.replaceChild(cardEl, duplicate);
+});
 </script>
 
 
 <template>
-  <Card>
+  <Card ref="card">
     <div class="preview">
     </div>
     <div class="info">

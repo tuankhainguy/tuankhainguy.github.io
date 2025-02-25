@@ -5,6 +5,10 @@ import Card from '../../Card.vue';
 import { onMounted, useTemplateRef } from 'vue';
 
 const inner = useTemplateRef("inner");
+const projectLinks: string[] = [
+  "algorithms-in-action/algorithms-in-action.github.io",
+  "WEHI-RCPStudentInternship/pdf-coder",
+];
 
 onMounted(() => {
   inner.value?.children.length
@@ -14,6 +18,8 @@ onMounted(() => {
   Array.from(inner.value?.children ?? []).forEach((card) => {
     const duplicatedCard = card.cloneNode(true) as HTMLElement;
     duplicatedCard.setAttribute("aria-hidden", "true");
+    duplicatedCard.id = card.id;
+    duplicatedCard.classList.add("duplicate");
     inner.value?.appendChild(duplicatedCard);
   });
 });
@@ -23,25 +29,14 @@ onMounted(() => {
 <template>
   <Area>
     <div class="innerContainer" ref="inner">
-      <Suspense>
-        <ProjectCard repo="algorithms-in-action/algorithms-in-action.github.io"/>
+      <Suspense v-for="link in projectLinks">
+        <ProjectCard :repo="link"/>
         <template #fallback>
-          <Card>
+          <Card :id="link">
             <p>Loading...</p>
           </Card>
         </template>
       </Suspense>
-      <Suspense>
-        <ProjectCard repo="WEHI-RCPStudentInternship/pdf-coder"/>
-        <template #fallback>
-          <Card>
-            <p>Loading...</p>
-          </Card>
-        </template>
-      </Suspense>
-      <Card>
-        <p>Loading...</p>
-      </Card>
     </div>
   </Area>
 </template>
@@ -75,6 +70,10 @@ onMounted(() => {
   cursor: pointer;
 }
 
+.duplicate {
+  display: none;
+}
+
 @media only screen and (max-width: 768px) {
   .container {
     display: flex;
@@ -83,6 +82,10 @@ onMounted(() => {
       linear-gradient(to right, transparent, white 20% 80%, transparent);
     mask:
       linear-gradient(to right, transparent, white 20% 80%, transparent);
+  }
+
+  .duplicate {
+    display: flex;
   }
 
   .innerContainer {
