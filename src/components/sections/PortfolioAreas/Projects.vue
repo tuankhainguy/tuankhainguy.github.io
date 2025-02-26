@@ -74,7 +74,7 @@ onMounted(() => {
   display: none;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 570px) {
   .container {
     display: flex;
     overflow-x: hidden;
