@@ -138,7 +138,8 @@ button {
   /* if use viewport values and the navbar resizes, everything else with */
   /* viewport values resize making scrolling and maybe other interactions */
   /* not smooth/choppy */
-  height: calc(100lvh - var(--topbar-height) - (2 * var(--main-empty-space)));
+  height: max-content;
+  min-height: calc(100lvh - var(--topbar-height) - (2 * var(--main-empty-space)));
   width: 100%;
   flex-direction: column;
   border-radius: 8px;
@@ -150,7 +151,7 @@ button {
   /* left and right */
   /* border-inline: none; */
   padding: 12px;
-  justify-content: space-between;
+  justify-content: start;
   font-weight: 300;
   font-size: min(max(3vw, 2rem), 3.5rem);
   z-index: 0;
@@ -161,7 +162,6 @@ button {
   .section {
     justify-content: start;
     min-height: 800px;
-    height: max-content;
   }
 }
 

@@ -61,7 +61,7 @@ p {
   padding: 36px;
 }
 
-p:before {
+#profile > p:before {
   z-index: -1;
   border-radius: 10px;
   position: absolute;
@@ -73,8 +73,10 @@ p:before {
 
 .content {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin-top: 8rem;
   margin-bottom: auto;

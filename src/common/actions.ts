@@ -51,7 +51,7 @@ async function getRepository({ repo }: { repo: string }) {
 
   const data: any = await fetch(`https://api.github.com/repos/${repo}`)
     .then((res) => res.json());
-  console.log(data);
+  // console.log(data);
 
   return data;
 }

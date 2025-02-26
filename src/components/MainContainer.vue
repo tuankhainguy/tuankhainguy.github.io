@@ -91,8 +91,6 @@ onMounted(() => {
     <About :id="keys[1]" />
     <Portfolio :id="keys[2]" />
     <Contacts :id="keys[3]" />
-    <div id="topShadow" />
-    <div id="underlay" />
     <!-- <div id="bgObjs"> -->
     <!--   <!-- <div id="obj1" /> --> -->
     <!--   <div id="obj2" /> -->
@@ -109,7 +107,7 @@ onMounted(() => {
   justify-content: start;
   align-items: center;
   padding: var(--main-empty-space);
-  padding-top: calc(var(--main-empty-space) + var(--topbar-height));
+  padding-top: calc(var(--topbar-height));
   margin: 0;
   width: 100%;
   max-width: 100vw;
@@ -121,7 +119,7 @@ onMounted(() => {
 }
 
 
-#mainContainer #topShadow {
+#mainContainer:after {
   top: 0;
   left: 0;
   width: 100%;
@@ -169,11 +167,12 @@ onMounted(() => {
 }
 
 
-#underlay {
+#mainContainer:before {
   position: fixed;
   top: 0;
   left: 0;
-  padding-top: calc(var(--main-empty-space) + var(--topbar-height));
+  content: '';
+  padding-top: calc(var(--topbar-height));
   margin: 0;
   width: 100%;
   height: max-content;
