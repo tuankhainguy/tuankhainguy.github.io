@@ -1,20 +1,17 @@
 <script setup lang="ts">
 // import { octokit, repoSearch, searchCommits } from '../../common/actions';
 import { onMounted, useTemplateRef } from 'vue';
-import { getRepository } from '../../../common/actions';
 import Card from '../../Card.vue';
 import { useRouter } from 'vue-router';
+import { useProjectsStore } from '../../../stores/projects';
 
 const router = useRouter();
 
 const { repo } = defineProps<{
   repo: string
 }>();
-const repoName = repo.match('/(.*)')?.[1];
 
-const onClick = () => {
-  router.push(`/${repoName}`);
-}
+const projects = useProjectsStore();
 
 // const data: any = await fetch('https://api.github.com/repos/tuankhainguy/tuankhainguy.github.io')
 //   .then((res) => res.json())
@@ -63,9 +60,11 @@ const onClick = () => {
 //   repo: "algorithms-in-action.github.io"
 // });
 // console.log(aia);
-const data = await getRepository({
-  repo: repo
-});
+const data = await projects.getProject(repo);
+
+const onClick = () => {
+  router.push(`/${data.name}`);
+}
 
 const card = useTemplateRef("card");
 

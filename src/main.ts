@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import HomeView from './views/HomeView.vue'
 import ProjectView from './views/ProjectView.vue'
+import { createPinia } from 'pinia'
 
 const routes = [
   { path: '/', component: HomeView },
@@ -15,6 +16,8 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 })
+
+const pinia = createPinia();
 
 export type SectionType = {
   tab: HTMLElement | null,
@@ -51,4 +54,5 @@ export const GlobalStore: GlobalStoreType = {
 
 createApp(App)
   .use(router)
+  .use(pinia)
   .mount('#app')
