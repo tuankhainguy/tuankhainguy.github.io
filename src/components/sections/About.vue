@@ -88,7 +88,7 @@ p {
     padding: 12px;
   }
 
-  p:before {
+  #profile > p:before {
     inset: calc(12px - 0.2rem);
   }
 
