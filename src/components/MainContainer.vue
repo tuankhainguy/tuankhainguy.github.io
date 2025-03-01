@@ -116,8 +116,8 @@ onMounted(() => {
   flex-grow: 0;
   justify-content: start;
   align-items: center;
-  padding: var(--main-empty-space);
-  padding-top: calc(var(--topbar-height));
+  padding-inline: var(--main-empty-space);
+  /* padding-top: calc(var(--topbar-height)); */
   margin: 0;
   width: 100%;
   max-width: 100vw;
@@ -126,6 +126,9 @@ onMounted(() => {
   /* overflow: scroll; */
   gap: var(--main-empty-space);
   z-index: 0;
+  /* needs to be positioned to get correct offsetTop */
+  /* https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop */
+  position: relative;
 }
 
 /**/
