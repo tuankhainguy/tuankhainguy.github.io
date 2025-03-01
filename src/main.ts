@@ -9,12 +9,20 @@ import { createPinia } from 'pinia'
 
 const routes = [
   { path: '/', component: HomeView },
-  { path: '/:project', component: ProjectView },
+  { path: '/:project', component: ProjectView, props: true },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, from, /* savedPosition */) {
+    if (from.fullPath === '/') { return; }
+    if (to.fullPath !== '/') { return; }
+    return {
+      el: '#portfolio',
+      top: 0,
+    }
+  },
 })
 
 const pinia = createPinia();

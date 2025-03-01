@@ -16,10 +16,10 @@ const changeArea = (e: Event) => {
 <template>
   <Section>
     <div id="portfolioAreas">
-      <button class="area" data-area="projects" @click="changeArea">
+      <button type="button" class="area" data-area="projects" @click="changeArea">
         <p>Projects</p>
       </button>
-      <button class="area" data-area="techStacks" @click="changeArea">
+      <button type="button" class="area" data-area="techStacks" @click="changeArea">
         <p>Tech stacks</p>
       </button>
     </div>

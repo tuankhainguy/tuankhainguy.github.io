@@ -30,6 +30,7 @@ onMounted(() => {
     <h4>Computer Science Student</h4>
     <div class="buttons">
       <button
+        type="button"
         v-for="key in keys"
         class="tabs"
         :data-section="key"

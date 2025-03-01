@@ -24,9 +24,7 @@ export default {
       // the section above to not show
       // if the main container have padding top, only subtract the padding top
       // value for the first section
-      const scrollTop =
-        sectionEl.offsetTop;
-      console.log(value, scrollTop);
+      const scrollTop = sectionEl.offsetTop;
 
       root.scrollTo({
         top: scrollTop,
@@ -62,6 +60,7 @@ export default {
 <template>
   <div id="tabsContainer">
     <button
+      type="button"
       v-for="(value, key) in keys"
       class="tabs"
       :class="`delay-${key + 1}`"
