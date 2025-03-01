@@ -34,8 +34,14 @@ function onScroll() {
     (section as HTMLElement).style.opacity = `${frac * 3 - 1}`;
   });
 
-  if (!highestOpacityElement) return;
-  if (highestOpacityElement === GlobalStore.currentSection!.section) return;
+  if (!highestOpacityElement) { return; }
+  if (!GlobalStore.currentSection) {
+    GlobalStore.currentSection =
+      GlobalStore.sections![(highestOpacityElement as HTMLElement).id];
+  }
+  else if (highestOpacityElement === GlobalStore.currentSection!.section) {
+    return;
+  }
 
   const nextTab =
     GlobalStore.sections![(highestOpacityElement as HTMLElement).id].tab;
@@ -75,7 +81,11 @@ onMounted(() => {
     (section as HTMLElement).style.opacity = `${frac * 3 - 1}`;
   });
 
-  if (!highestOpacityElement) return;
+  if (!highestOpacityElement) { return; }
+  if (!GlobalStore.currentSection) {
+    GlobalStore.currentSection =
+      GlobalStore.sections![(highestOpacityElement as HTMLElement).id];
+  }
 
   const nextTab =
     GlobalStore.sections![(highestOpacityElement as HTMLElement).id].tab;
@@ -118,17 +128,17 @@ onMounted(() => {
   z-index: 0;
 }
 
-
-#mainContainer:after {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--topbar-height);
-  content: '';
-  position: fixed;
-  box-shadow: 0px 0px 8px 8px rgb(from var(--base) r g b);
-  background-color: var(--base);
-}
+/**/
+/* #mainContainer:after { */
+/*   top: 0; */
+/*   left: 0; */
+/*   width: 100%; */
+/*   height: var(--topbar-height); */
+/*   content: ''; */
+/*   position: fixed; */
+/*   box-shadow: 0px 0px 8px 8px rgb(from var(--base) r g b); */
+/*   background-color: var(--base); */
+/* } */
 
 
 #bgObjs {
@@ -166,7 +176,7 @@ onMounted(() => {
   border-radius: 50%;
 }
 
-
+/* overlay class effect for background objects */
 #mainContainer:before {
   position: fixed;
   top: 0;
@@ -177,7 +187,6 @@ onMounted(() => {
   width: 100%;
   height: max-content;
   height: 100vh;
-  border-radius: 8px;
   background: rgb(from var(--base) r g b / 0.3);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);

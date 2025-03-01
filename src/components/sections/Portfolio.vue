@@ -76,7 +76,7 @@ const changeArea = (e: Event) => {
   font-weight: 700;
 }
 
-#portfolioAreas:hover .area:not(:hover) {
+#portfolioAreas:has(.area:hover):hover .area:not(:hover) {
   background-color: rgb(from var(--accent) r g b / 0.5);
 }
 

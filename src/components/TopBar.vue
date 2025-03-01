@@ -53,16 +53,17 @@ onMounted(() => {
 
 #topbar {
   height: var(--topbar-height);
-  width: 100%;
+  width: 100dvw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5em;
   background-color: inherit;
   z-index: 10;
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
+  left: calc(var(--app-empty-space) * -1);
+  box-shadow: 0px 0px 8px 8px rgb(from var(--base) r g b);
 }
 
 #topbar > * {

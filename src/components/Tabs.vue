@@ -53,9 +53,6 @@ export default {
 
       if (section) GlobalStore.sections![section].tab = tab as HTMLElement;
     });
-
-    GlobalStore.currentSection =
-      GlobalStore.sections!["home"];
   },
 }
 </script>
@@ -117,7 +114,7 @@ export default {
     justify-content: space-evenly;
     align-items: end;
     background: var(--base);
-    box-shadow: 0px 0px 8px 8px rgb(from var(--base) r g b);
+    /* box-shadow: 0px 0px 8px 8px rgb(from var(--base) r g b); */
     /* box-shadow: 0 4px 30px rgb(from var(--accent-compliment) r g b /  0.1); */
     /* backdrop-filter: blur(5px); */
     /* -webkit-backdrop-filter: blur(5px); */

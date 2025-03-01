@@ -10,4 +10,7 @@ import Section from './Section.vue';
 
 
 <style scoped>
+.section {
+  min-height: max-content;
+}
 </style>

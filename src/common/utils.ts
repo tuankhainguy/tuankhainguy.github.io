@@ -34,6 +34,8 @@ function getFractionVisible(
 function selectTab(tab: HTMLElement) {
   const value: string | undefined = tab.dataset.section;
 
+  if (!GlobalStore.currentSection) { return; }
+
   if (!GlobalStore.currentSection!.tab) {
     // can do this because we are not removing any nodes
     tab.parentElement?.childNodes.forEach((node) => {

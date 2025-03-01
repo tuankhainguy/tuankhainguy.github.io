@@ -74,6 +74,11 @@ h1 {
 @media only screen and (max-width: 768px) {
   .sectionContent {
     flex-direction: column;
+    height: max-content;
+  }
+
+  .section#home > .sectionContent {
+    height: 100%;
   }
 
   .secondary {

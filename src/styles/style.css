@@ -83,11 +83,19 @@ html {
   background-color: var(--base);
   scrollbar-width: thin;
   scrollbar-color: var(--accent) var(--accent-compliment);
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 
 body {
   background-color: inherit;
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -108,7 +116,8 @@ button {
 
 #app {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
   width: 100dvw;
   height: max-content;
   display: flex;
@@ -118,7 +127,7 @@ button {
   font-size: 1rem;
   font-weight: bold;
   background-color: inherit;
-  padding: var(--app-empty-space);
+  padding-inline: var(--app-empty-space);
 }
 
 
