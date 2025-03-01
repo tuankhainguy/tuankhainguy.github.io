@@ -13,7 +13,7 @@ import Section from './Section.vue';
         TUAN KHAI NGUY
       </h2>
       <h4>
-        SWE Intern @ WEHI | CS @ UniMelb
+        CS @ UniMelb | Research SWE Intern @ WEHI
       </h4>
       <div id="profile">
         <p>
@@ -76,7 +76,7 @@ p {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   margin-top: 8rem;
   margin-bottom: auto;
