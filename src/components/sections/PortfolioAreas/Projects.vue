@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import ProjectCard from './ProjectCard.vue';
-import Area from './Area.vue';
 import Card from '../../Card.vue';
 import { onMounted, useTemplateRef } from 'vue';
+import PortfolioArea from './PortfolioArea.vue';
 
 const inner = useTemplateRef("inner");
 const projectLinks: string[] = [
@@ -27,7 +27,7 @@ onMounted(() => {
 
 
 <template>
-  <Area>
+  <PortfolioArea>
     <div class="innerContainer" ref="inner">
       <Suspense v-for="link in projectLinks">
         <ProjectCard :repo="link"/>
@@ -38,7 +38,7 @@ onMounted(() => {
         </template>
       </Suspense>
     </div>
-  </Area>
+  </PortfolioArea>
 </template>
 
 
