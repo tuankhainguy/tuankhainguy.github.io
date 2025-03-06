@@ -85,7 +85,7 @@ const changeArea = (e: Event) => {
 }
 
 @media (pointer: coarse) {
-  #portfolioAreas:hover .area:not(:hover) {
+  #portfolioAreas:has(.area:hover):hover .area:not(:hover) {
     background-color: var(--accent);
   }
   #portfolioAreas:hover .area:hover {
