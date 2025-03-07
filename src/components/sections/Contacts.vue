@@ -233,8 +233,19 @@ form > button {
     bottom: unset;
     height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
+  }
+
+  .iconsContainer:has(#emailContainer) {
+    flex-direction: column;
+  }
+
+  #contactLinks {
+    grid-template-columns: none;
+  }
+
+  .section :deep(.secondary) {
+    padding-inline: 0;
   }
 }
 </style>
