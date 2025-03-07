@@ -106,7 +106,7 @@ const handleContactForm = async (e: Event) => {
 
 #contactLinks {
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
+  grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
   grid-auto-flow: row;
   gap: 12px;
   width: 100%;
@@ -114,6 +114,17 @@ const handleContactForm = async (e: Event) => {
 
 .section :deep(.primary) {
   align-items: start;
+  margin-bottom: 3rem;
+}
+
+.section :deep(.secondary) {
+  justify-content: start;
+  width: 100%;
+  padding-inline: 30%;
+}
+
+.section :deep(.sectionContent) {
+  flex-direction: column;
 }
 
 .iconsContainer {
@@ -137,13 +148,13 @@ button, a {
 
 button + #emailContainer {
   position: absolute;
-  top: calc(100% + 12px);
+  bottom: calc(100% + 12px);
   overflow: hidden;
   height: 0;
   transition: height .2s ease-in-out, color .2s ease-in-out;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: end;
 }
 
 form {
@@ -160,13 +171,22 @@ form > * {
   border: none;
   font-weight: normal;
   font-size: 1.2rem;
+  outline: none;
 }
 
 form > :not(button) {
   width: 100%;
+  min-width: 240px;
+  max-width: 640px;
   border-radius: 8px;
   padding: 8px;
   background-color: var(--subtext);
+}
+
+form > input:focus,
+form > textarea:focus {
+  outline: 0.2rem ridge var(--highlight4);
+  outline-offset: 1px;
 }
 
 form > textarea {
@@ -174,15 +194,12 @@ form > textarea {
 }
 
 form > button {
-  width: max-content;
+  width: 30%;
+  min-width: max-content;
   background-color: var(--accent);
   color: var(--accent-compliment);
   transition: background-color 0.15s ease-in-out;
   font-weight: bold;
-}
-
-.section :deep(.secondary) {
-  justify-content: start;
 }
 
 @media only screen and (min-width: 769px) {
@@ -200,11 +217,6 @@ form > button {
     height: 100%;
     color: var(--highlight4);
   }
-
-  .icon {
-    width: 3rem;
-    height: 3rem;
-  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -218,15 +230,11 @@ form > button {
 
   button + #emailContainer {
     position: relative;
-    top: unset;
+    bottom: unset;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-
-  .section :deep(.primary) {
-    margin-bottom: 3rem;
   }
 }
 </style>
