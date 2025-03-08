@@ -21,6 +21,13 @@ import Section from './Section.vue';
         </p>
       </div>
     </div>
+    <template v-slot:secondary>
+      <div id="profilePicture">
+        <div id="pictureWrapper">
+          <img src="/src/assets/tuankhainguy.jpeg" />
+        </div>
+      </div>
+    </template>
   </Section>
 </template>
 
@@ -82,6 +89,52 @@ p {
   margin-bottom: auto;
 }
 
+#profilePicture {
+  --border-radius: 12px;
+  border-radius: var(--border-radius);
+  width: max-content;
+  height: max-content;
+  max-width: 54%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--base);
+  position: relative;
+  margin-top: 8rem;
+}
+
+#profilePicture:before {
+  z-index: -1;
+  border-radius: var(--border-radius);
+  position: absolute;
+  inset: calc(0.2rem * -1);
+  background:
+    linear-gradient(to right, var(--accent), var(--highlight6));
+  content: '';
+}
+
+#profilePicture > #pictureWrapper {
+  border-radius: var(--border-radius);
+  width: max-content;
+  height: max-content;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#profilePicture img {
+  width: 100%;
+  height: 100%;
+}
+
+.section :deep(.secondary) {
+  justify-content: start;
+  align-items: center;
+}
+
 
 @media only screen and (max-width: 768px) {
   #profile {
@@ -97,6 +150,10 @@ p {
   }
 
   .content {
+    margin-top: 2rem;
+  }
+
+  #profilePicture {
     margin-top: 2rem;
   }
 }
