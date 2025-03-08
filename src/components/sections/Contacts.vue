@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { submitContactForm } from '../../common/utils';
 import Section from './Section.vue';
 
 const copyToClipboard = async (el: Element) => {
@@ -27,22 +28,13 @@ const handleEmailButton = (e: Event) => {
   copyToClipboard(email);
 }
 
-const handleContactForm = async (/* e: Event */) => {
-  // const form = e.currentTarget as HTMLElement;
-  // const data = await fetch("https://vercel-backend-indol.vercel.app/api/form", {
-  //   method: "POST",
-  //   body: JSON.stringify({
-  //     name: (form.children.item(0) as HTMLInputElement).value,
-  //     email: (form.children.item(1) as HTMLInputElement).value,
-  //     message: (form.children.item(2) as HTMLTextAreaElement).value
-  //   }),
-  //   headers: {
-  //     "Content-type": "application/json; charset=UTF-8"
-  //   }
-  // })
-  //   .then((response) => response.json())
-  //
-  // console.log(data);
+const handleContactForm = async (e: Event) => {
+  const form = e.currentTarget as HTMLElement;
+  submitContactForm({
+    name: (form.children.item(0) as HTMLInputElement).value,
+    email: (form.children.item(1) as HTMLInputElement).value,
+    message: (form.children.item(2) as HTMLTextAreaElement).value
+  })
 }
 </script>
 

@@ -1,4 +1,17 @@
 import { GlobalStore } from "../main";
+import { z } from "zod";
+
+
+
+const FormSchema = z.object({
+  name: z.string().min(1, { message: "This field needs to be filled."}),
+  email: z
+    .string()
+    .min(1, { message: "This field needs to be filled."})
+    .email({ message: "Possibly not an email. Email is required." }),
+  message: z.string().min(1, { message: "This field needs to be filled."}),
+})
+
 
 function getFractionVisible(
   element: HTMLElement, scrollEl: HTMLElement
@@ -54,7 +67,42 @@ function selectTab(tab: HTMLElement) {
 }
 
 
+type FormBody = {
+  name: string,
+  email: string,
+  message: string
+}
+
+async function submitContactForm(formBody: FormBody, func?: (value?: object) => void) {
+  try {
+    const reqBody = FormSchema.parse(formBody);
+    const apiServer = import.meta.env.VITE_FORM_BACKEND;
+
+    if (!apiServer) throw new Error("API Server not found");
+
+    const data = await fetch(`${apiServer}/api/form`, {
+      method: "POST",
+      body: JSON.stringify(reqBody),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+      .then((response) => response.json())
+
+    console.log(data);
+    if (func) func(data);
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      console.error("Validation failed: ", error.issues[0]);
+    } else {
+      console.error(error);
+    }
+  }
+}
+
+
 export {
   getFractionVisible,
-  selectTab
+  selectTab,
+  submitContactForm,
 }

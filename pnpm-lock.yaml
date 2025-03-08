@@ -23,6 +23,9 @@ importers:
       vue-router:
         specifier: '4'
         version: 4.5.0(vue@3.5.13(typescript@5.6.3))
+      zod:
+        specifier: ^3.24.2
+        version: 3.24.2
     devDependencies:
       '@octokit/types':
         specifier: ^13.8.0
@@ -770,6 +773,9 @@ packages:
       typescript:
         optional: true
 
+  zod@3.24.2:
+    resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
+
 snapshots:
 
   '@babel/helper-string-parser@7.25.9': {}
@@ -1448,3 +1454,5 @@ snapshots:
       '@vue/shared': 3.5.13
     optionalDependencies:
       typescript: 5.6.3
+
+  zod@3.24.2: {}

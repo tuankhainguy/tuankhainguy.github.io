@@ -21,6 +21,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  VITE_FORM_BACKEND: ${{ secrets.VITE_FORM_BACKEND }}
+
 jobs:
   build:
     name: Build
