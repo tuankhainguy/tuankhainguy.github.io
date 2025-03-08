@@ -6,11 +6,15 @@ import Section from './Section.vue';
 interface Form {
   name: HTMLInputElement,
   email: HTMLInputElement,
-  message: HTMLTextAreaElement
+  message: HTMLTextAreaElement,
+  botcheck: HTMLInputElement,
 }
 
 const handleContactForm = async (e: Event) => {
   const form = e.currentTarget as HTMLElement & Form;
+
+  if (form['botcheck'].checked) { return false; }
+
   submitContactForm({
     name: form['name'].value,
     email: form['email'].value,
@@ -51,7 +55,7 @@ const handleContactForm = async (e: Event) => {
       <textarea name="message" id="message" placeholder="Message" required></textarea>
 
       <!-- Honeypot Spam Protection -->
-      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+      <input type="checkbox" id="botcheck" name="botcheck" class="hidden" style="display: none;">
 
       <!-- Custom Confirmation / Success Page -->
       <!-- <input type="hidden" name="redirect" value="https://mywebsite.com/thanks.html"> -->
