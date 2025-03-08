@@ -2,12 +2,19 @@
 import { submitContactForm } from '../../common/utils';
 import Section from './Section.vue';
 
+
+interface Form {
+  name: HTMLInputElement,
+  email: HTMLInputElement,
+  message: HTMLTextAreaElement
+}
+
 const handleContactForm = async (e: Event) => {
-  const form = e.currentTarget as HTMLElement;
+  const form = e.currentTarget as HTMLElement & Form;
   submitContactForm({
-    name: (form.children.item(0) as HTMLInputElement).value,
-    email: (form.children.item(1) as HTMLInputElement).value,
-    message: (form.children.item(2) as HTMLTextAreaElement).value
+    name: form['name'].value,
+    email: form['email'].value,
+    message: form['message'].value
   })
 }
 </script>
@@ -36,9 +43,12 @@ const handleContactForm = async (e: Event) => {
     </template>
     <form @submit.prevent="handleContactForm" method="POST" ref="form">
       <!-- Form Inputs. Each input must have a name="" attribute -->
-      <input type="text" name="name" placeholder="Name" required>
-      <input type="email" name="email" placeholder="example@email.com" required>
-      <textarea name="message" placeholder="Message" required></textarea>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Name" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="example@email.com" required>
+      <label for="message">Your messsage:</label>
+      <textarea name="message" id="message" placeholder="Message" required></textarea>
 
       <!-- Honeypot Spam Protection -->
       <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
@@ -120,9 +130,16 @@ form > :not(button) {
   width: 100%;
   min-width: 240px;
   max-width: 640px;
+}
+
+form > :not(:is(button, label)) {
   border-radius: 8px;
   padding: 8px;
   background-color: var(--subtext);
+}
+
+form > :not(button)::placeholder {
+  color: rgb(from var(--base) r g b / 0.5);
 }
 
 form > input:focus,
@@ -136,8 +153,7 @@ form > textarea {
 }
 
 form > button {
-  width: 30%;
-  min-width: max-content;
+  width: max-content;
   background-color: var(--accent);
   color: var(--accent-compliment);
   transition: background-color 0.15s ease-in-out;
