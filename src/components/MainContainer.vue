@@ -110,27 +110,6 @@ onMounted(() => {
 
 
 <style scoped>
-#mainContainer {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 0;
-  justify-content: start;
-  align-items: center;
-  padding-inline: var(--main-empty-space);
-  /* padding-top: calc(var(--topbar-height)); */
-  margin: 0;
-  width: 100%;
-  max-width: 100vw;
-  height: max-content;
-  /* height: 100%; */
-  /* overflow: scroll; */
-  gap: var(--main-empty-space);
-  z-index: 0;
-  /* needs to be positioned to get correct offsetTop */
-  /* https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop */
-  position: relative;
-}
-
 /**/
 /* #mainContainer:after { */
 /*   top: 0; */
@@ -177,25 +156,6 @@ onMounted(() => {
   content: '';
   background-color: var(--catppuccin-mauve);
   border-radius: 50%;
-}
-
-/* overlay class effect for background objects */
-#mainContainer:before {
-  position: fixed;
-  top: 0;
-  left: 0;
-  content: '';
-  padding-top: calc(var(--topbar-height));
-  margin: 0;
-  width: 100%;
-  height: max-content;
-  height: 100vh;
-  background: rgb(from var(--base) r g b / 0.3);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  /* left and right */
-  /* border-inline: none; */
-  z-index: -1;
 }
 </style>
 

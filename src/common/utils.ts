@@ -2,7 +2,6 @@ import { GlobalStore } from "../main";
 import { z } from "zod";
 
 
-
 const FormSchema = z.object({
   name: z.string().min(1, { message: "This field needs to be filled."}),
   email: z
@@ -100,9 +99,27 @@ async function submitContactForm(formBody: FormBody, func?: (value?: object) => 
   }
 }
 
+const regex = {
+  title: /^#\s+.+/,
+}
+
+const isMdTitle = (str: string) => regex.title.test(str);
+
+function getMdTitle(md: string): string {
+  if (!md) { return ""; }
+  let tokens = md.split("\n");
+
+  for (let i = 0; i < tokens.length; i++) {
+    if (isMdTitle(tokens[i])) { return tokens[i]; }
+  }
+
+  return "";
+}
+
 
 export {
   getFractionVisible,
   selectTab,
   submitContactForm,
+  getMdTitle,
 }

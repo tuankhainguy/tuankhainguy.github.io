@@ -5,9 +5,9 @@ import { onMounted, useTemplateRef } from 'vue';
 import PortfolioArea from './PortfolioArea.vue';
 
 const inner = useTemplateRef("inner");
-const projectLinks: string[] = [
-  "algorithms-in-action/algorithms-in-action.github.io",
-  "WEHI-RCPStudentInternship/pdf-coder",
+const projects: { url: string, imgSrc?: string }[] = [
+  { url: "algorithms-in-action/algorithms-in-action.github.io", imgSrc: "/src/assets/algos-in-action.png" },
+  { url: "WEHI-RCPStudentInternship/pdf-coder", imgSrc: "/src/assets/pdf-coder.png" },
 ];
 
 onMounted(() => {
@@ -29,10 +29,10 @@ onMounted(() => {
 <template>
   <PortfolioArea>
     <div class="innerContainer" ref="inner">
-      <Suspense v-for="link in projectLinks">
-        <ProjectCard :repo="link"/>
+      <Suspense v-for="project in projects">
+        <ProjectCard :repo="project.url" :img-src="project.imgSrc" />
         <template #fallback>
-          <Card :id="link">
+          <Card :id="project.url">
             <p>Loading...</p>
           </Card>
         </template>

@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
-import { getRepository } from '../common/actions';
+import { /* getProjectName,*/ getREADME, getRepository } from '../common/actions';
+import { getMdTitle } from '../common/utils';
 
 export const useProjectsStore = defineStore('projects', {
   state: () => {
-    const projects: Record<string, string> = {};
+    const projects: Record<string, { name: string, data: any, readme?: string}> = {};
     return {
       projects
     }
@@ -13,15 +14,26 @@ export const useProjectsStore = defineStore('projects', {
       const data = await getRepository({
         repo: repoURL
       });
-      this.projects[repoURL] = data;
+      if (!data) { return; }
 
-      return data;
+      const readme = await getREADME(repoURL);
+      if (!readme) { return; }
+
+      this.projects[data.name] = { name: getMdTitle(readme).slice(2) ?? data.name, data: data, readme };
+
+      return this.projects[data.name];
     },
-    async getProject(repoURL: string) {
-      if (this.projects[repoURL]) { return this.projects[repoURL]; }
-      const data = await this.add(repoURL);
+    async getProject(repo: string) {
+      const formatRegex = '.+[^/].+/.+[^/].+';
+      if (!repo.match(formatRegex)) {
+        if (this.projects[repo]) { return this.projects[repo]; }
+      }
+      let repoName = repo.split('/')[1];
 
-      return data;
+      if (this.projects[repoName]) { return this.projects[repoName]; }
+      const projectData = await this.add(repo);
+
+      return projectData;
     },
   },
 })

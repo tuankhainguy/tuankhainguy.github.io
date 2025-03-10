@@ -7,8 +7,9 @@ import { useProjectsStore } from '../../../stores/projects';
 
 const router = useRouter();
 
-const { repo } = defineProps<{
-  repo: string
+const { repo, imgSrc } = defineProps<{
+  repo: string,
+  imgSrc?: string
 }>();
 
 const projects = useProjectsStore();
@@ -60,15 +61,16 @@ const projects = useProjectsStore();
 //   repo: "algorithms-in-action.github.io"
 // });
 // console.log(aia);
-const data = await projects.getProject(repo);
+const project = (await projects.getProject(repo))!;
 
 const onClick = () => {
-  router.push(`/${data.name}`);
+  if (!project.data.name) { return; }
+  router.push(`/project/${project.data.name}`);
 }
 
 const card = useTemplateRef("card");
 
-if (data) onMounted(() => {
+if (project) onMounted(() => {
   // the duplicate to be replaced
   const duplicate = document.getElementById(repo);
   if (!duplicate) { return; }
@@ -87,14 +89,13 @@ if (data) onMounted(() => {
 
 <template>
   <Card ref="card" :onclick="onClick">
-    <div class="preview">
-    </div>
+    <div class="preview" :style="{ 'background-image': `url(${imgSrc})` }" />
     <div class="info">
       <h4>
-        {{ data?.name }}
+        {{ project.name ?? project.data?.name }}
       </h4>
       <p>
-        {{ data?.description }}
+        {{ project.data?.description }}
       </p>
     </div>
   </Card>
@@ -119,6 +120,10 @@ if (data) onMounted(() => {
   aspect-ratio: 16 / 9;
   border: 1px solid var(--accent);
   border-radius: 8px;
+  overflow: clip;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .info {

@@ -1,4 +1,5 @@
 import { Octokit } from "octokit"
+import { getMdTitle } from "./utils";
 
 
 const octokit = new Octokit({
@@ -49,11 +50,63 @@ async function getRepository({ repo }: { repo: string }) {
     return;
   }
 
-  const data: any = await fetch(`https://api.github.com/repos/${repo}`)
-    .then((res) => res.json());
-  // console.log(data);
+  try {
+    const data: any = await fetch(`https://api.github.com/repos/${repo}`)
+      .then((res) => res.json());
+    // console.log(data);
 
-  return data;
+    return data;
+  } catch (err: any) {
+    console.error(err);
+  }
+
+  return;
+}
+
+/**
+ * getting the specified repo README file
+ * @param {string} repo part of url format '[owner]/[repo-name]'
+ */
+async function getREADME(repo: string) {
+  if (!repo) {
+    return;
+  }
+
+  const formatRegex = '.+[^/].+/.+[^/].+';
+  if (!repo.match(formatRegex)) {
+    return;
+  }
+
+  // const data: any = await fetch(`https://raw.githubusercontent.com/${repo}/${branch}/README.md`)
+  //   .then(async (res) => new Response(res.body).text());
+  try {
+    const data: any = await fetch(`https://api.github.com/repos/${repo}/contents/README.md`)
+      .then((res) => res.json())
+      .then((json) => atob(json.content));
+    return data;
+  } catch (err: any) {
+    console.error(err);
+  }
+
+  // const data: any = await fetch(`https://api.github.com/repos/${repo}/contents/README.md`)
+  //   .then((res) => res.json())
+  //   .then((json) => atob(json.content));
+  //
+  return;
+}
+
+/**
+ * getting the project name from specified repo
+ * @param {string} repo part of url format '[owner]/[repo-name]'
+ */
+async function getProjectName(repo: string) {
+  if (!repo) {
+    return;
+  }
+
+  const readme = await getREADME(repo);
+  const name = getMdTitle(readme);
+  return name.slice(2);
 }
 
 export {
@@ -61,4 +114,6 @@ export {
   repoSearch,
   searchCommits,
   getRepository,
+  getREADME,
+  getProjectName,
 }

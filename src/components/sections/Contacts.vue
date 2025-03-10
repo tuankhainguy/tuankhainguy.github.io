@@ -48,7 +48,7 @@ const handleContactForm = async (e: Event) => {
     <form @submit.prevent="handleContactForm" method="POST" ref="form">
       <!-- Form Inputs. Each input must have a name="" attribute -->
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" placeholder="Name" required>
+      <input type="text" id="name" name="name" placeholder="John Doe" required>
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" placeholder="example@email.com" required>
       <label for="message">Your messsage:</label>
@@ -144,6 +144,7 @@ form > :not(:is(button, label)) {
 
 form > :not(button)::placeholder {
   color: rgb(from var(--base) r g b / 0.5);
+  font-family: 'JetBrains Mono', monospace;
 }
 
 form > input:focus,

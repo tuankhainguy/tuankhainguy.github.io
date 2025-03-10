@@ -17,7 +17,7 @@ onMounted(() => {
 
 
 <template>
-  <div id="topbar" ref="topbar">
+  <div class="topbar" ref="topbar">
     <Logo class="logo" id="topLogo" />
     <input type="checkbox" id="checkMenu" />
     <label id="menu" for="checkMenu">
@@ -48,26 +48,6 @@ onMounted(() => {
   width: max-content;
   justify-content: center;
   align-items: center;
-}
-
-
-#topbar {
-  height: var(--topbar-height);
-  width: 100dvw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5em;
-  background-color: inherit;
-  z-index: 10;
-  position: sticky;
-  top: 0;
-  left: calc(var(--app-empty-space) * -1);
-  box-shadow: 0px 0px 8px 8px rgb(from var(--base) r g b);
-}
-
-#topbar > * {
-  z-index: 10;
 }
 
 .logo {

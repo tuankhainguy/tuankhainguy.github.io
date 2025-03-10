@@ -9,7 +9,7 @@ import { createPinia } from 'pinia'
 
 const routes = [
   { path: '/', component: HomeView },
-  { path: '/:project', component: ProjectView, props: true },
+  { path: '/project/:project', component: ProjectView, props: true },
 ]
 
 const router = createRouter({

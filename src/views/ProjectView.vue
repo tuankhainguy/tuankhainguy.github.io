@@ -1,22 +1,13 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import MainProjectContainer from '../components/MainProjectContainer.vue';
 
 defineProps<{
   project: string
 }>();
-
-const router = useRouter();
-
-const onBackButtonClick = () => {
-  router.push('/');
-}
 </script>
 
 <template>
-  <button type="button" @click="onBackButtonClick">
-    Back
-  </button>
-  <div>{{ project }}</div>
+  <MainProjectContainer :project="project" />
 </template>
 
 <style scoped>
