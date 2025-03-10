@@ -27,6 +27,9 @@ const router = createRouter({
 
 const pinia = createPinia();
 
+export const assets: Record<string, { default: string }> =
+  import.meta.glob('/src/assets/*', { eager: true });
+
 export type SectionType = {
   tab: HTMLElement | null,
   section: HTMLElement | null

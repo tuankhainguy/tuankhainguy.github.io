@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Section from './Section.vue';
+import img from '/src/assets/tuankhainguy.jpeg';
 </script>
 
 
@@ -24,7 +25,7 @@ import Section from './Section.vue';
     <template v-slot:secondary>
       <div id="profilePicture">
         <div id="pictureWrapper">
-          <img src="/src/assets/tuankhainguy.jpeg" />
+          <img :src="img" />
         </div>
       </div>
     </template>

@@ -4,6 +4,7 @@ import { onMounted, useTemplateRef } from 'vue';
 import Card from '../../Card.vue';
 import { useRouter } from 'vue-router';
 import { useProjectsStore } from '../../../stores/projects';
+import { assets } from '../../../main';
 
 const router = useRouter();
 
@@ -13,6 +14,7 @@ const { repo, imgSrc } = defineProps<{
 }>();
 
 const projects = useProjectsStore();
+
 
 // const data: any = await fetch('https://api.github.com/repos/tuankhainguy/tuankhainguy.github.io')
 //   .then((res) => res.json())
@@ -89,7 +91,9 @@ if (project) onMounted(() => {
 
 <template>
   <Card ref="card" :onclick="onClick">
-    <div class="preview" :style="{ 'background-image': `url(${imgSrc})` }" />
+    <div class="preview">
+      <img :src="assets[imgSrc ?? '']?.default ?? ''" :alt="project.name" />
+    </div>
     <div class="info">
       <h4>
         {{ project.name ?? project.data?.name }}
@@ -121,9 +125,12 @@ if (project) onMounted(() => {
   border: 1px solid var(--accent);
   border-radius: 8px;
   overflow: clip;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+}
+
+.preview > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .info {
