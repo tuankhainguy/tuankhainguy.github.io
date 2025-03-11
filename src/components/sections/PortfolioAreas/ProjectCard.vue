@@ -15,7 +15,6 @@ const { repo, imgSrc } = defineProps<{
 
 const projects = useProjectsStore();
 
-
 // const data: any = await fetch('https://api.github.com/repos/tuankhainguy/tuankhainguy.github.io')
 //   .then((res) => res.json())
 //   // .then((_data) => console.log(_data));
@@ -64,6 +63,7 @@ const projects = useProjectsStore();
 // });
 // console.log(aia);
 const project = (await projects.getProject(repo))!;
+project.imgSrc = imgSrc;
 
 const onClick = () => {
   if (!project.data.name) { return; }

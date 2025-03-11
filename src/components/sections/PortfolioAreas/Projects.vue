@@ -3,12 +3,9 @@ import ProjectCard from './ProjectCard.vue';
 import Card from '../../Card.vue';
 import { onMounted, useTemplateRef } from 'vue';
 import PortfolioArea from './PortfolioArea.vue';
+import { projects } from '../../../main';
 
 const inner = useTemplateRef("inner");
-const projects: { url: string, imgSrc?: string }[] = [
-  { url: "algorithms-in-action/algorithms-in-action.github.io", imgSrc: "/src/assets/algos-in-action.png" },
-  { url: "WEHI-RCPStudentInternship/pdf-coder", imgSrc: "/src/assets/pdf-coder.png" },
-];
 
 onMounted(() => {
   inner.value?.children.length
@@ -29,10 +26,10 @@ onMounted(() => {
 <template>
   <PortfolioArea>
     <div class="innerContainer" ref="inner">
-      <Suspense v-for="project in projects">
-        <ProjectCard :repo="project.url" :img-src="project.imgSrc" />
+      <Suspense v-for="value, key in projects /* key and value position opposite of regular js and ts*/">
+        <ProjectCard :repo="key" :img-src="value.imgSrc" />
         <template #fallback>
-          <Card :id="project.url">
+          <Card :id="key">
             <p>Loading...</p>
           </Card>
         </template>

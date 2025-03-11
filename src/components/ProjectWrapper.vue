@@ -1,30 +1,40 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { useProjectsStore } from '../stores/projects';
+import Section from './sections/Section.vue';
+import { assets, projects } from '../main';
 
 const { project } = defineProps<{
   project: string
 }>();
 
-const projects = useProjectsStore();
-const currentProject = (await projects.getProject(project));
+const store = useProjectsStore();
+const currentProject = (await store.getProject(project));
 const currentProjectName = currentProject?.name;
+const imgSrc = assets[projects[currentProject?.data.full_name].imgSrc ?? ''].default;
 
 const router = useRouter();
-if (!projects.projects[router.currentRoute.value.fullPath.split('/')[2]]) {
+if (!store.projects[router.currentRoute.value.fullPath.split('/')[2]]) {
   router.push('/');
 }
 </script>
 
 <template>
-  <div class="projectWrapper">
-    <h3>
-      {{ currentProjectName }}
-    </h3>
+  <Section :section-title="currentProjectName">
     <p>
     </p>
-  </div>
+    <template v-slot:secondary>
+      <img :src="imgSrc" />
+    </template>
+  </Section>
 </template>
 
 <style scoped>
+img {
+  width: 100%;
+}
+
+.section :deep(.secondary) {
+  justify-content: start;
+}
 </style>

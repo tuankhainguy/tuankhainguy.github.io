@@ -2,9 +2,37 @@ import { defineStore } from 'pinia'
 import { /* getProjectName,*/ getREADME, getRepository } from '../common/actions';
 import { getMdTitle } from '../common/utils';
 
+
+const PROJECTS = "projects"
+
 export const useProjectsStore = defineStore('projects', {
   state: () => {
-    const projects: Record<string, { name: string, data: any, readme?: string}> = {};
+    type Projects = Record<
+      string, { name: string, data: any, readme?: string, imgSrc?: string }
+    > & {
+      createdAt: EpochTimeStamp,
+    };
+
+    const localProjects: Projects | null =
+      (localStorage.getItem(PROJECTS) !== null) ? JSON.parse(localStorage.getItem(PROJECTS)!) : null;
+    const newProjects: Projects = { createdAt: Date.now() } as Projects;
+
+    if (!localProjects) {
+      const projects = newProjects;
+      return {
+        projects
+      }
+    }
+    // check if the createdAt time has been over 60 minutes
+    // if true create new
+    if (((Date.now() - localProjects.createdAt) / 60000) > 60) {
+      const projects = newProjects;
+      return {
+        projects
+      }
+    }
+
+    const projects = localProjects;
     return {
       projects
     }
@@ -20,6 +48,7 @@ export const useProjectsStore = defineStore('projects', {
       if (!readme) { return; }
 
       this.projects[data.name] = { name: getMdTitle(readme).slice(2) ?? data.name, data: data, readme };
+      localStorage.setItem(PROJECTS, JSON.stringify(this.projects));
 
       return this.projects[data.name];
     },

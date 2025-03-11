@@ -101,10 +101,10 @@ onMounted(() => {
     <About :id="keys[1]" />
     <Portfolio :id="keys[2]" />
     <Contacts :id="keys[3]" />
-    <!-- <div id="bgObjs"> -->
-    <!--   <!-- <div id="obj1" /> --> -->
-    <!--   <div id="obj2" /> -->
-    <!-- </div> -->
+    <div id="bgObjs">
+      <div id="obj1" />
+      <div id="obj2" />
+    </div>
   </div>
 </template>
 
