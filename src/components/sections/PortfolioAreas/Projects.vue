@@ -53,7 +53,7 @@ onMounted(() => {
   position: relative;
 }
 
-.card {
+:deep(.card) {
   position: relative;
   /* needs to specify a value so that the inner can contain it */
   width: 100%;
@@ -70,8 +70,10 @@ onMounted(() => {
   grid-template-rows: auto 1fr auto;
 }
 
-.duplicate {
-  display: none;
+@media only screen and (min-width: 571px) {
+  .duplicate {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 570px) {
@@ -82,10 +84,6 @@ onMounted(() => {
       linear-gradient(to right, transparent, white 20% 80%, transparent);
     mask:
       linear-gradient(to right, transparent, white 20% 80%, transparent);
-  }
-
-  .duplicate {
-    display: flex;
   }
 
   .innerContainer {

@@ -129,7 +129,12 @@ if (project) onMounted(() => {
   aspect-ratio: 16 / 9;
   border: 1px solid var(--subtext);
   border-radius: 8px;
+  /* hidden somehow makes the height smaller compares to clip */
   overflow: clip;
+  /* flex somehow makes the height smaller */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .preview > img {
