@@ -126,7 +126,6 @@ form {
 form > * {
   border: none;
   font-weight: normal;
-  font-size: 1.2rem;
   outline: none;
 }
 
