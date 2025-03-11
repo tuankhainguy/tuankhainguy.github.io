@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Card from '../Card.vue';
-import Typewriter from '../Typewriter.vue';
+import Typewriter from './Typewriter.vue';
 import Return from './Return.vue';
 </script>
 
@@ -53,10 +53,20 @@ import Return from './Return.vue';
 
 
 <style scoped>
-/* .card { */
-/*   flex-basis: 300%; */
-/* } */
-/**/
+.card > :not(:is(:first-child, :last-child)) {
+  border-radius: 0;
+}
+
+.card:fisrt-child {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.card:last-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 .typewriterContainer.editor .textline {
   color: var(--subtext);
 }

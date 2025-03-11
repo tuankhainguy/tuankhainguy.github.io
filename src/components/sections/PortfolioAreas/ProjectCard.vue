@@ -127,7 +127,7 @@ if (project) onMounted(() => {
 .preview {
   width: 100%;
   aspect-ratio: 16 / 9;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--subtext);
   border-radius: 8px;
   overflow: clip;
 }

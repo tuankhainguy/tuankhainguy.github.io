@@ -44,6 +44,7 @@
   --text: var(--catppuccin-text);
   --subtext: var(--catppuccin-subtext0);
   --base: var(--catppuccin-base);
+  --subbase: var(--catppuccin-crust);
   --accent: var(--catppuccin-lavender);
   --accent-compliment: var(--catppuccin-mantle);
   --highlight1: var(--catppuccin-flamingo);
