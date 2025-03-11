@@ -95,7 +95,7 @@ p {
   border-radius: var(--border-radius);
   width: max-content;
   height: max-content;
-  max-width: min(300px, 54%);
+  max-width: min(240px, 50%);
   display: flex;
   justify-content: center;
   align-items: center;

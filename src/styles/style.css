@@ -103,7 +103,6 @@ body {
 
 button, a {
   border-radius: 0.3em;
-  font-size: min(max(1.25vw, 0.9rem), 1.25rem);
   font-family: inherit;
   background-color: var(--base);
   cursor: pointer;
@@ -178,23 +177,23 @@ button, a {
 
 
 h1 {
-  font-size: min(max(4vw, 3rem), 5rem);
+  font-size: min(max(3vw, 3rem), 4rem);
 }
 
 h2 {
-  font-size: min(max(3vw, 2rem), 2.5rem);
+  font-size: min(max(2vw, 2rem), 2rem);
 }
 
 h3 {
-  font-size: min(max(2vw, 1.5rem), 2rem);
+  font-size: min(max(1.5vw, 1.5rem), 1.5rem);
 }
 
 h4 {
-  font-size: min(max(1.5vw, 1.25rem), 1.5rem);
+  font-size: min(max(1.2vw, 1.2rem), 1.3rem);
 }
 
-p, form {
-  font-size: min(max(1.25vw, 0.9rem), 1.25rem);
+p, form, button, a {
+  font-size: min(max(0.8vw, 0.8rem), 1.1rem);
 }
 
 
