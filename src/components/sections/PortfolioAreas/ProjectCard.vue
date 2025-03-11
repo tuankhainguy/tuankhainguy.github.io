@@ -90,7 +90,7 @@ if (project) onMounted(() => {
 
 
 <template>
-  <Card ref="card" :onclick="onClick">
+  <Card ref="card">
     <div class="preview">
       <img :src="assets[imgSrc ?? '']?.default ?? ''" :alt="project.name" />
     </div>
@@ -102,21 +102,26 @@ if (project) onMounted(() => {
         {{ project.data?.description }}
       </p>
     </div>
+    <div class="buttonContainer">
+      <button type="button" :onclick="onClick">
+        <h4>-></h4>
+      </button>
+    </div>
   </Card>
 </template>
 
 
 <style scoped>
 .card {
+  --padding: 12px;
   position: relative;
   width: 100%;
   /* for aspect-ratio to work at least width or height must not be set */
   height: unset;
   aspect-ratio: 3 / 4;
-  padding: 12px;
+  padding: var(--padding);
   gap: 12px;
   border-radius: 12px;
-  cursor: pointer;
 }
 
 .preview {
@@ -152,15 +157,21 @@ h4 {
 p {
   all: initial;
   color: var(--text);
-  cursor: inherit;
   line-height: 1.6;
   margin-top: 2rem;
 }
 
+button {
+  float: right;
+  width: max-content;
+  display: block;
+  padding-block: 4px;
+  padding-inline: 16px;
+  background-color: rgb(from var(--subtext) r g b / 0.25);
+  transition: .2s ease-in-out;
+}
 
-@media only screen and (max-width: 768px) {
-  /* .card { */
-  /*   --scroll-delay: 10s; */
-  /* } */
+button:hover {
+  background-color: rgb(from var(--subtext) r g b / 0.5);
 }
 </style>

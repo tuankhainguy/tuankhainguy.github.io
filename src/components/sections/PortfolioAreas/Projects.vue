@@ -48,14 +48,15 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   grid-auto-flow: row;
+  position: relative;
 }
 
 .card {
   position: relative;
   /* needs to specify a value so that the inner can contain it */
-  width: 240px;
+  width: 100%;
   /* value cannot be anything? (at least not 100%) so that the inner can contain it */
   flex-basis: unset;
   /* for aspect-ratio to work at least width or height must not be set */
@@ -64,7 +65,9 @@ onMounted(() => {
   padding: 12px;
   gap: 12px;
   border-radius: 12px;
-  cursor: pointer;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: auto 1fr auto;
 }
 
 .duplicate {
@@ -101,7 +104,7 @@ onMounted(() => {
   }
 
   .innerContainer > :deep(.card) {
-    flex-shrink: 0;
+    width: 70dvw;
   }
 }
 
