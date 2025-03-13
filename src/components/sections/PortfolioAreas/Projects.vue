@@ -4,8 +4,25 @@ import Card from '../../Card.vue';
 import { onMounted, useTemplateRef } from 'vue';
 import PortfolioArea from './PortfolioArea.vue';
 import { projects } from '../../../main';
+import gsap from 'gsap';
 
 const inner = useTemplateRef("inner");
+const tl = gsap.timeline({ repeat: -1 });
+
+const animate = () => {
+  if (window.innerWidth <= 570) {
+    tl.to(
+      '.innerContainer',
+      {
+        duration: 10,
+        transform: "translateX(calc(-50% - var(--gap) / 2))",
+        ease: "none"
+      }
+    )
+  }
+}
+
+window.addEventListener('resize', animate);
 
 onMounted(() => {
   inner.value?.children.length
@@ -19,6 +36,7 @@ onMounted(() => {
     duplicatedCard.classList.add("duplicate");
     inner.value?.appendChild(duplicatedCard);
   });
+  animate();
 });
 </script>
 
@@ -92,7 +110,7 @@ onMounted(() => {
     display: flex;
     flex-wrap: nowrap;
     flex-shrink: 0;
-    animation: scroll var(--scroll-speed) linear infinite;
+    /* animation: scroll var(--scroll-speed) linear infinite; */
     /* somehow this is necessary for the mask to show on grandchildren elements */
     /* but this is not added in Kevin Powell tutorial */
     -webkit-mask:

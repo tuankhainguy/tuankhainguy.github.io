@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gsap": "^3.12.7",
     "octokit": "^4.1.2",
     "pinia": "^3.0.1",
     "vite-svg-loader": "^5.1.0",
