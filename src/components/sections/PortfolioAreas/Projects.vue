@@ -7,12 +7,21 @@ import { projects } from '../../../main';
 import gsap from 'gsap';
 
 const inner = useTemplateRef("inner");
-const tl = gsap.timeline({ repeat: -1 });
+let tl: ReturnType<typeof gsap.timeline> | null = null;
 
 const animate = () => {
+  if (tl) {
+    tl.restart();
+    tl.kill();
+    tl = null;
+  }
   if (window.innerWidth <= 570) {
-    tl.to(
+    tl = gsap.timeline({ repeat: -1 });
+    tl.fromTo(
       '.innerContainer',
+      {
+        transform: "translateX(0)",
+      },
       {
         duration: 10,
         transform: "translateX(calc(-50% - var(--gap) / 2))",
