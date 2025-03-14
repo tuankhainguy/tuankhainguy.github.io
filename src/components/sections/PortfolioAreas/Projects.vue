@@ -7,9 +7,20 @@ import { projects } from '../../../main';
 import gsap from 'gsap';
 
 const inner = useTemplateRef("inner");
+const outer = useTemplateRef("outer");
+let timeout: ReturnType<typeof setTimeout> | null = null;
 let tl: ReturnType<typeof gsap.timeline> | null = null;
+let currX: number | null = null;
+let currInnerWidth: number | null = null;
 
 const animate = () => {
+  if (window.innerWidth === currInnerWidth) {
+    return;
+  }
+  else if (currInnerWidth === null) {
+    currInnerWidth = window.innerWidth;
+  }
+
   if (tl) {
     tl.restart();
     tl.kill();
@@ -31,7 +42,49 @@ const animate = () => {
   }
 }
 
-window.addEventListener('resize', animate);
+const onTouchStart = (e: TouchEvent) => {
+  if (timeout) {
+    clearTimeout(timeout);
+  }
+  tl?.pause();
+  if (outer.value && inner.value) {
+    currX = e.changedTouches[0].screenX;
+
+    outer.value!.$el.addEventListener('touchend', onTouchEnd);
+    outer.value!.$el.addEventListener('touchmove', onTouchMove);
+  }
+}
+
+const onTouchMove = (e: TouchEvent) => {
+  e.preventDefault();
+  if (outer.value && inner.value && currX) {
+    const transform = inner.value.style.transform;
+    const re = /translate3d\((?<x>.*?)px, (?<y>.*?)px, (?<z>.*?)px/
+    const results = re.exec(transform) ?? { groups: { x: '0' } };
+    const currProgress = Math.abs(parseFloat(results!.groups!.x)) / inner.value.clientWidth * 2;
+
+    const newProgress =
+      currProgress -
+      (e.changedTouches[0].screenX - currX) / inner.value.clientWidth * 1.5;
+    currX = e.changedTouches[0].screenX;
+
+
+    tl?.progress(newProgress);
+  }
+}
+
+const onTouchEnd = () => {
+  // const scrollLeft = outer.value.$el.scrollLeft;
+  // const scrollWidth = outer.value.$el.scrollWidth;
+  // tl?.progress(scrollLeft / scrollWidth);
+  timeout = setTimeout(() => {
+    if (outer.value) {
+      tl?.play();
+      outer.value!.$el.removeEventListener('touchend', onTouchEnd);
+      outer.value!.$el.removeEventListener('touchmove', onTouchMove);
+    }
+  }, 1000);
+}
 
 onMounted(() => {
   inner.value?.children.length
@@ -46,12 +99,14 @@ onMounted(() => {
     inner.value?.appendChild(duplicatedCard);
   });
   animate();
+  window.addEventListener('resize', animate);
+  outer.value?.$el.addEventListener('touchstart', onTouchStart);
 });
 </script>
 
 
 <template>
-  <PortfolioArea>
+  <PortfolioArea ref="outer">
     <div class="innerContainer" ref="inner">
       <Suspense v-for="value, key in projects /* key and value position opposite of regular js and ts*/">
         <ProjectCard :repo="key" :img-src="value.imgSrc" />

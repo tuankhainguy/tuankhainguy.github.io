@@ -65,7 +65,8 @@ const projects = useProjectsStore();
 const project = (await projects.getProject(repo))!;
 project.imgSrc = imgSrc;
 
-const onClick = () => {
+const onClick = (e: Event) => {
+  e.preventDefault();
   if (!project.data.name) { return; }
   router.push(`/project/${project.data.name}`);
 }
@@ -82,7 +83,7 @@ if (project) onMounted(() => {
   if (!cardEl) { return; }
 
   cardEl.classList.add("duplicate");
-  cardEl.onclick = onClick;
+  (cardEl.getElementsByTagName("button")[0] as HTMLElement).onclick = onClick;
 
   parent?.replaceChild(cardEl, duplicate);
 });
