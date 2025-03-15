@@ -58,16 +58,21 @@ const onTouchStart = (e: TouchEvent) => {
 const onTouchMove = (e: TouchEvent) => {
   e.preventDefault();
   if (outer.value && inner.value && currX) {
-    const transform = inner.value.style.transform;
-    const re = /translate3d\((?<x>.*?)px, (?<y>.*?)px, (?<z>.*?)px/
-    const results = re.exec(transform) ?? { groups: { x: '0' } };
-    const currProgress = Math.abs(parseFloat(results!.groups!.x)) / inner.value.clientWidth * 2;
+    let currProgress = tl?.progress() ;
+    let diff = e.changedTouches[0].screenX - currX;
+
+    if (!currProgress) {
+      return;
+    }
+
+    if (currProgress < 0.01) {
+      currProgress = diff > 0 ? 0.99 : 0.01;
+    }
 
     const newProgress =
       currProgress -
-      (e.changedTouches[0].screenX - currX) / inner.value.clientWidth * 1.5;
+      (diff) / inner.value.clientWidth * 1.5;
     currX = e.changedTouches[0].screenX;
-
 
     tl?.progress(newProgress);
   }
