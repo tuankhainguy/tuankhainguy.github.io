@@ -105,9 +105,9 @@ h3 {
   padding-inline: 8px;
   position: relative;
   overflow: hidden;
-  background-color: var(--catppuccin-peach);
+  background-color: var(--highlight5);
   box-shadow:
-    0 0 4px 2px rgb(from var(--catppuccin-peach) r g b /  0.5);
+    0 0 4px 2px rgb(from var(--highlight5) r g b /  0.5);
   transition: box-shadow .2s ease-in-out;
   display: flex;
   justify-content: center;
@@ -117,15 +117,15 @@ h3 {
 
 .tabs:hover {
   box-shadow:
-    0 0 4px 2px rgb(from var(--catppuccin-peach) r g b / 0.8),
-    inset 0 0 5px 12px rgb(from var(--catppuccin-yellow) r g b / 0.4);
+    0 0 4px 2px rgb(from var(--highlight5) r g b / 0.8),
+    inset 0 0 5px 12px rgb(from var(--highlight4) r g b / 0.4);
 }
 
 
 @media (pointer: coarse) {
   .tabs:hover {
     box-shadow:
-      0 0 4px 2px rgb(from var(--catppuccin-peach) r g b /  0.5);
+      0 0 4px 2px rgb(from var(--highlight5) r g b /  0.5);
   }
 }
 

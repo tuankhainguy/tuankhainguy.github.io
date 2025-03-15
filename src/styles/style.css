@@ -1,5 +1,6 @@
 :root {
   --monospace: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  --monospace-alt: 'Courier New', Courier, monospace;
   --sans-serif: 'Nunito', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
  	--catppuccin-rosewater: rgb(245, 224, 220);
@@ -37,7 +38,6 @@
   --h1-font-size: min(max(2vw, 1.75rem), 2.75rem);
 
 
-
   font-family: var(--monospace);
 
 
@@ -58,7 +58,7 @@
   --highlight9: var(--catppuccin-sapphire);
   --highlight10: var(--catppuccin-blue);
 
-  color: var(--catppuccin-text);
+  color: var(--text);
 }
 
 * {
@@ -70,10 +70,26 @@
   font-weight: inherit;
 }
 
-
-/* html, body { */
-/*   overflow: hidden; */
-/* } */
+:root[data-theme="alt"] {
+  font-family: var(--monospace-alt);
+  --hacker-green: rgb(20, 148, 20);
+  --text: var(--hacker-green);
+  --subtext: var(--hacker-green);
+  --base: black;
+  --subbase: black;
+  --accent: var(--hacker-green);
+  --accent-compliment: black;
+  --highlight1: var(--hacker-green);
+  --highlight2: var(--hacker-green);
+  --highlight3: var(--hacker-green);
+  --highlight4: var(--hacker-green);
+  --highlight5: var(--hacker-green);
+  --highlight6: var(--hacker-green);
+  --highlight7: var(--hacker-green);
+  --highlight8: var(--hacker-green);
+  --highlight9: var(--hacker-green);
+  --highlight10: var(--hacker-green);
+}
 
 html {
   background-color: var(--base);

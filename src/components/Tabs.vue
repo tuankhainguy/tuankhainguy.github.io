@@ -95,8 +95,7 @@ export default {
 .tabs.active {
   color: var(--accent);
   border-bottom: 0.1rem solid var(--accent);
-  background:
-    linear-gradient(to bottom, var(--highlight3), var(--accent));
+  background-color: var(--accent);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -168,8 +167,7 @@ export default {
     position: absolute;
     inset: 100%;
     transition: inset .15s ease-in-out;
-    background:
-      linear-gradient(to bottom, var(--highlight3), var(--accent));
+    background: var(--accent);
   }
 
   .tabs.active {
