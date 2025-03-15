@@ -62,10 +62,10 @@ const onTouchMove = (e: TouchEvent) => {
     let diff = e.changedTouches[0].screenX - currX;
 
     if (!currProgress) {
-      return;
+      currProgress = 0;
     }
 
-    if (currProgress < 0.01) {
+    if (Math.abs(currProgress) < 0.01) {
       currProgress = diff > 0 ? 0.99 : 0.01;
     }
 

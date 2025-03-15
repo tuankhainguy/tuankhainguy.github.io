@@ -115,6 +115,10 @@ button, a {
   align-items: center;
 }
 
+button:focus {
+  box-shadow: none;
+}
+
 
 #app {
   max-width: 100vw;

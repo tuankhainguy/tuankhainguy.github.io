@@ -208,7 +208,6 @@ svg {
   height: 5rem;
   will-change: filter;
   transition: filter 300ms;
-  border-radius: .5em;
 }
 svg:hover {
   filter: drop-shadow(0 0 .2em var(--accent));
@@ -217,6 +216,7 @@ svg:hover {
 #t3 > svg,
 #bash > svg,
 #unity > svg {
+  border-radius: .5em;
   background-color: var(--text);
   padding: 8px;
 }
