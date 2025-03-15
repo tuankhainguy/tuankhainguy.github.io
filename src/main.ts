@@ -23,10 +23,14 @@ const router = createRouter({
       }
     }
     if (to.fullPath !== '/') { return; }
-    return {
-      el: '#portfolio',
-      top: 0,
-    }
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          el: '#portfolio',
+          top: 0,
+        })
+      }, 500);
+    });
   },
 })
 
