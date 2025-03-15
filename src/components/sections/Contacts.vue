@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { submitContactForm } from '../../common/utils';
+import AnimatedButton from '../AnimatedButton.vue';
 import Section from './Section.vue';
 
 
@@ -60,7 +61,11 @@ const handleContactForm = async (e: Event) => {
       <!-- Custom Confirmation / Success Page -->
       <!-- <input type="hidden" name="redirect" value="https://mywebsite.com/thanks.html"> -->
 
-      <button type="submit">Submit Form</button>
+      <AnimatedButton type="submit">
+        <h4>
+          Submit
+        </h4>
+      </AnimatedButton>
     </form>
   </Section>
 </template>
@@ -106,7 +111,7 @@ const handleContactForm = async (e: Event) => {
   position: relative;
 }
 
-button, a {
+a {
   border: 0.3rem solid var(--text);
   border-radius: 12px;
   padding: 8px;
@@ -157,10 +162,7 @@ form > textarea {
 }
 
 form > button {
-  width: max-content;
-  background-color: var(--accent);
-  color: var(--accent-compliment);
-  transition: background-color 0.15s ease-in-out;
+  font-size-adjust: 0.45;
   font-weight: bold;
 }
 
@@ -169,10 +171,6 @@ form > button {
   a:hover {
     color: var(--highlight4);
     border-color: var(--highlight4);
-  }
-
-  button[type="submit"]:hover {
-    background-color: var(--highlight4);
   }
 }
 

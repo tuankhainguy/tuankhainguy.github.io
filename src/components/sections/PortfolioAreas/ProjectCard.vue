@@ -5,6 +5,7 @@ import Card from '../../Card.vue';
 import { useRouter } from 'vue-router';
 import { useProjectsStore } from '../../../stores/projects';
 import { assets } from '../../../main';
+import AnimatedButton from '../../AnimatedButton.vue';
 
 const router = useRouter();
 
@@ -68,7 +69,9 @@ project.imgSrc = imgSrc;
 const onClick = (e: Event) => {
   e.preventDefault();
   if (!project.data.name) { return; }
-  router.push(`/project/${project.data.name}`);
+  setTimeout(() => {
+    router.push(`/project/${project.data.name}`);
+  }, 200);
 }
 
 const card = useTemplateRef("card");
@@ -104,9 +107,9 @@ if (project) onMounted(() => {
       </p>
     </div>
     <div class="buttonContainer">
-      <button type="button" :onclick="onClick">
-        <h4>-></h4>
-      </button>
+      <AnimatedButton :onclick="onClick">
+        ->
+      </AnimatedButton>
     </div>
   </Card>
 </template>
@@ -169,15 +172,9 @@ p {
 
 button {
   float: right;
-  width: max-content;
-  display: block;
-  padding-block: 4px;
-  padding-inline: 16px;
-  background-color: rgb(from var(--subtext) r g b / 0.25);
-  transition: .2s ease-in-out;
 }
 
 button:hover {
-  background-color: rgb(from var(--subtext) r g b / 0.5);
+  background-color: rgb(from var(--subtext) r g b / 0.36);
 }
 </style>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AnimatedButton from '../components/AnimatedButton.vue';
 import MainProjectContainer from '../components/MainProjectContainer.vue';
 import { useRouter } from 'vue-router';
 
@@ -9,24 +10,20 @@ defineProps<{
 const router = useRouter();
 
 const onBackButtonClick = () => {
-  router.push('/');
+  setTimeout(() => {
+    router.push('/');
+  }, 200);
 }
 </script>
 
 <template>
   <div class="topbar">
-    <button type="button" @click="onBackButtonClick">
+    <AnimatedButton @click="onBackButtonClick">
       <-
-    </button>
+    </AnimatedButton>
   </div>
   <MainProjectContainer :project="project" />
 </template>
 
 <style scoped>
-.topbar > button {
-  background-color: var(--accent);
-  color: var(--accent-compliment);
-  padding-block: 2px;
-  padding-inline: 12px;
-}
 </style>
