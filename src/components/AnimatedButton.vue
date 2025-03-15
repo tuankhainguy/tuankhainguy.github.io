@@ -50,6 +50,7 @@ button {
   overflow: hidden;
   position: relative;
   border-radius: 8px;
+  transition: background-color .2s ease-in-out;
 }
 
 button::before {
@@ -63,6 +64,10 @@ button::before {
   transition: width .4s ease-in-out, height .4s ease-in-out;
   background-color: rgb(from var(--subtext) r g b / 0.4);
   border-radius: 8px;
+}
+
+button:hover {
+  background-color: rgb(from var(--subtext) r g b / 0.36);
 }
 
 button[data-clicked="true"]::before {

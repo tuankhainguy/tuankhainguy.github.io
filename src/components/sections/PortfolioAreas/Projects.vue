@@ -65,8 +65,8 @@ const onTouchMove = (e: TouchEvent) => {
       currProgress = 0;
     }
 
-    if (Math.abs(currProgress) < 0.01) {
-      currProgress = diff > 0 ? 0.99 : 0.01;
+    if (Math.abs(currProgress) < 0.000001) {
+      currProgress = diff > 0 ? 0.999999 : 0.000001;
     }
 
     const newProgress =

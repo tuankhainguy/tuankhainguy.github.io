@@ -6,6 +6,7 @@ import Home from './sections/Home.vue';
 import About from './sections/About.vue';
 import Contacts from './sections/Contacts.vue';
 import Portfolio from './sections/Portfolio.vue';
+import AnimatedBackground from './AnimatedBackground.vue';
 
 const containerRef = useTemplateRef('main');
 let scrollEl: HTMLElement | null = null;
@@ -101,6 +102,7 @@ onMounted(() => {
     <About :id="keys[1]" />
     <Portfolio :id="keys[2]" />
     <Contacts :id="keys[3]" />
+    <AnimatedBackground />
   </div>
 </template>
 

@@ -173,8 +173,4 @@ p {
 button {
   float: right;
 }
-
-button:hover {
-  background-color: rgb(from var(--subtext) r g b / 0.36);
-}
 </style>

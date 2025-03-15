@@ -239,10 +239,10 @@ p, form, button, a {
   margin: 0;
   width: 100%;
   height: max-content;
-  height: 100vh;
+  height: 100dvh;
   background: rgb(from var(--base) r g b / 0.3);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
   /* left and right */
   /* border-inline: none; */
   z-index: -1;
