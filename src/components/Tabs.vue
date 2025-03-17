@@ -24,7 +24,7 @@ export default {
       // the section above to not show
       // if the main container have padding top, only subtract the padding top
       // value for the first section
-      const scrollTop = sectionEl.offsetTop;
+      const scrollTop = sectionEl.offsetTop - parseInt(window.getComputedStyle(mainContainer).paddingTop);
 
       root.scrollTo({
         top: scrollTop,

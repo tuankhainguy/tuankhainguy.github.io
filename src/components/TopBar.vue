@@ -12,6 +12,15 @@ onMounted(() => {
   logoBg ?
     (logoBg as HTMLElement).style.fill = "var(--catppuccin-base)" :
     null;
+  logo?.addEventListener("click", () => {
+    const theme = document.documentElement.getAttribute("data-theme");
+    if (theme === "") {
+      document.documentElement.setAttribute("data-theme", "alt");
+    }
+    else {
+      document.documentElement.setAttribute("data-theme", "");
+    }
+  });
 });
 </script>
 
