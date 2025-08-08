@@ -14,11 +14,11 @@ import img from '/src/assets/tuankhainguy.jpeg';
         TUAN KHAI NGUY
       </h2>
       <h4>
-        CS @ UniMelb | Research SWE Intern @ WEHI
+        CyberSecs @ RMIT | Ex CS @ UniMelb | Ex Research SWE Intern @ WEHI
       </h4>
       <div id="profile">
         <p>
-          I'm a 3rd year Bachelor of Science (Computing and Software Systems) student at The University of Melbourne experienced with leadership and creative roles. Seeking to apply skills in leadership, problem-solving, and innovation in research or software engineering position. Experienced with various programming languages, frameworks and tools. Always curious and eager to learn.
+          Software engineer/developer experienced with leadership and creative roles. Seeking to apply skills in leadership, problem-solving, and innovation in research or software engineering position. Experienced with various programming languages, frameworks and tools. Always curious and eager to learn.
         </p>
       </div>
     </div>

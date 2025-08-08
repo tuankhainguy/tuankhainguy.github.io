@@ -26,8 +26,7 @@ onMounted(() => {
 <template>
   <Section section-title="SOFTWARE ENGINEER">
     <h4>Frontend Web Developer</h4>
-    <h4>Knows a bit about Full-stack</h4>
-    <h4>Computer Science Student</h4>
+    <h4>Knows a bit about Backend and Full-stack</h4>
     <div class="buttons">
       <button
         type="button"
