@@ -165,6 +165,7 @@ h4 {
 
 p {
   all: initial;
+  font-family: inherit;
   color: var(--text);
   line-height: 1.6;
   margin-top: 2rem;
