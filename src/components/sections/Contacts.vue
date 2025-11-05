@@ -12,7 +12,7 @@ interface Form {
 }
 
 const handleContactForm = async (e: Event) => {
-  const form = e.currentTarget as HTMLElement & Form;
+  const form = e.currentTarget as HTMLFormElement & Form;
 
   if (form['botcheck'].checked) { return false; }
 
@@ -21,6 +21,8 @@ const handleContactForm = async (e: Event) => {
     email: form['email'].value,
     message: form['message'].value
   })
+
+  form.reset()
 }
 </script>
 

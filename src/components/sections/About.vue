@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Section from './Section.vue';
-import img from '/src/assets/tuankhainguy.jpeg';
+// import img from '/src/assets/tuankhainguy.jpeg';
 </script>
 
 
@@ -14,7 +14,7 @@ import img from '/src/assets/tuankhainguy.jpeg';
         TUAN KHAI NGUY
       </h2>
       <h4>
-        CyberSecs @ RMIT | Ex CS @ UniMelb | Ex Research SWE Intern @ WEHI
+        CyberSec @ RMIT | Ex CS @ UniMelb | Ex Research SWE Intern @ WEHI
       </h4>
       <div id="profile">
         <p>
@@ -23,11 +23,11 @@ import img from '/src/assets/tuankhainguy.jpeg';
       </div>
     </div>
     <template v-slot:secondary>
-      <div id="profilePicture">
-        <div id="pictureWrapper">
-          <img :src="img" />
-        </div>
-      </div>
+      <!-- <div id="profilePicture"> -->
+      <!--   <div id="pictureWrapper"> -->
+      <!--     <img :src="img" /> -->
+      <!--   </div> -->
+      <!-- </div> -->
     </template>
   </Section>
 </template>

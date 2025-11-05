@@ -19,9 +19,12 @@ const onClick = (e: MouseEvent) => {
   el.setAttribute("data-clicked", "true");
 
   animationTimeout = setTimeout(() => {
-    el.style.removeProperty('--mouse-X');
-    el.style.removeProperty('--mouse-Y');
     el.setAttribute("data-clicked", "false");
+
+    // setTimeout(() => {
+    //   el.style.removeProperty('--mouse-X');
+    //   el.style.removeProperty('--mouse-Y');
+    // }, 0);
   }, 450);
 }
 
