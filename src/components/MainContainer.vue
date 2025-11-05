@@ -5,7 +5,7 @@ import { onMounted, useTemplateRef } from 'vue';
 import Home from './sections/Home.vue';
 import About from './sections/About.vue';
 import Contacts from './sections/Contacts.vue';
-import Portfolio from './sections/Portfolio.vue';
+// import Portfolio from './sections/Portfolio.vue';
 
 const containerRef = useTemplateRef('main');
 let scrollEl: HTMLElement | null = null;
@@ -99,8 +99,8 @@ onMounted(() => {
   <div id="mainContainer" ref="main" >
     <Home :id="keys[0]" />
     <About :id="keys[1]" />
-    <Portfolio :id="keys[2]" />
-    <Contacts :id="keys[3]" />
+    <!-- <Portfolio :id="keys[2]" /> -->
+    <Contacts :id="keys[2]" />
   </div>
 </template>
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ProjectCard from './ProjectCard.vue';
-import Card from '../../Card.vue';
+// import ProjectCard from './ProjectCard.vue';
+// import Card from '../../Card.vue';
 import { onMounted, useTemplateRef } from 'vue';
 import PortfolioArea from './PortfolioArea.vue';
-import { projects } from '../../../main';
+// import { projects } from '../../../main';
 import gsap from 'gsap';
 
 const inner = useTemplateRef("inner");
@@ -113,14 +113,14 @@ onMounted(() => {
 <template>
   <PortfolioArea ref="outer">
     <div class="innerContainer" ref="inner">
-      <Suspense v-for="value, key in projects /* key and value position opposite of regular js and ts*/">
-        <ProjectCard :repo="key" :img-src="value.imgSrc" />
-        <template #fallback>
-          <Card :id="key">
-            <p>Loading...</p>
-          </Card>
-        </template>
-      </Suspense>
+      <!-- <Suspense v-for="value, key in projects /* key and value position opposite of regular js and ts*/"> -->
+      <!--   <ProjectCard :repo="key" :img-src="value.imgSrc" /> -->
+      <!--   <template #fallback> -->
+      <!--     <Card :id="key"> -->
+      <!--       <p>Loading...</p> -->
+      <!--     </Card> -->
+      <!--   </template> -->
+      <!-- </Suspense> -->
     </div>
   </PortfolioArea>
 </template>

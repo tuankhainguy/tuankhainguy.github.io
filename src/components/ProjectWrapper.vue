@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router';
 import { useProjectsStore } from '../stores/projects';
 import Section from './sections/Section.vue';
-import { assets, projects } from '../main';
+// import { assets, projects } from '../main';
 
 const { project } = defineProps<{
   project: string
@@ -11,7 +11,7 @@ const { project } = defineProps<{
 const store = useProjectsStore();
 const currentProject = (await store.getProject(project));
 const currentProjectName = currentProject?.name;
-const imgSrc = assets[projects[currentProject?.data.full_name].imgSrc ?? ''].default;
+// const imgSrc = assets[projects[currentProject?.data.full_name].imgSrc ?? ''].default;
 const htmlURL = currentProject?.data.html_url;
 
 const router = useRouter();
@@ -37,7 +37,7 @@ if (!store.projects[router.currentRoute.value.fullPath.split('/')[2]]) {
       GitHub
     </a>
     <template v-slot:secondary>
-      <img :src="imgSrc" />
+      <!-- <img :src="imgSrc" /> -->
     </template>
   </Section>
 </template>
