@@ -69,8 +69,8 @@ import Return from './Return.vue';
   }
   40%,
   100% {
-    border-top: 0.1em solid var(--catppuccin-surface2);
-    border-bottom: 0.1em solid var(--catppuccin-surface2);
+    border-top: 0.1em solid var(--js-hi);
+    border-bottom: 0.1em solid var(--js-hi);
     background-color: var(--base);
   }
 }

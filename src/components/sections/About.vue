@@ -18,17 +18,17 @@ import Section from './Section.vue';
       </h4>
       <div id="profile">
         <p>
-          Software engineer/developer experienced with leadership and creative roles. Seeking to apply skills in leadership, problem-solving, and innovation in research or software engineering position. Experienced with various programming languages, frameworks and tools. Always curious and eager to learn.
+          Aspiring software engineer experienced with leadership and creative roles. Seeking to apply skills in leadership, problem-solving, and innovation in research or software engineering position. Experienced with various programming languages, frameworks and tools. Always curious and eager to learn.
         </p>
       </div>
     </div>
-    <template v-slot:secondary>
-      <!-- <div id="profilePicture"> -->
-      <!--   <div id="pictureWrapper"> -->
-      <!--     <img :src="img" /> -->
-      <!--   </div> -->
-      <!-- </div> -->
-    </template>
+    <!-- <template v-slot:secondary> -->
+    <!--   <div id="profilePicture"> -->
+    <!--     <div id="pictureWrapper"> -->
+    <!--       <img :src="img" /> -->
+    <!--     </div> -->
+    <!--   </div> -->
+    <!-- </template> -->
   </Section>
 </template>
 
@@ -48,7 +48,6 @@ h4 {
 }
 
 h2, h3, h4 {
-  padding-inline: 36px;
   width: 100%;
 }
 
@@ -60,20 +59,29 @@ p {
   padding: 12px;
 }
 
+.section {
+  height: max-content;
+  min-height: max-content;
+  padding-bottom: 10rem;
+}
+
+.sectionContent {
+  height: max-content;
+}
+
 #profile {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 36px;
 }
 
 #profile > p:before {
   z-index: -1;
   border-radius: 10px;
   position: absolute;
-  inset: calc(36px - 0.2rem);
+  inset: calc(-0.2rem);
   background:
     linear-gradient(to right, var(--accent), var(--highlight6));
   content: '';
@@ -86,7 +94,6 @@ p {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  margin-top: 8rem;
   margin-bottom: auto;
 }
 
@@ -138,24 +145,27 @@ p {
 
 
 @media only screen and (max-width: 768px) {
-  #profile {
-    padding: 12px;
+  .section {
+    padding-bottom: 2rem;
   }
-
-  #profile > p:before {
-    inset: calc(12px - 0.2rem);
-  }
-
-  h2, h3, h4 {
-    padding-inline: 12px;
-  }
-
-  .content {
-    margin-top: 2rem;
-  }
-
-  #profilePicture {
-    margin-top: 2rem;
-  }
+/*   #profile { */
+/*     padding: 12px; */
+/*   } */
+/**/
+/*   #profile > p:before { */
+/*     inset: calc(12px - 0.2rem); */
+/*   } */
+/**/
+/*   h2, h3, h4 { */
+/*     padding-inline: 12px; */
+/*   } */
+/**/
+/*   .content { */
+/*     margin-top: 2rem; */
+/*   } */
+/**/
+/*   #profilePicture { */
+/*     margin-top: 2rem; */
+/*   } */
 }
 </style>

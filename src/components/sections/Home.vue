@@ -46,23 +46,6 @@ onMounted(() => {
 
 
 <style scoped>
-.section {
-  height: 800px;
-  align-items: center;
-  font-size: max(1.2vw, 1.2rem);
-  border: none;
-  border-radius: 0;
-  background: none;
-  box-shadow: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
-
-.section :deep(.primary),
-.section :deep(.secondary) {
-  justify-content: center;
-}
 /**/
 /* .section :deep(.secondary) { */
 /*   border-radius: 12px; */

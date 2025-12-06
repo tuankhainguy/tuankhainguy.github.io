@@ -36,10 +36,27 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
+.section {
+  height: 800px;
+  align-items: center;
+  font-size: max(1.2vw, 1.2rem);
+  border: none;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
 .sectionContent {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  max-width: calc(var(--section-max-w) * 7 / 10);
   height: 100%;
+  max-width: var(--section-max-w);
 }
 
 .section span.sectionName {
@@ -54,35 +71,39 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
-.primary {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  gap: 12px;
-}
-
+.primary,
 .secondary {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
-  width: 66%;
+  width: 70%;
   gap: 12px;
 }
 
-@media only screen and (max-width: 768px) {
-  .sectionContent {
-    flex-direction: column;
-    height: max-content;
-  }
+.primary {
+  height: max-content;
+}
 
+.secondary {
+  height: 100%;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .section:not(:has(.sectionName)) .primary {
+    padding-top: 10rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
   .section#home > .sectionContent {
     height: 100%;
   }
 
+  .sectionContent,
+  .primary,
   .secondary {
-    width: 100%;
+    width: 100% !important;
   }
 }
 </style>

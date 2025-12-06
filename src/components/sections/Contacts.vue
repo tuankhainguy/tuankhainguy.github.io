@@ -75,8 +75,9 @@ const handleContactForm = async (e: Event) => {
 
 <style scoped>
 .section {
+  height: max-content;
   min-height: max-content;
-  margin-bottom: var(--app-empty-space);
+  margin-bottom: 10rem;
 }
 
 #contactLinks {

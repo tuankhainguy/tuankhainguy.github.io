@@ -58,6 +58,10 @@
   --highlight9: var(--catppuccin-sapphire);
   --highlight10: var(--catppuccin-blue);
 
+  --js-hi: var(--catppuccin-surface2);
+
+  --section-max-w: 80rem;
+
   color: var(--text);
 }
 
@@ -89,6 +93,8 @@
   --highlight8: var(--hacker-green);
   --highlight9: var(--hacker-green);
   --highlight10: var(--hacker-green);
+
+  --js-hi: var(--hacker-green);
 }
 
 html {
@@ -261,11 +267,12 @@ p, form, button, a {
 
 .topbar {
   height: var(--topbar-height);
-  width: 100dvw;
+  width: 100%;
+  max-width: calc(var(--section-max-w) * 7 / 10);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5em;
+  padding-block: 1.5em;
   background-color: inherit;
   z-index: 10;
   position: sticky;
@@ -283,6 +290,11 @@ p, form, button, a {
   /* needs px for the calc to work */
   :root {
     --app-empty-space: 0px;
+  }
+
+  .topbar {
+    width: 100%;
+    padding-inline: 1.5em;
   }
 
   #mainContainer:before {
