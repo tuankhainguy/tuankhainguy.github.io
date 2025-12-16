@@ -8,10 +8,6 @@ const topbarRef = useTemplateRef("topbar");
 onMounted(() => {
   const topbar = topbarRef.value;
   const logo = topbar?.firstElementChild;
-  const logoBg = logo?.firstElementChild;
-  logoBg ?
-    (logoBg as HTMLElement).style.fill = "var(--catppuccin-base)" :
-    null;
   logo?.addEventListener("click", () => {
     const theme = document.documentElement.getAttribute("data-theme");
     if (theme === "") {
