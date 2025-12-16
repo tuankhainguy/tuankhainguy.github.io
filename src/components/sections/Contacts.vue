@@ -65,7 +65,7 @@ const handleContactForm = async (e: Event) => {
 
       <AnimatedButton type="submit">
         <h4>
-          Submit
+          Send
         </h4>
       </AnimatedButton>
     </form>
@@ -156,7 +156,7 @@ form > :not(button)::placeholder {
 
 form > input:focus,
 form > textarea:focus {
-  outline: 0.2rem ridge var(--highlight4);
+  outline: 0.2rem solid var(--highlight4);
   outline-offset: 1px;
 }
 
